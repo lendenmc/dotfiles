@@ -1,0 +1,174 @@
+#!/bin/sh
+
+# all of these functions are declared in subshells
+# the reason is that ksh does not support 'local' (only typeset with function keyword) whereas dash does not support "typeset"
+
+# unlike  'brew home' and 'brew homepage', print homepage of homebrew formula(e) without opening it
+bhome() (
+    # return Homebrew's homepage by default, which mimics 'brew home' behavior in the analogous situation
+    if [ $# -eq 0 ]; then 
+        bold="\033[1m"
+        # cannot use 'end' as variable name because zsh's 'zargs' module uses it internally (zargs allows shell functions to be executed from std input, unlike xargs)
+        # hence we use the variable name 'ending' instead so that we won't have a crah when our functions are provded as argument to the zargs fct in zsh 
+        ending="\033[0m"
+        homebrew_page="http://brew.sh"
+        if [ -t 1 ]; then # use color when standard output is a terminal
+            python -c "print(\"$bold\"+\"homebrew: \"+\"$ending\"+\"$homebrew_page\")"
+        else
+            printf "homebrew: %s\n" "$homebrew_page"
+        fi
+        return 0
+    fi
+    formulae="$*"
+    # shellcheck disable=SC2086
+    _brew_json "homepage" $formulae
+)
+
+# print description and homepage of homebrew formula(e), in that order
+bdeschome() (
+    formulae="$*"
+    # shellcheck disable=SC2086
+    _brew_json "desc homepage" $formulae
+)
+
+# print full name of homebrew formula(e)
+bfname() (
+    formulae="$*"
+    # shellcheck disable=SC2086
+    _brew_json "full_name" $formulae
+)
+
+# print full name of homebrew formula(e)
+bdep() {
+    formulae="$*"
+    # shellcheck disable=SC2086
+    _brew_json "dependencies" $formulae 
+}
+ 
+# print description, homepage and full name of homebrew formula(e), in that order  
+bfull() (
+    formulae="$*"
+    # shellcheck disable=SC2086
+    _brew_json "desc homepage full_name" $formulae
+)
+
+# same as 'bfull', only the homepage comes before the description
+bfullhome() (
+    formulae="$*"
+    # shellcheck disable=SC2086
+    _brew_json "homepage desc full_name" $formulae
+)
+
+# print description, homepage, dependencies and full name of homebrew formula(e), in that order
+bfulldep() (
+    formulae="$*"
+    # shellcheck disable=SC2086
+    _brew_json "desc homepage dependencies full_name" $formulae
+)
+
+# same as 'bfulldep', only the homepage comes before the description
+bfulldephome() (
+    formulae="$*"
+    # shellcheck disable=SC2086
+    _brew_json "homepage desc dependencies full_name" $formulae
+)
+
+# make formula name bold, then gray out every second field
+_build_line() (
+    fields="$1"
+    bold="\033[1m"
+    ending="\033[0m"
+    gray="\033[1;30m"
+    line="print('$bold'+formula['name']"
+    column_index=2
+    command -v setopt >/dev/null 2>&1 && setopt shwordsplit
+    for field in $fields; do
+        line=$line"+': '+'$ending'"
+        # make every odd column gray (except for first column, which gives 'name' by default and is bold)
+        [ $((column_index%2)) -ne 0 ] && line=$line"+'$gray'"
+        # ugly inline if else to turn python 2 unicode strings within list into regular string
+        row="(formula['$field'] if not isinstance(formula['$field'],list) else str([ str(f) for f in formula['$field']]))"
+        line=$line"+$row"
+        column_index=$((column_index+1))
+    done
+    line=$line"+'$ending')"
+    printf "%s" "$line"
+)
+
+# select the relevant info of the json string provided as first argument, with respect to the fields provided next to it
+_select_brew_info() (
+    json_brew_info="$1"
+    fields="$2"
+
+    if [ -t 1 ]; then # use color when std output is a terminal
+        line=$(_build_line "$fields")
+    else
+        line="print(formula['name']"
+        for field in $fields; do
+            line=$line"+': '+str(formula['$field'])"
+        done
+        line=$line")"
+    fi
+    python_cmd="exec(\"import sys,json\\nfor formula in json.load(sys.stdin): $line\")"
+
+    printf "%s" "$json_brew_info"   \
+        | python -c "$python_cmd"
+)
+
+# mimic 'brew desc' error message when no formula is provided as argument
+_try_brew_arguments() (
+    if [ $# -eq 0 ]; then
+        brew_desc_error_text="Invalid usage: This command requires a formula argument"
+        if [ -t 1 ]; then # use only color when std output is a terminal
+            red="\033[0;31m"
+            underline="\033[4m"
+            ending="\033[0m"
+            python -c "print('$red'+'$underline'+'Error'+'$ending'+': $brew_desc_error_text')" >&2
+            return 1
+        else
+            printf "Error: %s\n" "$brew_desc_error_text" >&2
+            return 1
+        fi
+    fi
+)
+
+# get values of prescribed 'brew info' field names for each provided homebrew formula(e)
+# mimic output format of 'brew desc', including no colorized output when piping
+_brew_json() (
+    fields="$1"
+    shift # all the remaining arguments are expected to be homebrew formula(e)
+    formulae="$*"
+    # use word splitting of "formulae" when shell is zsh
+    # as this option change is run within subshell, no need to keep the current shell option in memory by
+    # using the type of solution that nvm needed to use here https://github.com/creationix/nvm/blob/master/nvm.sh#L801-L806
+    command -v setopt > /dev/null 2>&1 && setopt shwordsplit
+    # shellcheck disable=SC2086
+    _try_brew_arguments $formulae || return 1 # reject commands without any formula
+
+    if [ -t 1 ]; then
+        # keep std error's colors of 'brew info' if std output is a termina
+        # a 'script -q /dev/null' trick together with an 'if/else' is needed in order realize that
+        # shellcheck disable=SC2086
+        if ! json_brew_info="$(script -q /dev/null brew info --json=v1 $formulae)"; then
+            printf "%s\n" "$json_brew_info" >&2
+            return 1
+        fi
+    else
+        # shellcheck disable=SC2086
+        json_brew_info="$(brew info --json=v1 $formulae)" || return 1
+    fi
+
+    _select_brew_info "$json_brew_info" "$fields"
+)
+
+# utils functions (not meant to be used outside the profile)
+_add_gcloud_sdk_to_path() {
+    google_cloud_sdk_prefix="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+    if printf "%s" "$PATH"  \
+        | GREP_OPTIONS="" command grep -v "$google_cloud_sdk_prefix"/bin >/dev/null; then
+        script="$google_cloud_sdk_prefix"/path."$1".inc
+        _test_file "$script" && . "$script" >/dev/null
+        unset script
+    fi
+    unset google_cloud_sdk_prefix
+}

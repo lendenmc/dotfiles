@@ -1,0 +1,7 @@
+[core]
+	excludesfile = /.gitignore.global
+
+# use separate file for username, email, etc
+# this idea is taken from https://github.com/paulirish/dotfiles/blob/master/.gitconfig
+[include]
+ 	path = ~/.gitconfig.local

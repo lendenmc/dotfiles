@@ -1,0 +1,110 @@
+#!/bin/sh
+
+# create and cd immediately
+take() {
+    if [ -z "$1" ]; then
+    	# stop the process otherwise you'll end up in home directory
+        return 0
+    fi
+    command mkdir -p "$1"
+    cd "$1" || return 1
+}
+
+# history
+h() {
+    fc -l "$@" 1 2>&1   \
+        | command sed '1!G;h;$!d' 2>&1  \
+        | command less
+        # use sed trick to reverse order of output, which is more portable than solutions with 'tail -r' or 'tac' (see http://stackoverflow.com/a/744093/3190077)
+}
+
+# grep through history without displaying duplicate results
+# shellcheck disable=SC2016
+hs() {
+    fc -l 1 2>&1    \
+    | command sed '1!G;h;$!d' 2>&1  \
+    | command awk '{ $1=""; print}' \
+    | command awk '!_[$0]++'    \
+    | command sed 's/^ *//'  \
+    | GREP_OPTIONS="" command grep -E "$1"
+}
+
+
+# run system pip
+syspip() {
+    PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+syspip2() {
+    PIP_REQUIRE_VIRTUALENV="" pip2 "$@"
+}
+syspip3() {
+    PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
+}
+
+# upgrade pip-installed packages
+pu() {
+    PIP_REQUIRE_VIRTUALENV="" pip freeze --local 2>&1   \
+    | GREP_OPTIONS="" command grep -v '^\-e' 2>&1    \
+    | command cut -d = -f 1 2>&1 \
+    | while read -r package; do # 'xargs -n1 pip install -U' would have worked except that it does not preserve pip aliases
+        PIP_REQUIRE_VIRTUALENV="" pip install -U "$package"
+    done
+}
+
+# upgrade pip, setuptools, and wheels
+pucore() {
+    PIP_REQUIRE_VIRTUALENV="" pip install -U pip setuptools wheels 
+}
+pucore2() {
+    PIP_REQUIRE_VIRTUALENV="" pip2 install -U pip setuptools wheels
+}
+pucore3() {
+    PIP_REQUIRE_VIRTUALENV="" pip3 install -U pip setuptools wheels
+}
+
+# list top level node_modules using npmls
+npmls() {
+    command npm ls --depth=0 "$@" 2>/dev/null
+}
+
+# used for custom prompt
+# do not use the name '_git_branch' because with bash it might conflict with the '_git_branch' function of the 'git-completion.bash' file
+_print_git_branch() {
+    git_branch=$(command git symbolic-ref --short HEAD 2>/dev/null || (command git name-rev --name-only HEAD | cut -d"/" -f 2) 2>/dev/null)
+    [ -n "$git_branch" ] && printf "(%s) \n" "$git_branch"
+}
+
+# utils functions (not meant to be used outside the profile)
+_print_error() {
+    printf "ERROR: %s\n" "$1" >&2
+}
+_test_file() {
+    if ! [ -r "$1" ] || ! [ -f "$1" ]; then
+        # _print_error "No such file $1"
+        return 1
+    fi
+    if [ "$1" = "/usr/local/bin/virtualenvwrapper.sh" ]; then
+        # do not source the file if virtualenwrapper module is not installed for the virtualenvwrapper default python
+        eval "$VIRTUALENVWRAPPER_PYTHON -c \"import virtualenvwrapper\"" 2>/dev/null || return 1
+    fi 
+}
+_parse_text_file() {
+    _test_file "$1" || return 1
+    # shellcheck disable=SC2016
+    GREP_OPTIONS="" command grep -Ev "^\s*(#|$)" "$1" | command awk -F'#' '{print $1}'
+}
+_source_from_text_file() {
+    # The simpler '_parse_text_file "$1" | while read -r script; do [...]; done' would have done the job for ksh and zsh.
+    # For other shells though, such as bash without 'lastpipe' option enabled, this would not have worked as each command in a pipeline
+    # creates its own separate subshell. This means that the functions coming from the scripts that we source at the end of the pipeline within
+    # the while loop, such as virtualenwrapper functions, would not be exposed by such shells afterwards.
+    while read -r script; do
+        # solve file names with variable name at the beginning of path (e.g. '$NVM_DIR/nvm.sh')
+        printf "%s" "$script"   \
+            | GREP_OPTIONS="" command grep -Eq "^\\\$" && script=$(eval printf "$script")
+        _test_file "$script" && . "$script"
+    done <<EOF 
+    $(_parse_text_file "$1")
+EOF
+    unset script
+}

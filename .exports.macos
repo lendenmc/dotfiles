@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# go path (homebrew might not been installed)
+go_prefix="$(brew --prefix go 2>/dev/null)"
+if [ -n "$go_prefix" ]; then
+	if [ -d "$(brew --prefix)/Cellar/go" ]; then
+		go_path="${go_prefix}/libexec/bin"
+	else
+		go_path=""
+	fi
+else
+	go_path=""
+fi
+# append to '$path' only if it is not already there
+paths="\
+${HOME}/bin
+/usr/local/sbin
+${go_path}
+"
+
+while read -r pth; do # do not use 'path' as a variable name !
+	if [ -z "$PATH" ] || (printf "%s" "$PATH" | GREP_OPTIONS="" command grep -qv "$pth"); then
+		export PATH="${pth}:${PATH}"
+	fi
+done <<EOF 
+    $paths
+EOF
+unset go_prefix go_path paths pth
+
+# append to 'manpath' only if it is not already there
+manpaths="\
+/usr/local/opt/erlang/lib/erlang/man
+/usr/local/opt/coreutils/libexec/gnuman
+"
+while read -r manpth; do
+	if [ -z "$MANPATH" ] || (printf "%s" "$MANPATH" | GREP_OPTIONS="" command grep -qv "$manpth"); then
+	export MANPATH="${manpth}:${MANPATH}"
+fi
+done <<EOF 
+    $manpaths
+EOF
+unset manpaths manpth
+
+# make 'import pyspark' work (the py4j module will be also required then)
+if command -v brew >/dev/null 2>&1 && brew ls --versions apache-spark >/dev/null 2>&1; then
+	python_spark="$(brew --prefix apache-spark)/libexec/python"
+	if [ -z "$PYTHONPATH" ] || (printf "%s" "$PYTHONPATH" | GREP_OPTIONS="" command grep -qv "$python_spark"); then
+		export PYTHONPATH
+		PYTHONPATH="${python_spark}:${PYTHONPATH}"
+	fi
+fi
+unset python_spark

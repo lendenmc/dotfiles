@@ -1,0 +1,537 @@
+openssl
+cmake
+
+### arithmetic libraries ###
+	gmp
+	isl
+	mpfr
+	libmpc
+
+### GNU libraries ###
+	autoconf
+	automake
+	gcc
+	gdb
+	gdbm
+	gettext
+	pkg-config
+	readline
+
+### C libraries ###
+	pcre
+	libffi
+	glib
+
+### image-manipulation libraries ###
+	jpeg
+	libpng
+	libtiff
+
+### font-rendering libraries ###
+	freetype
+	fontconfig
+
+### python ###
+	sqlite
+	python
+	python3
+	pypy
+	pypy3
+	micropython
+
+### specific requirements of ... ###
+### graphicmagick, imagemagick
+	libtool
+### ghostscript, poppler
+	little-cms2
+### couchdb
+	icu4c
+	nspr
+	spidermonkey
+### emacs, gtk+, pidgin, poppler
+	pixman
+	cairo
+	gobject-introspection
+### emacs, gtk+, pidgin
+	shared-mime-info
+	harfbuzz
+	pango
+### emacs, gtk+
+	gdk-pixbuf
+### git-annex, pidgin
+	libidn
+### gnupg2, pidgin, weechat, wireshark
+	libgpg-error
+	libgcrypt
+### memcached, poppler, tmux
+	doxygen
+### memcached, tmux
+	libevent
+### tmux
+	utf8proc
+### gtk+
+	atk
+	hicolor-icon-theme
+### pidgin
+	libotr
+### emacs
+	libcroco
+	librsvg
+### poppler
+	openjpeg
+### gnuplot
+	webp
+	gd
+### imagemagick, the_silver_searcher
+	xz
+### jq
+	oniguruma
+### git-annex
+	gsasl
+	libquvi
+	quvi
+### git-annex, osquery
+	libmagic
+### wireshark
+	dbus
+	c-ares
+	geoip
+### snort
+	daq
+### zmap
+	json-c
+### gnupg2
+	libassuan
+	pinentry
+	pth
+	libksba
+	gpg-agent
+	dirmngr
+	libusb
+	libusb-compat
+### gnutls
+	libtasn1
+	nettle
+### rust
+	libssh2
+### ruby, docker-compose
+	libyaml
+### rbenv
+	ruby-build
+### notmuch
+	gmime
+	talloc
+### pyqt
+	sip --with-python3 --without-python
+### sysdig
+	jsoncpp
+### leveldb, rocksdb
+	snappy
+### leveldb
+	gperftools
+### rocksdb
+	lz4
+### clisp, gnu-smalltalk
+	libsigsegv
+### php56
+	unixodbc
+	libxml2
+### tesseract
+	leptonica
+### opencv3
+	ilmbase
+	openexr
+### hdf5
+	szip
+### hbase, shogun
+	lzo
+### most
+	s-lang
+### nano
+	ncurses
+### collectd
+	net-snmp
+### fish
+	pcre2
+### osquery, thrift
+	boost
+### armadillo, octave, shogun
+	homebrew/science/veclibfort
+	homebrew/science/arpack
+### octave, shogun
+	homebrew/science/glpk
+### octave
+	ghostscript
+	gnuplot
+	imagemagick
+	plotutils
+	epstool
+	fftw
+	fltk
+	gl2ps
+	homebrew/science/qhull
+	homebrew/science/glpk
+	homebrew/science/qrupdate
+	tbb
+	homebrew/science/metis
+	homebrew/science/suite-sparse
+	homebrew/science/transfig
+	pstoedit
+	qscintilla2
+### shogun
+	protobuf
+	homebrew/science/colpack
+	homebrew/science/nlopt
+### armadillo, mlpack
+	homebrew/science/superlu43
+### nagios
+	nagios-plugins
+### gnumeric
+	libepoxy
+	gsettings-desktop-schemas
+	gtk+3
+	libgsf
+	goffice
+	rarian
+	gnome-icon-theme
+### mesos
+	subversion
+### ngircd
+	libident
+### rsyslog
+	libestr
+### osquery
+	yara
+	libressl
+	gflags
+	glog
+	asio
+	cpp-netlib
+	sleuthkit
+
+### cryptography and secrets ###
+	gnutls
+	gnupg2
+	vault
+
+### documents, document conversion, data parsing and images ###
+	cmark # commonMark implementation
+	djvulibre
+	exiftool
+	gnu-units
+	gnuplot
+	gnumeric
+	graphicsmagick
+	graphviz
+	jbig2dec
+	jq
+	miller
+	multimarkdown
+	pandoc
+	poppler
+	pdfgrep # requires poppler
+	qpdf
+	tesseract
+	webkit2png
+
+### git ###
+	git
+	git-annex
+	git-extras
+	git-cal
+	git-lfs
+	git-plus
+	diff-so-fancy
+	hub
+	tig
+
+### GUI frameworks ###
+	qt5
+	pyqt5 --with-python3 --without-python
+	# qt
+	# pyqt --with-python3 --without-python
+	gtk+
+	wxmac
+
+### ruby ###
+	ruby
+	rbenv
+
+### lisp ###
+	clisp
+	ecl
+	sbcl
+
+### scheme ###
+	mit-scheme 
+	chicken
+
+### scala ###
+	scala
+	sbt
+	akka
+	typesafe-activator # Play 2.3 replaces the play command with activator
+
+### lua ###
+	lua # includes luarocks
+	luajit
+
+### ocaml ###
+	ocaml
+	camlp5
+
+### programming ###
+	erlang
+	fpc # free pascal compiler
+	go
+	gnu-apl
+	gnu-cobol
+	gnu-smalltalk
+	groovy
+	leiningen # for using clojure
+	minimal-racket
+	node
+	perl
+	homebrew/php/php56
+	rust
+	swi-prolog
+	swig
+
+### key-value databases ###
+	berkeley-db
+	leveldb
+	memcached
+	redis
+	rocksdb
+	tokyo-cabinet
+
+### columnar databases ###
+	cassandra
+	hbase
+
+### graph databasess ###
+	neo4j
+	orientdb
+
+### document-oriented databases ###
+	couchdb
+	mongodb
+	rethinkdb
+
+### relational DBMS ###
+	mariadb
+	# mysql # mysql conflict with mariadb
+	postgresql --with-python3 --without-python
+
+### GNU utils ###
+	coreutils # all commands will be installed with prefix 'g'
+	binutils # all commands will be installed with prefix 'g'
+	findutils # all commands will be installed with prefix 'g'
+	diffutils
+	homebrew/dupes/grep --with-default-names
+	homebrew/dupes/gzip
+	homebrew/dupes/rsync
+	homebrew/dupes/screen
+	gnu-indent --with-default-names
+	gnu-sed --with-default-names
+	gnu-tar --with-default-names
+	gnu-time --with-default-names
+	gnu-which --with-default-names
+	gawk # GNU awk, will be installed without prefix 'g'
+	less
+	lsof
+	make
+	wdiff
+
+### misc ###
+	ack
+	archey
+	bfg
+	cloc
+	dark-mode
+	flac
+	mawk
+	mdp
+	most
+	p7zip
+	packer
+	parallel
+	rename
+	sift
+	the_silver_searcher
+	thefuck
+	tree
+	unar
+	watchman
+	zopfli
+
+### text editors ###
+	vim --with-override-system-vi --with-python3
+	vimpager
+	emacs
+	nano
+	joe
+
+### service discovery ###
+	consul
+	etcd # includes etcdctl
+	zookeeper
+
+### logging ###
+	elasticsearch
+	logstash
+	kibana
+	flume
+	rsyslog
+
+### orchestration tools ###
+	mesos
+	docker-swarm
+	kubernetes-cli # includes kubectl
+	fleetctl
+
+### continuous integration ###
+	jenkins
+
+### big data ###
+	apache-spark # includes spark-shell and pyspark
+	apache-drill
+	apache-flink
+	hadoop
+	hive
+	pig
+	sqoop
+	storm
+
+### queuing ###
+	activemq
+	kafka
+	nsq
+	rabbitmq
+	zeromq
+
+### search enginess ###
+	solr
+	tika
+	xapian
+	omega
+
+### docker ###
+	docker
+	boot2docker
+	docker-machine
+	docker-compose
+
+#### monitoring tools ###
+	collectd
+	grafana
+	htop
+	influxdb
+	nagios
+	osquery
+	prometheus
+	pv
+	riemann
+	sysdig
+
+### javascript ###
+	flow
+	v8
+
+### emails ###
+	mutt
+	notmuch --with-python3 --without-python
+
+### linear algebra and numerical computation ###
+	blitz
+	eigen
+	gsl
+	homebrew/dupes/lapack
+	homebrew/python/numpy --with-python3 --without-python
+
+### homebrew/science ###
+	homebrew/science/armadillo
+	homebrew/science/gap
+	homebrew/science/hdf5
+	homebrew/science/mlpack
+	homebrew/science/octave
+	homebrew/science/openblas
+	homebrew/science/opencv3 --with-python3 --without-python
+	homebrew/science/r
+
+
+### mathematical proof management ###
+	coq
+	proof-general
+
+### web servers ###
+	h2o
+	libuv
+	lighttpd
+	mongoose
+	nginx --with-http2
+	tomcat
+
+### load balancing ###
+	haproxy
+
+### static-files caching ###
+	squid
+	varnish
+
+### machine learning ###
+	mahout
+	homebrew/science/shogun
+
+### networking and security ###
+	curl --with-openssl
+	dnsmasq
+	duck
+	fail2ban
+	iperf
+	libdnet --without-python # required by snort and zmap
+	homebrew/boneyard/lftp
+	lynx
+	masscan
+	ncftp
+	nmap
+	snort
+	ssh-copy-id
+	homebrew/dupes/tcpdump
+	socat
+	testssl
+	thrift
+	wget
+	wireshark
+	zmap
+
+### SDK's ###
+	android-sdk
+	app-engine-python
+	heroku
+	mozilla-addon-sdk
+
+### IRC ###
+	weechat --with-python
+	pidgin
+	irssi
+	ngircd
+	bitlbee
+	znc
+
+### shells ###
+	zsh
+	zsh-completions
+	zsh-syntax-highlighting
+	zsh-history-substring-search
+	z
+	bash
+	homebrew/versions/bash-completion2
+	ksh
+	pdksh
+	dash
+	bats
+	shellcheck
+	tmux
+	fish
+	xonsh

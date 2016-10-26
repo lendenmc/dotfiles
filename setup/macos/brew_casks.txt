@@ -1,0 +1,69 @@
+java
+xquartz
+
+1password
+alfred
+dropbox
+evernote
+iterm2
+sublime-text
+
+appcleaner
+caffeine
+crashplan
+flux
+omnidisksweeper
+
+vagrant
+virtualbox
+
+# chromium
+firefox
+Caskroom/versions/firefoxdeveloperedition
+Caskroom/versions/google-chrome-canary
+# opera
+# opera-developer
+# servo
+# vivaldi
+
+handbrake
+recordit
+screenflow
+sublime
+transmission
+vlc
+vlc-remote
+xld
+
+basictex
+djview
+# libreoffice
+marked
+the-unarchiver
+
+# hexchat
+skype
+slack
+textual
+# zulip
+
+# atom
+# electron
+google-cloud-sdk # includes gcloud, gsutil (cloud storage cli) and bq (bigquery cli)
+macvim
+
+betterzipql
+epubquicklook
+qlcolorcode
+qlimagesize
+qlmarkdown
+qlstephen
+qlvideo
+quicklook-json
+suspicious-package
+
+# haskell-platform
+# julia
+# rstudio
+# sage
+# scilab

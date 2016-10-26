@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# convert single space-delimited clipboard-copied row of strings into single column of strings and copy it to the clipboard, and vice versa
+alias 2col="pbpaste | tr -s ' ' '\n' | pbcopy"
+alias 2row="pbpaste | tr -s '\n' ' ' | pbcopy"
+
+# untap all homebrew taps
+alias untap='for tap in $(HOMEBREW_NO_AUTO_UPDATE=1; brew tap); do [ "$tap" = "homebrew/core" ] || brew untap "$tap"; done'
+# uninstall all homebrew formulas
+alias unbrew='brew rm --force $(brew list) 2>/dev/null; brew prune; brew cleanup -s'
+
+# homebrew
+alias bu="brew update && brew upgrade && brew cleanup -s && brew doctor"
+alias bdoc="brew doctor"
+alias bl="brew ls"
+alias bs="brew search"
+alias bi="brew info"
+alias bcl="brew cleanup -s"
+alias bp="brew prune"
+alias bus="brew uses --installed"
+alias busr="brew uses --installed --recursive"
+alias bd="brew deps"
+alias bdall="brew deps --installed | GREP_COLOR=\"0;34\" grep --color=always -E \"\S+:\" | tr -d \":\""
+alias bdesc="brew desc"
+alias bds="brew desc -s"
+alias bh="brew home"
+alias bv="brew ls --versions" # also used to check if formula is installed (empty output is returned in this case)
+alias bo="brew options"
+
+# vlc
+vlc=/Applications/VLC.app/Contents/MacOS/VLC
+# shellcheck disable=SC2139
+[ -r "$vlc" ] && [ -f "$vlc" ] && alias vlc="$vlc"
+unset vlc

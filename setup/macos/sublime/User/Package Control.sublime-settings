@@ -1,0 +1,26 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Anaconda",
+		"Autoprefixer",
+		"Babel",
+		"ChangeQuotes",
+		"Color Highlighter",
+		"GitGutter",
+		"GitSavvy",
+		"Jade",
+		"JSHint Gutter",
+		"Package Control",
+		"Pretty JSON",
+		"Schemr",
+		"Seti_UI",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-shellcheck",
+		"Themr"
+	]
+}

@@ -1,0 +1,39 @@
+aws-shell
+ansible
+certbot -p python2
+couchdb -p python2
+cryptography
+diamond
+eulerpy
+fopnp -a "$PROJECT_HOME"/fopnp
+/opt/graphite -p python2 # monitoring tool
+gitsome
+grip
+httpie
+hypothesis
+ifskills-dl -a "$PROJECT_HOME"/ifskills-dl -r "$PROJECT_HOME"/ifskills-dl/requirements.txt
+mitmproxy
+mycli
+ocrmypdf
+pandas-cookbook -p python2 -a "$PROJECT_HOME"/pandas-cookbook
+pgcli
+prompt_toolkit
+ptpython
+pymux
+pyvim
+ranger
+raven # python client for sentry
+sanic
+scientific-python --system-site-packages -r ./python/requirements_scientific-python.txt
+scrapy
+sendgrid
+speedtest-cli
+retext --system-site-packages # requires pyqt5 installed system-wide
+sqlmap
+supervisor -p python2
+thriftpy # python implementation of apache thrift
+tinydb
+urlwatch
+uvloop
+you-get
+youtube-dl

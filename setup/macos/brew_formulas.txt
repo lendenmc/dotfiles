@@ -1,0 +1,234 @@
+### miscellaneous libraries and dependencies ###
+autoconf
+automake
+# boost
+c-ares
+cmake
+daq
+dbus
+doxygen
+gdbm
+geoip
+gettext
+# gflags
+# glog
+gmp
+gperftools
+qt5
+icu4c
+isl
+jpeg
+json-c
+jsoncpp
+luajit
+libestr
+libffi
+libgpg-error
+# libmagic
+libpng
+# libressl
+libtasn1
+libtool
+libyaml
+lz4
+mpfr
+ncurses
+nspr
+ilmbase
+oniguruma
+openexr
+openssl
+pcre
+pcre2
+pkg-config
+pixman
+readline
+# sleuthkit
+snappy
+spidermonkey
+sqlite
+# subversion
+webp
+xz
+# yara
+
+# asio
+# cpp-netlib
+freetype
+fontconfig
+glib
+gnutls
+libgcrypt
+libmpc
+# libssh2
+libtiff
+nagios-plugins
+net-snmp
+nettle
+ruby-build
+shared-mime-info
+wxmac
+
+cairo
+gd
+gobject-introspection
+leptonica
+libcroco
+little-cms2
+openjpeg
+
+gdk-pixbuf
+harfbuzz
+pango
+
+librsvg
+
+
+### programming ###
+erlang
+gcc
+# go
+homebrew/science/r
+lua
+node
+perl
+pypy
+pypy3
+python
+python3
+rbenv
+ruby
+# rust
+scala
+
+### python packages needed globally ###
+homebrew/python/numpy --with-python3 --without-python
+sip --with-python3 --without-python
+pyqt5 --with-python3 --without-python
+
+
+
+### more recent versions of macos default clt programs and utils ###
+bash
+# binutils
+coreutils
+curl --with-openssl
+emacs
+findutils
+gawk
+gdb
+git
+gnu-indent --with-default-names
+gnu-sed --with-default-names
+gnu-tar --with-default-names
+gnu-time --with-default-names
+gnu-which --with-default-names
+homebrew/dupes/diffutils
+homebrew/dupes/grep --with-default-names
+homebrew/dupes/gzip
+homebrew/dupes/rsync
+homebrew/dupes/screen
+homebrew/dupes/tcpdump
+ksh
+less
+lsof
+make
+nano
+vim --with-override-system-vi --with-python3
+zsh
+
+
+### miscellaneous handy tools ###
+archey
+dash
+diff-so-fancy
+djvulibre
+fail2ban
+fish
+ghostscript
+git-cal
+git-extras
+git-lfs
+graphicsmagick
+# graphviz
+homebrew/versions/bash-completion2 # for bash version 4.+
+htop
+hub
+iperf
+jq
+libdnet --without-python # required by snort and zmap
+lighttpd
+mawk
+pandoc
+parallel
+poppler
+pdksh
+qpdf
+rename
+sbt
+shellcheck
+sift
+snort
+swig
+tesseract
+the_silver_searcher
+thefuck
+tree
+wdiff
+wget
+wireshark
+xonsh
+z
+zmap
+zsh-completions
+zsh-history-substring-search
+zsh-syntax-highlighting
+
+pdfgrep # requires poppler (among others)
+
+
+### cool kids ###
+apache-spark
+boot2docker
+cassandra
+collectd
+couchdb
+docker
+docker-swarm
+docker-machine
+docker-compose
+elasticsearch
+etcd
+grafana
+hadoop
+haproxy
+h2o
+kafka
+# kibana
+kubernetes-cli
+jenkins
+influxdb
+leveldb
+libuv
+# logstash
+# mesos
+mongoose
+nagios
+# neo4j
+nginx --with-http2
+homebrew/science/opencv3 --with-python3 --without-python
+postgresql --with-python3 --without-python
+prometheus
+rabbitmq
+redis
+rethinkdb
+rocksdb
+rsyslog
+riemann
+sysdig
+# thrift
+varnish
+zeromq
+zookeeper
+
+# osquery # requires rocksdb and thrift (among others)

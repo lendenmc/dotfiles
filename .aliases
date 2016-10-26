@@ -1,0 +1,57 @@
+#!/bin/sh
+hash -r
+unalias fuck 2>/dev/null
+unalias git 2>/dev/null
+unalias grep 2>/dev/null
+unalias ls 2>/dev/null
+
+# basic aliases
+alias d='cd ${HOME}/Desktop'
+alias s='echo $?'
+alias dotcd='cd ${DOTFILES}'
+alias dotsync='set -- -f; . ${DOTFILES}/bootstrap.sh'
+if command -v subl >/dev/null; then
+	alias dot='subl ${DOTFILES}'
+	alias dotup='dotcd && dot'
+fi
+
+# grep alias
+if printf "test" | GREP_OPTIONS="" command grep --color=auto "test" >/dev/null 2>&1; then # test for grep color option
+	alias grep="grep --color=auto"
+fi
+
+# ls aliases
+lscmd="ls"
+colorflag=""
+if command gls --version >/dev/null 2>&1; then # gnu 'ls' is installed with prefix 'g'
+	lscmd="gls"
+	colorflag="--color=auto"
+elif command ls --color >/dev/null 2>&1; then # gnu 'ls' flavor is installed
+	colorflag="--color=auto"
+elif command ls -g >/dev/null 2>&1; then # macos/*bsd 'ls' flavor is installed
+	colorflag="-G"
+fi
+# shellcheck disable=SC2139
+{
+	alias ls="$lscmd -F $colorflag"
+	alias lsa="$lscmd -AF $colorflag" # include dot files
+}
+unset lscmd colorflag
+
+# make python 3 default python if that is not already the case
+python_version="$(python -c 'import sys; print(sys.version_info.major)')"
+if [ -n "$python_version" ] && ! [ "$python_version" -eq 3 ]; then
+	if command -v python3 >/dev/null 2>&1; then
+		alias python=python3
+	fi
+	if command -v pip3 >/dev/null 2>&1; then
+		alias pip=pip3
+	fi
+fi
+unset python_version
+
+# extend git command with 'hub'
+if printf "bash zsh sh ksh csh tcsh fish" |
+GREP_OPTIONS="" command grep "$(command basename "$SHELL")" >/dev/null; then # only consider 'hub' supported shells
+	command -v hub >/dev/null 2>&1 && eval "$(hub alias -s)" # add github support to git
+fi
