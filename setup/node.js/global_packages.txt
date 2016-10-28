@@ -1,10 +1,10 @@
-babel-cli
-browser-sync
+# babel-cli
+# browser-sync
 browserify
 coffee-script
 eslint
 express-generator
-forever
+# forever
 grunt-cli
 gulp-cli
 jasmine
@@ -13,14 +13,13 @@ karma-cli
 less
 mocha
 mustache
-nodemon
-pm2
-pouchdb-core
-pouchdb-server
+# nodemon
+# pm2
+# pouchdb-server
 pug-cli
 shelljs
-statsd
+# statsd
 tape
 typescript
-webpack
-yo
+# webpack
+# yo
