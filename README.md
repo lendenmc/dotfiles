@@ -35,9 +35,11 @@ In the same spirit as emphasized above, the use of `venvs` here has been tailore
 ## Setting up a new machine
 
 Depending on whether `curl` or `wget` is installed by default on your system, run one of these two commands in your terminal.
+
 ```
 $ sh -c "$(curl -LsS https://raw.github.com/lendenmc/dotfiles/master/setup/setup.sh)"
 ```
+
 ```
 $ sh -c "$(wget -qO- https://raw.github.com/lendenmc/dotfiles/master/setup/setup.sh)"
 ```
@@ -51,8 +53,8 @@ As an avid Mac user, most of the work have been made to set up a new macOS envir
 * [~/bin folder](./setup/bin_folder.sh):
 	* symlink some deep-lying executables listed in `./setup/executables.txt` into short commands
 	* install (external) scripts that are not provided by a package manager, whose URLs are listed in `./setup/scripts.txt`
-* [Github projects](./setup/remotes.sh)
-	* download a selection of remote Github repositories listed in `./setup/remotes.txt` into your machine `~/projects`directory
+* [Remote git projects](./setup/remotes.sh)
+	* clone a selection of remote git repositories (github projects in particular) listed in `./setup/remotes.txt` into your machine `~/projects`directory
 * [Python](./setup/python)
 	* install a few global packages listed in `./setup/python/global_packages.txt` with pip, including `virtualenv`, `virtualenvwrapper` and `ipython`
 	* generate multiple virtualenvs from the requirements text file `./setup/python/venvs.txt` by using [venvs](https://github.com/lendenmc/venvs) command line tool
@@ -80,6 +82,7 @@ Custom [macOS preferences](./setup/macos/preferences.sh) will be set up at the e
 ## Syncing the dotfiles to your home folder
 
 Let's assume that `$HOME/projects/dotfiles` is now your local dotfiles repository. Run the following command:
+
 ```
 $ . $HOME/projects/dotfiles/bootstrap.sh
 ```

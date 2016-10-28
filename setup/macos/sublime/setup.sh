@@ -13,16 +13,16 @@ new_settings_folder="$(_get_fullname ./macos/sublime/User)" || exit 1
 # package control
 _make_dir "$sublime_folder" || exit 1
 _make_dir "$packages_folder" || exit 1
-if _test_file "$package_ctrl_file"; then
+if _test_file "$package_ctrl_file" 2>/dev/null; then
 	printf "Package control is already installed\n"
 else
 	printf "Installing package control\n"
-	curl -o "$package_ctrl_file" "$package_ctrl_url"
+	curl -o "$package_ctrl_file" -LsS "$package_ctrl_url"
 fi
 
 # user settings
 symlink_user_settings() {
-	printf "Symlinking %s folder into %s\n" "$new_settings_folder" "$old_settings_folder"
+	printf "Linking %s folder into %s\n" "$new_settings_folder" "$old_settings_folder"
 	ln -s "$new_settings_folder" "$old_settings_folder" || exit 1
 }
 _make_dir "${sublime_folder}/Packages" || exit 1

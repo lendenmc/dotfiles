@@ -20,7 +20,9 @@ virtualbox
 # chromium
 firefox
 Caskroom/versions/firefoxdeveloperedition
+google-chrome
 Caskroom/versions/google-chrome-canary
+flash-npapi # flash browser plugin for firefox and safari
 # opera
 # opera-developer
 # servo

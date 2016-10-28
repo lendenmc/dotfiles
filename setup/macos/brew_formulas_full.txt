@@ -139,6 +139,7 @@ cmake
 ### tesseract
 	leptonica
 ### opencv3
+	eigen
 	ilmbase
 	openexr
 ### hdf5
@@ -208,6 +209,8 @@ cmake
 	asio
 	cpp-netlib
 	sleuthkit
+### nginx
+	openssl@1.1
 
 ### cryptography and secrets ###
 	gnutls
@@ -444,7 +447,6 @@ cmake
 
 ### linear algebra and numerical computation ###
 	blitz
-	eigen
 	gsl
 	homebrew/dupes/lapack
 	homebrew/python/numpy --with-python3 --without-python
@@ -456,7 +458,7 @@ cmake
 	homebrew/science/mlpack
 	homebrew/science/octave
 	homebrew/science/openblas
-	homebrew/science/opencv3 --with-python3 --without-python
+	homebrew/science/opencv3 --HEAD --with-python3 --without-python
 	homebrew/science/r
 
 

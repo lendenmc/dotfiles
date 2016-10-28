@@ -36,7 +36,7 @@ _parse_text_file "$global_packages"	\
 # create an empty 'matplotlibrc' file to avoid complains which might occur when importing matplotlib-related packages such as seaborn
 mkdir -p "${HOME}/.matplotlib"
 matplotlibrc="${HOME}/.matplotlib/matplotlibrc"
-_test_file "$matplotlibrc" || touch "$matplotlibrc"
+_test_file "$matplotlibrc" 2>/dev/null || touch "$matplotlibrc"
 
 # as virtualenvwrapper doesn't work with dash and ksh93 doesn't work well with virtualenv's 'deactivate' function, 
 # we can only setup all virtualenvs from within a posix script when sh is bash

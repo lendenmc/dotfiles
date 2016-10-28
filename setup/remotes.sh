@@ -11,9 +11,11 @@ _parse_text_file "$remotes"	\
 		project_name="$(basename "${remote%.*}")"
 		project_dir="${HOME}/projects/${project_name}"
 		mkdir -p "$project_dir"
-		if ls -A "$project_dir" >/dev/null 2>&1; then
-			printf "Directory %s is not empty\n" "$project_dir"
+		if [ -n "$(ls -A "$project_dir" 2>/dev/null)" ]; then
+			printf "Directory %s is not empty\n\n" "$project_dir"
 		else
-			git clone "$remote" "$project_dir"
+			printf "Cloning remote git repository %s\n" "$project_name"
+			git clone "$remote" "$project_dir" >/dev/null || exit 1
+			printf "\n"
 		fi
 	done

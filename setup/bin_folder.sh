@@ -9,7 +9,7 @@ executables="$(_get_fullname "$1")" || exit 1
 _parse_text_file "$executables"	\
 	| while read -r executable; do
 		_test_executable "$executable" 2>/dev/null || continue
-		if _test_file "${HOME}/bin/$(basename "$executable")"; then
+		if _test_file "${HOME}/bin/$(basename "$executable")" 2>/dev/null; then
 			printf "Exectutable %s is already linked into %s\n" "$executable" "${HOME}/bin"
 		else
 			printf "Linking executable %s into %s\n" "$executable" "${HOME}/bin"
@@ -26,6 +26,6 @@ _parse_text_file "$scripts"	\
 			printf "Script %s is already installed\n" "$script_name"
 		else
 			printf "Downlading external script from %s into %s\n" "$script" "${HOME}/bin"
-			curl -o "$script_name" -LS "$script" && chmod +x "$script_name"
+			curl -o "$script_name" -LsS "$script" && chmod +x "$script_name"
 		fi
 	done

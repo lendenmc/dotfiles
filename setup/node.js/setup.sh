@@ -23,7 +23,8 @@ global_modules="$(npm root -g)"
 _parse_text_file "$global_packages"	\
 	| while read -r package; do
 		if ! [ -d "${global_modules}/${package}" ]; then
-			npm install -g "$package"
+			printf "Installing package %s\n" "$package"
+			npm install -g "$package" >/dev/null
 		else
 			printf "Package %s is already installed\n" "$package"
 		fi

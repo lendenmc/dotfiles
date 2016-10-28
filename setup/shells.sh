@@ -3,7 +3,7 @@
 . ./utils.sh || exit 1
 
 # add shells to /etc/shells
-shells="zsh bash dash fish ksh pdksh tcsh xonsh"
+shells="zsh bash dash fish ksh pdksh xonsh"
 for shell in $shells; do
 	_test_executable "$shell" || return 1
 	shell_path="$(command -v "$shell")"

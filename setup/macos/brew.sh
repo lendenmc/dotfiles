@@ -3,6 +3,7 @@
 . ./utils.sh || exit 1
 
 # install xcode command line tools
+printf "Checking for xcode command line tools\n"
 xcode-select --install >/dev/null 2>&1 
 until xcode-select --print-path >/dev/null 2>&1; do # wait until xcode clts are installed
     sleep 5
@@ -42,7 +43,6 @@ printf "Installing homebrew formulas from file %s\n" "$formulas"
 _parse_text_file "$formulas" |
 while read -r formula options; do
 	_test_macos_program "$formula" "formula" "Cellar" || continue
-	printf "\nInstalling formula %s\n" "$formula"
 	brew_cmd="brew install $options --ignore-dependencies $formula"
 	if ! eval "$brew_cmd"; then
 		# some 'brew install' with python3 option will break if the '-ignore-dependencies' option is enabled

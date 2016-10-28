@@ -10,6 +10,7 @@
 if ! shopt -q login_shell; then
 	if [ -r "${HOME}/.profile" ] && [ -f "${HOME}/.profile" ]; then . "${HOME}/.profile"; fi
 fi
+
 # aliases
 alias sb='. ${HOME}/.bashrc'
 command -v thefuck >/dev/null 2>&1 && eval "$(thefuck --alias)" # programatically correct mistyped console commands

@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 # originally taken from https://github.com/alrra/dotfiles/blob/master/src/os/setup.sh#L18-L44
@@ -70,8 +69,6 @@ _download_dotfiles() {
 }
 
 _setup() {
-	printf "Setting up you computer\n"
-
 	# macos-specific setup
 	case "$(uname)" in Darwin*)
 		_run_script "homebrew" ./macos/brew.sh ./macos/brew_formulas.txt || return 1

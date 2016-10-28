@@ -7,6 +7,7 @@ cmake
 daq
 dbus
 doxygen
+eigen
 gdbm
 geoip
 gettext
@@ -38,6 +39,7 @@ ilmbase
 oniguruma
 openexr
 openssl
+openssl@1.1 # nginx requirement
 pcre
 pcre2
 pkg-config
@@ -206,7 +208,7 @@ h2o
 kafka
 # kibana
 kubernetes-cli
-jenkins
+# jenkins # cannot be installed right away, 'brew cask install java' is needed first
 influxdb
 leveldb
 libuv
@@ -216,7 +218,7 @@ mongoose
 nagios
 # neo4j
 nginx --with-http2
-homebrew/science/opencv3 --with-python3 --without-python
+homebrew/science/opencv3 --HEAD --with-python3 --without-python
 postgresql --with-python3 --without-python
 prometheus
 rabbitmq

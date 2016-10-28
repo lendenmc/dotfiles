@@ -15,6 +15,7 @@ mocha
 mustache
 nodemon
 pm2
+pouchdb-core
 pouchdb-server
 pug-cli
 shelljs
