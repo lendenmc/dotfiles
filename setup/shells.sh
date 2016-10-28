@@ -17,4 +17,4 @@ for shell in $shells; do
 done
 
 # switch default shell to zsh
-# _test_executable "zsh" && chsh -s "$(command -v zsh)"
+_test_executable "zsh" 2>/dev/null && chsh -s "$(command -v zsh)"
