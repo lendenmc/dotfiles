@@ -22,7 +22,7 @@ This profile organization supports these shells:
 #### setup scripts
 As its name suggests, the `./setup` folder contains all the setup scripts, which are all launched via the `./setup/setup.sh` main script. These scripts can be used either to set up a brand new machine tailored to fit your development needs or to update an existing environment with the right settings and programs.  For portability reasons, these scripts are all **POSIX sh scripts**.
 
-Though the bulk of the installation and settings scripts is geared toward a **macOS** development machine, the setup process is **\*nix-agnostic**.
+Though the bulk of the installation and settings scripts is geared toward a **macOS** development machine, the setup process is **\*nix-agnostic**. I have tested these scripts on **OS X El Capitan** and **macOS Sierra**. Feel free to open an issue if you encounter failures on other environments.
 
 ## A word for Pythonista
 
