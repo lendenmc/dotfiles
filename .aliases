@@ -11,8 +11,8 @@ alias s='echo $?'
 alias dotcd='cd ${DOTFILES}'
 alias dotsync='set -- -f; . ${DOTFILES}/bootstrap.sh'
 if command -v subl >/dev/null; then
-	alias dot='subl ${DOTFILES}'
-	alias dotup='dotcd && dot'
+	alias dotop='subl ${DOTFILES}'
+	alias dot='dotcd && dotop'
 fi
 
 # grep alias
