@@ -31,15 +31,6 @@ setopt rm_star_silent
 # step forward through history with C-s the same way you would step backwards with C-r 
 stty -ixon
 
-# key bindings
-# bind UP and DOWN arrow keys
-zmodload zsh/terminfo
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-# shellcheck disable=SC1001
-# bash-like C-u, so that all characters from beginning of the line to the cursor are removed instead of the whole line
-bindkey \^U backward-kill-line
-
 # autocompletion
 fpath=(/usr/local/share/zsh-completions $fpath)
 autoload -U compinit && compinit # enable autocomplete function
@@ -74,6 +65,15 @@ fi
 if command -v _source_from_text_file >/dev/null; then
 	_source_from_text_file "${HOME}/.scripts.zsh.txt"
 fi
+
+# key bindings
+# bind UP and DOWN arrow keys
+zmodload zsh/terminfo
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+# shellcheck disable=SC1001
+# bash-like C-u, so that all characters from beginning of the line to the cursor are removed instead of the whole line
+bindkey \^U backward-kill-line
 
 # lsvirtualenv alias
 command -v lsvirtualenv >/dev/null && alias lsv="lsvirtualenv -b | less"
