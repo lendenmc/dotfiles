@@ -16,6 +16,7 @@ paths="\
 ${HOME}/bin
 /usr/local/sbin
 ${go_path}
+${HOME}/torch/install/bin
 "
 
 while read -r pth; do # do not use 'path' as a variable name !
@@ -50,3 +51,11 @@ if command -v brew >/dev/null 2>&1 && brew ls --versions apache-spark >/dev/null
 	fi
 fi
 unset python_spark
+
+# torch setup
+export LUA_PATH="{HOME}/.luarocks/share/lua/5.1/?.lua;{HOME}/.luarocks/share/lua/5.1/?/init.lua;{HOME}/torch/install/share/lua/5.1/?.lua;{HOME}/torch/install/share/lua/5.1/?/init.lua;./?.lua;${HOME}/torch/install/share/luajit-2.1.0-beta1/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua"
+export LUA_CPATH="{HOME}/.luarocks/lib/lua/5.1/?.so;{HOME}/torch/install/lib/lua/5.1/?.so;./?.so;/usr/local/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so"
+export LD_LIBRARY_PATH="${HOME}/torch/install/lib:${LD_LIBRARY_PATH}"
+export DYLD_LIBRARY_PATH="${HOME}/torch/install/lib:${DYLD_LIBRARY_PATH}"
+export LUA_CPATH="${HOME}/torch/install/lib/?.dylib;${LUA_CPATH}"
+
