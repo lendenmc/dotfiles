@@ -125,12 +125,18 @@ I like zsh a lot but I still need to use bash some times. Basically I found myse
 
 * `.profile`
 
-file for that purpose, as it is an integral part of the bash profile files family. All shell-specific config has been put into *.\*rc* types of profiles, which include:
+file for that purpose, as it is an integral part of the bash profile files family. All shell-specific config has been put into .*rc types of profiles, which include:
 
 * `.zshrc`
 * `.bashrc`
 * `.kshrc`
 * `.shrc`
+
+As far as bash is concerned, there is the additional profile file
+
+* `.bash_profile`
+
+which, here, is only referring to  `.bashrc` or `.profile` depending on the type of shell (interactive or not, login or not).
 
 Whenever one of these files is sourced, the `.profile` file will be sourced right from the start. So one of the few duplicate lines that you will find across profiles will be similar to this:
 
@@ -162,7 +168,7 @@ I do not enjoy checking for the `source whatever_external_script_.sh` type of li
 * `.scripts.ksh.txt`
 * `.scripts.pdksh.txt`
 
-This involves one text file for each type of shell. Near the bottom the corresponding *.\*rc* profile, a generic `_source_from_text_file` function  is called. It will loop over each of these scripts and source them.
+This involves one text file for each type of shell. Near the bottom the corresponding .*rc profile, a generic `_source_from_text_file` function  is called. It will loop over each of these scripts and source them.
 
 ## Acknowledgements
 
