@@ -1,9 +1,11 @@
 #!/bin/sh
+
+# prevent bash issues such as this: if we have just uninstalled gnu grep and we source 'bash_profile' in the same shell,
+# we might get the error "/usr/local/bin/grep: No such file or directory" when we use grep just a few lines bellow and elsewhere
 hash -r
-unalias fuck 2>/dev/null
+
+# remove git alias in case 'hub' has just been uninstalled ('git' is used later on in the profile and this will create an error)
 unalias git 2>/dev/null
-unalias grep 2>/dev/null
-unalias ls 2>/dev/null
 
 # basic aliases
 alias d='cd ${HOME}/Desktop'
