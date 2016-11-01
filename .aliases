@@ -25,18 +25,21 @@ fi
 # ls aliases
 lscmd="ls"
 colorflag=""
+group_dir_flag=""
 if command gls --version >/dev/null 2>&1; then # gnu 'ls' is installed with prefix 'g'
 	lscmd="gls"
 	colorflag="--color=auto"
+	group_dir_flag="--group-directories-first"
 elif command ls --color >/dev/null 2>&1; then # gnu 'ls' flavor is installed
 	colorflag="--color=auto"
-elif command ls -g >/dev/null 2>&1; then # macos/*bsd 'ls' flavor is installed
+	group_dir_flag="--group-directories-first"
+elif command ls -G >/dev/null 2>&1; then # macos/*bsd 'ls' flavor is installed
 	colorflag="-G"
 fi
 # shellcheck disable=SC2139
 {
-	alias ls="$lscmd -F $colorflag"
-	alias lsa="$lscmd -AF $colorflag" # include dot files
+	alias ls="$lscmd -F $colorflag $group_dir_flag"
+	alias lsa="$lscmd -AF $colorflag $group_dir_flag" # include dot files
 }
 unset lscmd colorflag
 
