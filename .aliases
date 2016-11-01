@@ -11,7 +11,7 @@ unalias git 2>/dev/null
 alias d='cd ${HOME}/Desktop'
 alias s='echo $?'
 alias dotcd='cd ${DOTFILES}'
-alias dotsync='set -- -f; . ${DOTFILES}/bootstrap.sh'
+alias dsync='set -- -f; . ${DOTFILES}/bootstrap.sh'
 if command -v subl >/dev/null; then
 	alias dotop='subl ${DOTFILES}'
 	alias dot='dotcd && dotop'

@@ -107,14 +107,14 @@ Adding that kind of lines to your shell profile would make it even less painful
 
 ```
 export DOTFILES="${HOME}/projects/dotfiles"
-alias dotsync='set -- -f; . ${DOTFILES}/bootstrap.sh'
+alias dsync='set -- -f; . ${DOTFILES}/bootstrap.sh'
 
 ```
 
 so that you would only need to run
 
 ```
-$ dotsync
+$ dsync
 ```
 
 This alias is actually part of the dotfiles config.
