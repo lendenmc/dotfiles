@@ -164,6 +164,7 @@ jq
 libdnet --without-python # required by snort and zmap
 lighttpd
 mawk
+nmap
 homebrew/science/openblas
 pandoc
 parallel
