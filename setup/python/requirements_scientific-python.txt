@@ -34,6 +34,7 @@ luigi
 xlwings
 tensorflow
 pymc3
+mrjob
 
 ### ipython testing suite ('iptest' command) additional requirements
 # six
