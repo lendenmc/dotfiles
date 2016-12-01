@@ -32,8 +32,8 @@ streamparse
 rq
 luigi
 xlwings
-https://storage.googleapis.com/tensorflow/mac/tensorflow-0.9.0-py3-none-any.whl # TensorFlow, numerical computation using data flow graphs
-git+https://github.com/pymc-devs/pymc3 # PyMC3, probabilistic programming in python
+tensorflow
+pymc3
 
 ### ipython testing suite ('iptest' command) additional requirements
 # six
