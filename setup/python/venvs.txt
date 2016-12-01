@@ -24,7 +24,7 @@ pyvim
 ranger
 raven # python client for sentry
 sanic
-scientific-python --system-site-packages -r "./python/requirements_scientific-python.txt"
+scientific-python --system-site-packages -r "$PROJECT_HOME"/dotfiles/setup/python/requirements_scientific-python.txt
 scrapy
 sendgrid
 speedtest-cli
