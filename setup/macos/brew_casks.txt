@@ -53,6 +53,7 @@ textual
 # atom
 # electron
 google-cloud-sdk # includes gcloud, gsutil (cloud storage cli) and bq (bigquery cli)
+hyper
 macvim
 
 betterzipql
