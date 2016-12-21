@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if command -v cygstart >/dev/null 2>&1; then
+	alias open="cygstart"
+fi
