@@ -69,8 +69,10 @@ fi
 # key bindings
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+if [ -d /usr/local/opt/zsh-history-substring-search ]; then
+	bindkey '^[[A' history-substring-search-up
+	bindkey '^[[B' history-substring-search-down
+fi
 # shellcheck disable=SC1001
 # bash-like C-u, so that all characters from beginning of the line to the cursor are removed instead of the whole line
 bindkey \^U backward-kill-line
