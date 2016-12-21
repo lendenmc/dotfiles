@@ -34,6 +34,17 @@ case "$(uname)" in
 			$dotfiles
 EOF
 		;;
+	CYGWIN*)
+		dotfiles="\
+		${HOME}/.aliases.windows
+		"
+		while read -r file; do
+			if [ -r "$file" ] && [ -f "$file" ]; then . "$file"; fi
+		done <<EOF
+			$dotfiles
+EOF
+		;;
+		
 esac
 
 unset dotfiles
