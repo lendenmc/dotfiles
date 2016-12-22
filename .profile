@@ -43,6 +43,10 @@ EOF
 		done <<EOF
 			$dotfiles
 EOF
+		# load ssh authentication agent 'ssh-pageant' for cygwin to putty's pageant
+		if command -v ssh-pageant >/dev/null 2>&1; then
+			eval "$(/usr/bin/ssh-pageant -r -a "/tmp/.ssh-pageant-$USERNAME")" >/dev/null
+		fi
 		;;
 		
 esac
