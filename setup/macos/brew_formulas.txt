@@ -92,7 +92,6 @@ librsvg
 erlang
 gcc
 # go
-homebrew/science/r
 lua
 node
 perl
@@ -100,6 +99,7 @@ pypy
 pypy3
 python
 python3
+homebrew/science/r
 rbenv
 ruby
 # rust
@@ -117,6 +117,7 @@ bash
 # binutils
 coreutils
 curl --with-openssl
+homebrew/dupes/diffutils
 emacs
 findutils
 gawk
@@ -127,23 +128,23 @@ gnu-sed --with-default-names
 gnu-tar --with-default-names
 gnu-time --with-default-names
 gnu-which --with-default-names
-homebrew/dupes/diffutils
 homebrew/dupes/grep --with-default-names
 homebrew/dupes/gzip
-homebrew/dupes/rsync
-homebrew/dupes/screen
-homebrew/dupes/tcpdump
 ksh
 less
 lsof
 make
 nano
+homebrew/dupes/rsync
+homebrew/dupes/screen
+homebrew/dupes/tcpdump
 vim --with-override-system-vi --with-python3
 zsh
 
 
 ### miscellaneous handy tools ###
 archey
+homebrew/versions/bash-completion2 # for bash version 4.+
 dash
 diff-so-fancy
 djvulibre
@@ -156,7 +157,6 @@ git-lfs
 gnuplot --with-wxmac --with-cairo --with-pdflib-lite --with-x11 --without-lua
 graphicsmagick
 # graphviz
-homebrew/versions/bash-completion2 # for bash version 4.+
 homebrew/science/hdf5
 htop
 hub
