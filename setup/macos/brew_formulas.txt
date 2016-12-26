@@ -51,6 +51,7 @@ snappy
 spidermonkey
 sqlite
 # subversion
+szip
 webp
 xz
 # yara
@@ -156,6 +157,7 @@ gnuplot --with-wxmac --with-cairo --with-pdflib-lite --with-x11 --without-lua
 graphicsmagick
 # graphviz
 homebrew/versions/bash-completion2 # for bash version 4.+
+homebrew/science/hdf5
 htop
 hub
 imagemagick

@@ -7,7 +7,7 @@ diamond
 eulerpy
 fopnp -a "$PROJECT_HOME"/fopnp
 /opt/graphite -p python2 # monitoring tool
-gitsome
+# gitsome
 grip
 httpie
 hypothesis
