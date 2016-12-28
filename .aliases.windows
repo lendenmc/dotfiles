@@ -7,5 +7,9 @@ fi
 # sublime
 sublime="/cygdrive/c/Program Files/Sublime Text 3/subl.exe"
 # shellcheck disable=SC2139
-[ -r "$sublime" ] && [ -f "$sublime" ] && alias subl="/cygdrive/c/Program\ Files/Sublime\ Text\ 3/subl.exe"
+if [ -r "$sublime" ] && [ -f "$sublime" ]; then
+	alias subl="/cygdrive/c/Program\ Files/Sublime\ Text\ 3/subl.exe"
+	alias dotop='subl ${DOTFILES}'
+	alias dot='dotcd && dotop'
+fi
 unset sublime
