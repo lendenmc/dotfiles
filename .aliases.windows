@@ -3,3 +3,9 @@
 if command -v cygstart >/dev/null 2>&1; then
 	alias open="cygstart"
 fi
+
+# sublime
+sublime="/cygdrive/c/Program Files/Sublime Text 3/subl.exe"
+# shellcheck disable=SC2139
+[ -r "$sublime" ] && [ -f "$sublime" ] && alias subl="/cygdrive/c/Program\ Files/Sublime\ Text\ 3/subl.exe"
+unset sublime
