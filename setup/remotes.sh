@@ -23,12 +23,13 @@ _parse_text_file "$remotes"	\
 		if [ -n "$optional_dir" ]; then
 			eval "optional_dir=$optional_dir"
 			! _test_empty_dir "$optional_dir" || continue
-			cmd="git clone $remote $options"
+			options=$(printf "%s" "$op" | cut -d' ' -f 2-)
+			cmd="git clone $remote \"$optional_dir\" $options"
 			printf "Cloning remote git repository %s\n" "$remote"
 		else
 			mkdir -p "$project_dir"
 			! _test_empty_dir "$project_dir" || continue
-			cmd="git clone $remote $project_dir $options"
+			cmd="git clone $remote \"$project_dir\" $options"
 			printf "Cloning remote git repository %s\n" "$project_name"
 		fi
 		eval "$cmd" || exit 1
