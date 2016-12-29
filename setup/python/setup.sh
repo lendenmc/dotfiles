@@ -47,9 +47,18 @@ if [ -n "$BASH" ]; then
 		alias pip=pip3
 	fi
 	export PROJECT_HOME="${HOME}/projects"
+	case "$(uname)" in CYGWIN*) export WORKON_HOME='/.virtualenvs';; esac
 	export VIRTUALENVWRAPPER_PYTHON
 	VIRTUALENVWRAPPER_PYTHON="$(command -v python3 2>/dev/null || command -v python)"
-	. /usr/local/bin/virtualenvwrapper.sh || exit 1
+	venvwrapper_script=""
+	if _test_file "/usr/local/bin/virtualenvwrapper.sh" 2>/dev/null; then
+		venvwrapper_script="/usr/local/bin/virtualenvwrapper.sh"
+	elif _test_file "/bin/virtualenvwrapper.sh" 2>/dev/null; then
+		venvwrapper_script="/bin/virtualenvwrapper.sh"
+	else
+		_print_error "Could not find virtualenvwrapper.sh setup script" && exit 1
+	fi
+	. "$venvwrapper_script" || exit 1
 	venvs_script="${PROJECT_HOME}/venvs/venvs.sh" # is supposed to have been installed with 'remote.sh' script before
 	_test_file "$venvs_script" || exit
 	chmod +x "$venvs_script"

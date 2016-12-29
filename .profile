@@ -36,6 +36,7 @@ EOF
 		;;
 	CYGWIN*)
 		dotfiles="\
+		${HOME}/.exports.windows
 		${HOME}/.aliases.windows
 		"
 		while read -r file; do

@@ -4,6 +4,7 @@
 /usr/local/etc/profile.d/z.sh
 
 /usr/local/bin/virtualenvwrapper.sh
+/bin/virtualenvwrapper.sh
 
 $NVM_DIR/nvm.sh
 

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# virtualenwrapper setup
+export WORKON_HOME="/.virtualenvs" # a path without space in it is needed (see https://github.com/pypa/virtualenv/issues/53)
