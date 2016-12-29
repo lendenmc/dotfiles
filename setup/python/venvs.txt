@@ -3,19 +3,19 @@ ansible
 certbot -p python2
 couchdb -p python2
 cryptography
-diamond
+# diamond # uses psutil which doesn't seem to support windows
 eulerpy
-fopnp -a "$PROJECT_HOME"/fopnp
-/opt/graphite -p python2 # monitoring tool
-# gitsome
+# fopnp -a "$PROJECT_HOME"/fopnp # bug when there are spaces in variable
+# /opt/graphite -p python2 # monitoring tool (cannot be installed on windows with setup.sh script unless 'sudo' bug is fixed in 'venvs' project)
+# gitsome # does not seem to work on python 3.6
 grip
 httpie
 hypothesis
-ifskills-dl -a "$PROJECT_HOME"/ifskills-dl -r "$PROJECT_HOME"/ifskills-dl/requirements.txt
 mitmproxy
 mycli
+# nlquery -a "$PROJECT_HOME"/nlquery -r "$PROJECT_HOME"/nlquery/requirements.txt # bug when there are spaces in variable
 ocrmypdf
-pandas-cookbook -p python2 -a "$PROJECT_HOME"/pandas-cookbook
+# pandas-cookbook -p python2 -a "$PROJECT_HOME"/pandas-cookbook # bug when there are spaces in variable
 pgcli
 prompt_toolkit
 ptpython
@@ -23,8 +23,8 @@ pymux
 pyvim
 ranger
 raven # python client for sentry
-sanic
-scientific-python --system-site-packages -r "$PROJECT_HOME"/dotfiles/setup/python/requirements_scientific-python.txt
+# sanic # based on uvloop
+# scientific-python --system-site-packages # bug when there are spaces in variable
 scrapy
 sendgrid
 speedtest-cli
@@ -34,6 +34,6 @@ supervisor -p python2
 thriftpy # python implementation of apache thrift
 tinydb
 urlwatch
-uvloop
+# uvloop # not supported on windows yet
 you-get
 youtube-dl
