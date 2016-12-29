@@ -1,4 +1,4 @@
 howdoi
-ipython
-virtualenv
-virtualenvwrapper
+ipython --upgrade
+virtualenv --upgrade
+virtualenvwrapper --upgrade
