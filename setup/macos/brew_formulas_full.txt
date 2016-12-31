@@ -353,6 +353,7 @@ cmake
 	cloc
 	dark-mode
 	flac
+	fzf
 	mawk
 	mdp
 	most

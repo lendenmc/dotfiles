@@ -150,6 +150,7 @@ diff-so-fancy
 djvulibre
 fail2ban
 fish
+fzf
 ghostscript
 git-cal
 git-extras
