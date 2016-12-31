@@ -73,7 +73,6 @@ _setup() {
 	case "$(uname)" in Darwin*)
 		_run_script "homebrew" ./macos/brew.sh ./macos/brew_formulas.txt || return 1
 		_run_script "homebrew cask" ./macos/brew_cask.sh ./macos/brew_casks.txt || return 1
-		_run_script "sublime text 3" ./macos/sublime/setup.sh || return 1
 		_run_script "macos preferences" ./macos/preferences.sh || return 1
 		;;
 	esac
@@ -88,6 +87,9 @@ _setup() {
 	for program in "python" "node.js"; do
 		_run_script "$program" "./${program}/setup.sh" || return 1
 	done
+
+	# sublime text 3 setup
+	_run_script "sublime text 3" ./sublime/setup.sh || return 1
 
 	# setup shells
 	_run_script "shells" ./shells.sh || return 1

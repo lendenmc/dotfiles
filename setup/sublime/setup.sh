@@ -3,12 +3,25 @@
 . ./utils.sh || exit 1
 
 # sublime text application folders
-sublime_folder="${HOME}/Library/Application Support/Sublime Text 3"
+case "$(uname)" in
+	Darwin*)
+		sublime_folder="${HOME}/Library/Application Support/Sublime Text 3"
+		;;
+	CYGWIN*)
+		export CYGWIN="winsymlinks:nativestrict"
+		sublime_folder="/cygdrive/c/Users/${USER}/AppData/Roaming/Sublime Text 3"
+		;;
+esac
+if [ -z "$sublime_folder" ]; then
+	printf "Sublime text 3 setup is not supported for this platform\n"
+	exit 1
+fi
+
 packages_folder="${sublime_folder}/Installed Packages"
 package_ctrl_url="https://packagecontrol.io/Package%20Control.sublime-package"
 package_ctrl_file="${packages_folder}/Package Control.sublime-package"
 old_settings_folder="${sublime_folder}/Packages/User"
-new_settings_folder="$(_get_fullname ./macos/sublime/User)" || exit 1
+new_settings_folder="$(_get_fullname ./sublime/User)" || exit 1
 
 # package control
 _make_dir "$sublime_folder" || exit 1
