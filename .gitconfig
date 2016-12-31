@@ -1,6 +1,6 @@
 [core]
 	excludesfile = /.gitignore.global
-	pager = "if command -v diff-so-fancy >/dev/null; then GITPAGER='diff-so-fancy'; else GITPAGER='less'; fi; $GITPAGER | less -+FX"
+	pager = "if command -v diff-so-fancy >/dev/null 2>&1; then GITPAGER='diff-so-fancy'; else GITPAGER='less'; fi; $GITPAGER | less -+FX"
 
 # use separate file for username, email, etc
 # this idea is taken from https://github.com/paulirish/dotfiles/blob/master/.gitconfig

@@ -12,7 +12,7 @@ alias d='cd ${HOME}/Desktop'
 alias s='echo $?'
 alias dotcd='cd ${DOTFILES}'
 alias dsync='set -- -f; . ${DOTFILES}/bootstrap.sh'
-if command -v subl >/dev/null; then
+if command -v subl >/dev/null 2>&1; then
 	alias dotop='subl ${DOTFILES}'
 	alias dot='dotcd && dotop'
 fi
@@ -57,6 +57,6 @@ unset python_version
 
 # extend git command with 'hub'
 if printf "bash zsh sh ksh csh tcsh fish" |
-GREP_OPTIONS="" command grep "$(command basename "$SHELL")" >/dev/null; then # only consider 'hub' supported shells
+GREP_OPTIONS="" command grep "$(command basename "$SHELL")" >/dev/null 2>&1; then # only consider 'hub' supported shells
 	command -v hub >/dev/null 2>&1 && eval "$(hub alias -s)" # add github support to git
 fi

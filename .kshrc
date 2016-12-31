@@ -16,7 +16,7 @@ alias sk='. ${HOME}/.kshrc'
 export HISTFILE="${HOME}/.ksh_history"
 
 # source scripts
-if command -v _source_from_text_file >/dev/null; then
+if command -v _source_from_text_file >/dev/null 2>&1; then
 	case "$(command ps -o args="" -p $$)" in
 		-pdksh*|pdksh*|*/pdksh*)
 			_source_from_text_file "${HOME}/.scripts.pdksh.txt" # nvm work on pdksh, but not on ksh93
@@ -35,4 +35,4 @@ if command -v _source_from_text_file >/dev/null; then
 	esac
 fi
 
-command -v lsvirtualenv >/dev/null && alias lsv="lsvirtualenv -b | less"
+command -v lsvirtualenv >/dev/null 2>&1 && alias lsv="lsvirtualenv -b | less"
