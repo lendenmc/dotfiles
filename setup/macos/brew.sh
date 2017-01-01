@@ -42,7 +42,7 @@ formulas="$(_get_fullname "$1")" || exit 1
 printf "Installing homebrew formulas from file %s\n" "$formulas"
 _parse_text_file "$formulas" |
 while read -r formula options; do
-	_test_macos_program "$formula" "formula" "Cellar" || continue
+	_test_program_folder "$formula" "formula" "$(brew --prefix)/Cellar" || continue
 	brew_cmd="brew install $options --ignore-dependencies $formula"
 	if ! eval "$brew_cmd"; then
 		# some 'brew install' with python3 option will break if the '-ignore-dependencies' option is enabled

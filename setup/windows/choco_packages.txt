@@ -1,0 +1,26 @@
+# please write each program name with the same upper or lower cases as their corresponding folder in "C:\ProgramData\chocolatey\.chocolatey"
+7zip
+angryip
+caffeine
+ccleaner
+ConEmu
+dropbox
+evernote
+Everything
+Firefox
+freecommander
+git
+GoogleChrome
+keepass
+miktex
+nodejs
+# notepadplusplus
+pandoc
+putty
+snagit
+SublimeText3
+tortoisesvn
+vlc
+virtualbox
+which
+windirstat

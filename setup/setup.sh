@@ -69,12 +69,17 @@ _download_dotfiles() {
 }
 
 _setup() {
-	# macos-specific setup
-	case "$(uname)" in Darwin*)
-		_run_script "homebrew" ./macos/brew.sh ./macos/brew_formulas.txt || return 1
-		_run_script "homebrew cask" ./macos/brew_cask.sh ./macos/brew_casks.txt || return 1
-		_run_script "macos preferences" ./macos/preferences.sh || return 1
-		;;
+	# platform-specific setup
+	case "$(uname)" in
+		Darwin*)
+			_run_script "homebrew" ./macos/brew.sh ./macos/brew_formulas.txt || return 1
+			_run_script "homebrew cask" ./macos/brew_cask.sh ./macos/brew_casks.txt || return 1
+			_run_script "macos preferences" ./macos/preferences.sh || return 1
+			;;
+		CYGWIN*)
+			_run_script "apt-cyg" ./windows/apt_cyg.sh ./windows/cygwin_packages.txt || return 1
+			_run_script "chocolatey" ./windows/choco.sh ./windows/choco_packages.txt || return 1
+			;;
 	esac
 
 	# install special executables and external scripts into '~/bin' folder

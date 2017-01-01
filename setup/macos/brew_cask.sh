@@ -12,7 +12,7 @@ casks="$(_get_fullname "$1")" || exit 1
 printf "Installing homebrew casks from file %s\n" "$casks"
 _parse_text_file "$casks" |
 while read -r cask; do
-	_test_macos_program "$cask" "cask" "Caskroom" || continue
+	_test_program_folder "$cask" "cask" "$(brew --prefix)/Caskroom" || continue
 	brew cask install "$cask"
 	printf "\n"
 done;
