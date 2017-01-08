@@ -1,4 +1,4 @@
-# please write each program name with the same upper or lower cases as their corresponding folder in "C:\ProgramData\chocolatey\.chocolatey"
+# please write each program name with the same upper or lower cases as their corresponding folder in "C:\ProgramData\chocolatey\lib"
 7zip
 angryip
 caffeine
@@ -12,9 +12,10 @@ freecommander
 git
 GoogleChrome
 keepass
+keepass-keepasshttp
 miktex
 nodejs
-# notepadplusplus
+notepadplusplus
 pandoc
 putty
 snagit
