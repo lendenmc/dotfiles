@@ -44,6 +44,7 @@ marked
 microsoft-office-2011
 the-unarchiver
 
+gitscout
 # hexchat
 skype
 slack
