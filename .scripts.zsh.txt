@@ -14,3 +14,6 @@
 $NVM_DIR/nvm.sh
 
 $HOME/bin/gh_complete.sh
+
+/usr/local/opt/fzf/shell/completion.zsh
+/usr/local/opt/fzf/shell/key-bindings.zsh

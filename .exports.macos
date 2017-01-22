@@ -17,6 +17,7 @@ ${HOME}/bin
 /usr/local/sbin
 ${go_path}
 ${HOME}/torch/install/bin
+/usr/local/opt/fzf/bin
 "
 
 while read -r pth; do # do not use 'path' as a variable name !
