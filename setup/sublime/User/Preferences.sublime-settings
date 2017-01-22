@@ -1,5 +1,6 @@
 {
 	"color_scheme": "Packages/User/SublimeLinter/Monokai Bright (SL).tmTheme",
+	"default_line_editing": "unix",
 	"draw_white_space": "all",
 	"folder_exclude_patterns":
 	[
