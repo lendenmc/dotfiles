@@ -14,7 +14,7 @@ else
 		printf "Lynx is not installed. In order to install apt-cyg, you need to install it manually first."
 		exit 1
 	else
-		lynx -source "$apt_cyg_url" > apt-cyg
+		wget "$apt_cyg_url"
 		install apt-cyg /bin
 		rm apt-cyg
 	fi

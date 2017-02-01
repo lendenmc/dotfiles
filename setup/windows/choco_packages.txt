@@ -6,9 +6,7 @@ ccleaner
 ConEmu
 dropbox
 evernote
-Everything
 Firefox
-freecommander
 git
 GoogleChrome
 keepass
@@ -18,7 +16,6 @@ nodejs
 notepadplusplus
 pandoc
 putty
-snagit
 SublimeText3
 tortoisesvn
 vlc

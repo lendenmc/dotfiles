@@ -14,5 +14,5 @@ printf "Installing chocolatey packages from file %s\n" "$packages"
 _parse_text_file "$packages" |
 while read -r package; do
 	_test_program_folder "$package" "package" "/cygdrive/c/ProgramData/chocolatey/lib" || continue
-	choco install "$package"
+	choco install -y "$package"
 done;
