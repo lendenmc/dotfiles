@@ -19,6 +19,7 @@ mustache
 pug-cli
 shelljs
 # statsd
+simple-statistics
 tape
 typescript
 # webpack
