@@ -35,6 +35,7 @@ xlwings
 https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.12.0-py3-none-any.whl # tensorflow
 pymc3
 mrjob
+xarray
 
 ### ipython testing suite ('iptest' command) additional requirements
 # six
