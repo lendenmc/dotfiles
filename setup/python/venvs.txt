@@ -3,6 +3,7 @@ ansible
 certbot -p python2
 couchdb -p python2
 cryptography
+dask
 # diamond # uses psutil which doesn't seem to support windows
 eulerpy
 # fopnp -a "$PROJECT_HOME"/fopnp # bug when there are spaces in variable
