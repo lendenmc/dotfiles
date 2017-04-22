@@ -17,42 +17,28 @@ omnidisksweeper
 vagrant
 virtualbox
 
-# chromium
 firefox
 Caskroom/versions/firefoxdeveloperedition
 google-chrome
 Caskroom/versions/google-chrome-canary
 flash-npapi # flash browser plugin for firefox and safari
-# opera
-# opera-developer
-# servo
-# vivaldi
 
 handbrake
-recordit
 screenflow
 sublime
 transmission
 vlc
-vlc-remote
-xld
 
 basictex
 djview
-# libreoffice
 marked
 microsoft-office-2011
 the-unarchiver
 
-gitscout
-# hexchat
 skype
 slack
 textual
-# zulip
 
-# atom
-# electron
 google-cloud-sdk # includes gcloud, gsutil (cloud storage cli) and bq (bigquery cli)
 hyper
 macvim
@@ -66,9 +52,3 @@ qlstephen
 qlvideo
 quicklook-json
 suspicious-package
-
-# haskell-platform
-# julia
-# rstudio
-# sage
-# scilab
