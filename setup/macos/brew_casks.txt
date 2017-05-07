@@ -21,6 +21,7 @@ firefox
 Caskroom/versions/firefoxdeveloperedition
 google-chrome
 Caskroom/versions/google-chrome-canary
+qutebrowser # keyboard-driven, vim-like browser based on PyQt5.
 flash-npapi # flash browser plugin for firefox and safari
 
 handbrake
