@@ -9,3 +9,9 @@ sublime="/cygdrive/c/Program Files/Sublime Text 3/subl.exe"
 # shellcheck disable=SC2139
 [ -r "$sublime" ] && [ -f "$sublime" ] && alias subl="/cygdrive/c/Program\ Files/Sublime\ Text\ 3/subl.exe"
 unset sublime
+
+# macos-like 'pbcopy' and 'pbpaste'
+if [ -e /dev/clipboard ]; then
+   alias pbcopy='cat >/dev/clipboard'
+   alias pbpaste='cat /dev/clipboard'
+fi
