@@ -13,7 +13,6 @@
 	"hot_exit": false,
 	"ignored_packages":
 	[
-		"Package Control",
 		"Vintage"
 	],
 	"line_padding_bottom": 0.5,
