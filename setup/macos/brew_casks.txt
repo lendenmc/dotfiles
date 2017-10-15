@@ -42,6 +42,7 @@ textual
 
 google-cloud-sdk # includes gcloud, gsutil (cloud storage cli) and bq (bigquery cli)
 hyper
+now
 macvim
 
 betterzipql
