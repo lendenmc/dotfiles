@@ -17,6 +17,7 @@ keras
 gensim
 networkx
 glueviz
+spacy
 spyder # requires PyQt4 installed system-wide
 numexpr
 bcolz

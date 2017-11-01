@@ -1,5 +1,6 @@
 aws-shell
 ansible
+bandit
 certbot -p python2
 couchdb -p python2
 cryptography
@@ -12,6 +13,7 @@ eulerpy
 grip
 httpie
 hypothesis
+kinto
 mitmproxy
 mycli
 # nlquery -a "$PROJECT_HOME"/nlquery -r "$PROJECT_HOME"/nlquery/requirements.txt # bug when there are spaces in variable
