@@ -15,3 +15,4 @@ Package Control.user-ca-bundle
 oscrypto-ca-bundle.crt
 *.tmTheme
 !Monokai Bright (SL).tmTheme
+setup/sublime/User/Color Highlighter/icons/*
