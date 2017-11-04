@@ -5,6 +5,7 @@ sympy
 pandas
 matplotlib
 patsy
+pint
 seaborn
 scikit-learn
 bokeh
