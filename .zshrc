@@ -13,7 +13,7 @@ export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1 # ensure uniquenes of history en
 
 # aliases
 alias sz='. ${HOME}/.zshrc'
-command -v thefuck >/dev/null 2>&1 && eval "$(thefuck --alias)" # programatically correct mistyped console commands
+command -v thefuck >/dev/null 2>&1 && eval $(thefuck --alias) # programatically correct mistyped console commands
 
 # bash-like-help 'run-help' command (in order to check for  builtins, e.g. 'run-help source')
 unalias run-help 2>/dev/null
