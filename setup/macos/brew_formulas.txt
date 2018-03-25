@@ -48,6 +48,7 @@ pixman
 readline
 # sleuthkit
 snappy
+sphinx-doc
 spidermonkey
 sqlite
 # subversion
