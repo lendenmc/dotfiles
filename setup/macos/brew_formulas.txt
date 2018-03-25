@@ -98,7 +98,7 @@ perl
 pypy
 pypy3
 python
-python3
+python@2
 homebrew/science/r
 rbenv
 ruby
