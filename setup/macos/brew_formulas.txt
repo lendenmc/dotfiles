@@ -91,6 +91,7 @@ librsvg
 
 ### programming ###
 erlang
+elixir
 gcc
 # go
 lua
