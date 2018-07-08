@@ -7,45 +7,33 @@ dropbox
 evernote
 iterm2
 sublime-text
+visual-studio-code
 
 appcleaner
 caffeine
-crashplan
 flux
-omnidisksweeper
-
-vagrant
-virtualbox
-
-firefox
-Caskroom/versions/firefoxdeveloperedition
-google-chrome
-Caskroom/versions/google-chrome-canary
-qutebrowser # keyboard-driven, vim-like browser based on PyQt5.
-flash-npapi # flash browser plugin for firefox and safari
-
 handbrake
-screenflow
+omnidisksweeper
 sublime
+the-unarchiver
 transmission
 vlc
+
+firefox
+flash-npapi
+google-chrome
+torbrowser
 
 basictex
 djview
 marked
 microsoft-office-2011
-the-unarchiver
 
 skype
 slack
 textual
 
-google-cloud-sdk # includes gcloud, gsutil (cloud storage cli) and bq (bigquery cli)
-hyper
-now
-macvim
-
-betterzipql
+betterzip
 epubquicklook
 qlcolorcode
 qlimagesize
@@ -53,4 +41,5 @@ qlmarkdown
 qlstephen
 qlvideo
 quicklook-json
+provisionql
 suspicious-package
