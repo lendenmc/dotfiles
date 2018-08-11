@@ -201,14 +201,9 @@ pdfgrep # requires poppler (among others)
 
 ### cool kids ###
 apache-spark
-boot2docker
 cassandra
 collectd
 couchdb
-docker
-docker-swarm
-docker-machine
-docker-compose
 elasticsearch
 etcd
 grafana

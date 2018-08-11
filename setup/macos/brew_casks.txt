@@ -5,6 +5,8 @@ xquartz
 alfred
 dropbox
 evernote
+
+docker
 iterm2
 sublime-text
 visual-studio-code
