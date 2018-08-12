@@ -5,10 +5,10 @@ certbot -p python2
 couchdb -p python2
 cryptography
 dask
-# diamond # uses psutil which doesn't seem to support windows
+diamond
 eulerpy
 # fopnp -a "$PROJECT_HOME"/fopnp # bug when there are spaces in variable
-# /opt/graphite -p python2 # monitoring tool (cannot be installed on windows with setup.sh script unless 'sudo' bug is fixed in 'venvs' project)
+/opt/graphite -p python2 # monitoring tool
 # gitsome # does not seem to work on python 3.6
 grip
 httpie
@@ -37,6 +37,6 @@ supervisor -p python2
 thriftpy # python implementation of apache thrift
 tinydb
 urlwatch
-# uvloop # not supported on windows yet
+uvloop
 you-get
 youtube-dl

@@ -76,9 +76,6 @@ fi
 # shellcheck disable=SC1001
 # bash-like C-u, so that all characters from beginning of the line to the cursor are removed instead of the whole line
 bindkey \^U backward-kill-line
-# bind ALT+Right and ALT+Left arrow keys (necessary for cygwin for instance)
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;3D" backward-word
 
 # lsvirtualenv alias
 command -v lsvirtualenv >/dev/null 2>&1 && alias lsv="lsvirtualenv -b | less"

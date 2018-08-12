@@ -7,10 +7,6 @@ case "$(uname)" in
 	Darwin*)
 		sublime_folder="${HOME}/Library/Application Support/Sublime Text 3"
 		;;
-	CYGWIN*)
-		export CYGWIN="winsymlinks:nativestrict"
-		sublime_folder="/cygdrive/c/Users/${USER}/AppData/Roaming/Sublime Text 3"
-		;;
 esac
 if [ -z "$sublime_folder" ]; then
 	printf "Sublime text 3 setup is not supported for this platform\n"

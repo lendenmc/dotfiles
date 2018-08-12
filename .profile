@@ -34,22 +34,6 @@ case "$(uname)" in
 			$dotfiles
 EOF
 		;;
-	CYGWIN*)
-		dotfiles="\
-		${HOME}/.exports.windows
-		${HOME}/.aliases.windows
-		"
-		while read -r file; do
-			if [ -r "$file" ] && [ -f "$file" ]; then . "$file"; fi
-		done <<EOF
-			$dotfiles
-EOF
-		# load ssh authentication agent 'ssh-pageant' for cygwin to putty's pageant
-		if command -v ssh-pageant >/dev/null 2>&1; then
-			eval "$(/usr/bin/ssh-pageant -r -a "/tmp/.ssh-pageant-$USERNAME")" >/dev/null
-		fi
-		;;
-		
 esac
 
 unset dotfiles
