@@ -27,6 +27,11 @@ alias bh="brew home"
 alias bv="brew ls --versions" # also used to check if formula is installed (empty output is returned in this case)
 alias bo="brew options"
 
+# archey fix (see https://github.com/obihann/archey-osx/issues/78)
+if command -v archey >/dev/null 2>&1; then
+	alias archey="archey --offline"
+fi
+
 # vlc
 vlc=/Applications/VLC.app/Contents/MacOS/VLC
 # shellcheck disable=SC2139
