@@ -12,9 +12,10 @@ sublime-text
 visual-studio-code
 
 appcleaner
-caffeine
 flux
 handbrake
+itsycal
+keepingyouawake
 omnidisksweeper
 sublime
 the-unarchiver
