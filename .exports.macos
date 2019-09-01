@@ -53,6 +53,9 @@ if command -v brew >/dev/null 2>&1 && brew ls --versions apache-spark >/dev/null
 fi
 unset python_spark
 
+# homebrew
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 # torch setup
 export LUA_PATH="{HOME}/.luarocks/share/lua/5.1/?.lua;{HOME}/.luarocks/share/lua/5.1/?/init.lua;{HOME}/torch/install/share/lua/5.1/?.lua;{HOME}/torch/install/share/lua/5.1/?/init.lua;./?.lua;${HOME}/torch/install/share/luajit-2.1.0-beta1/?.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua"
 export LUA_CPATH="{HOME}/.luarocks/lib/lua/5.1/?.so;{HOME}/torch/install/lib/lua/5.1/?.so;./?.so;/usr/local/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so"
