@@ -6,3 +6,5 @@ $HOME/bin/gh_complete.sh
 
 /usr/local/opt/fzf/shell/completion.bash
 /usr/local/opt/fzf/shell/key-bindings.bash
+
+/usr/local/etc/profile.d/bash_completion.sh

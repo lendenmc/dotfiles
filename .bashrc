@@ -29,11 +29,6 @@ stty -ixon
 # custom prompt
 PS1='\[\033[01;32m\]\w \[\033[01;31m\]$(_print_git_branch)\[\033[01;34m\]$\[\033[00m\] '
 
-# do not add google cloud sdk binaries to path it it's already there
-if command -v _add_gcloud_sdk_to_path >/dev/null 2>&1; then
-	_add_gcloud_sdk_to_path "bash"
-fi
-
 # source scripts
 if command -v _source_from_text_file >/dev/null 2>&1; then
 	_source_from_text_file "${HOME}/.scripts.bash.txt"
