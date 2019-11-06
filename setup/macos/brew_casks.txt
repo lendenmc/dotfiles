@@ -7,6 +7,7 @@ dropbox
 evernote
 
 docker
+minikube
 iterm2
 sublime-text
 visual-studio-code
