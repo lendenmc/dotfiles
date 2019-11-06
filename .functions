@@ -108,3 +108,14 @@ _source_from_text_file() {
 EOF
     unset script
 }
+
+_add_gcloud_sdk_to_path() {
+    google_cloud_sdk_prefix="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+    if printf "%s" "$PATH"  \
+        | GREP_OPTIONS="" command grep -v "$google_cloud_sdk_prefix"/bin >/dev/null; then
+        script="$google_cloud_sdk_prefix"/path."$1".inc
+        _test_file "$script" && . "$script" >/dev/null
+        unset script
+    fi
+    unset google_cloud_sdk_prefix
+}

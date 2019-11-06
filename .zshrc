@@ -56,6 +56,11 @@ autoload -U colors && colors
 # shellcheck disable=SC2016
 export PROMPT='%{$fg_bold[green]%}%~ %{$fg_bold[red]%}$(_print_git_branch)%{$fg_bold[blue]%}$ %b%f'
 
+# do not add google cloud sdk binaries to path it it's already there
+if command -v _source_from_text_file >/dev/null 2>&1; then
+	_add_gcloud_sdk_to_path "zsh"
+fi
+
 # source scripts
 if command -v _source_from_text_file >/dev/null 2>&1; then
 	_source_from_text_file "${HOME}/.scripts.zsh.txt"

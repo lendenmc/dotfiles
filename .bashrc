@@ -34,5 +34,12 @@ if command -v _source_from_text_file >/dev/null 2>&1; then
 	_source_from_text_file "${HOME}/.scripts.bash.txt"
 fi
 
+# enforce bash-completion for bash version 4 on macos
+if [ "${BASH_VERSINFO[0]}" = 4 ]; then
+	bashcomp=/usr/local/etc/profile.d/bash_completion.sh
+	_test_file "$bashcomp" && . "$bashcomp"
+	unset bashcomp
+fi
+
 # lsvirtualenv alias
 command -v lsvirtualenv >/dev/null 2>&1 && alias lsv="lsvirtualenv -b | less"
