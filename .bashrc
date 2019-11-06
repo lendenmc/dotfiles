@@ -40,9 +40,8 @@ if command -v _source_from_text_file >/dev/null 2>&1; then
 fi
 
 # enforce bash-completion for bash version 4 on macos
-# with bash version 3 completion inside '/usr/local/etc/bash_completion.d' will be automatically sourced
 if [ "${BASH_VERSINFO[0]}" = 4 ]; then
-	bashcomp=/usr/local/share/bash-completion/bash_completion
+	bashcomp=/usr/local/etc/profile.d/bash_completion.sh
 	_test_file "$bashcomp" && . "$bashcomp"
 	unset bashcomp
 fi

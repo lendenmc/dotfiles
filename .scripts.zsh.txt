@@ -1,12 +1,9 @@
 /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # type part of command and hit up arrow, cycle through only commands that begin with that string
-/usr/local/opt/zsh-history-substring-search/zsh-history-substring-search.zsh
+/usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-
-# track most-used directories to make cd smarter
-/usr/local/etc/profile.d/z.sh
+/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 /usr/local/bin/virtualenvwrapper.sh
 
@@ -16,3 +13,5 @@ $HOME/bin/gh_complete.sh
 
 /usr/local/opt/fzf/shell/completion.zsh
 /usr/local/opt/fzf/shell/key-bindings.zsh
+
+/usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
