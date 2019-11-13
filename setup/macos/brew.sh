@@ -27,16 +27,6 @@ else
 	/usr/bin/ruby -e "$(curl -fsSL $homebrew_url)" || exit 1
 fi
 
-# install homebrew taps
-printf "Checking for homebrew taps\n"
-brew tap homebrew/boneyard
-brew tap homebrew/dupes
-brew tap homebrew/php
-brew tap homebrew/python
-brew tap homebrew/science
-brew tap homebrew/versions
-brew tap homebrew/x11
-
 # install homebrew formulae
 formulas="$(_get_fullname "$1")" || exit 1
 printf "Installing homebrew formulas from file %s\n" "$formulas"
@@ -54,6 +44,8 @@ while read -r formula options; do
 	printf "\n"
 done;
 
-# cleanup
+printf "Migrating postgres\n"
+brew postgresql-upgrade-database
+
 printf "Cleaning up homebrew\n"
 brew cleanup -s
