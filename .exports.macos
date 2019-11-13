@@ -29,6 +29,7 @@ ${go_path}
 /usr/local/opt/libpcap/bin
 /usr/local/opt/ruby/bin
 /usr/local/opt/ncurses/bin
+/usr/local/opt/libpq/bin
 "
 
 while read -r pth; do # do not use 'path' as a variable name !

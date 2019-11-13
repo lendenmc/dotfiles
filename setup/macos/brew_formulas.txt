@@ -34,6 +34,7 @@ libidn2
 libmpc
 libpcap
 libpng
+libpq
 libunistring
 libyaml
 lsof
@@ -51,6 +52,7 @@ parallel
 pcre
 pcre2
 perl
+pgcli
 postgresql
 python
 readline
