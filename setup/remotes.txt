@@ -1,5 +1,2 @@
 https://github.com/lendenmc/venvs.git
-# https://github.com/brandon-rhodes/fopnp.git
-# https://github.com/jvns/pandas-cookbook.git
-# https://github.com/ayoungprogrammer/nlquery.git
-https://github.com/torch/distro.git $HOME/torch --recursive
+https://github.com/pirate/ArchiveBox.git
