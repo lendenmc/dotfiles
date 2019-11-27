@@ -29,7 +29,7 @@ alias bo="brew options"
 
 # headless chrome
 chrome=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
-chrome_alias="/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
+chrome_alias="/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --crash-dumps-dir=/tmp"
 # shellcheck disable=SC2139
 [ -r "$chrome" ] && [ -f "$chrome" ] && alias chrome="$chrome_alias"
 unset chrome chrome_alias
