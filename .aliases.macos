@@ -27,6 +27,13 @@ alias bh="brew home"
 alias bv="brew ls --versions" # also used to check if formula is installed (empty output is returned in this case)
 alias bo="brew options"
 
+# headless chrome
+chrome=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+chrome_alias="/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
+# shellcheck disable=SC2139
+[ -r "$chrome" ] && [ -f "$chrome" ] && alias chrome="$chrome_alias"
+unset chrome chrome_alias
+
 # archey fix (see https://github.com/obihann/archey-osx/issues/78)
 if command -v archey >/dev/null 2>&1; then
 	alias archey="archey --offline"
