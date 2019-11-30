@@ -34,6 +34,11 @@ chrome_alias="/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome -
 [ -r "$chrome" ] && [ -f "$chrome" ] && alias chrome="$chrome_alias"
 unset chrome chrome_alias
 
+# firefox
+firefox=/Applications/Firefox.app/Contents/MacOS/firefox
+[ -r "$firefox" ] && [ -f "$firefox" ] && alias firefox="$firefox"
+unset firefox
+
 # archey fix (see https://github.com/obihann/archey-osx/issues/78)
 if command -v archey >/dev/null 2>&1; then
 	alias archey="archey --offline"
