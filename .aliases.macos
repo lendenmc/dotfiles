@@ -36,6 +36,7 @@ unset chrome chrome_alias
 
 # firefox
 firefox=/Applications/Firefox.app/Contents/MacOS/firefox
+# shellcheck disable=SC2139
 [ -r "$firefox" ] && [ -f "$firefox" ] && alias firefox="$firefox"
 unset firefox
 
