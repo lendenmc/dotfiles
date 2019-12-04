@@ -26,6 +26,7 @@ grep
 gzip
 hub
 icu4c
+ipython
 isl
 jq
 kubernetes-cli
@@ -71,6 +72,7 @@ wget
 xonsh
 xz
 youtube-dl
+zeromq
 zsh
 zsh-autosuggestions
 zsh-completions
