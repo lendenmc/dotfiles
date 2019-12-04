@@ -47,8 +47,10 @@ while read -r formula options; do
 	printf "\n"
 done;
 
-printf "Migrating postgres\n"
+printf "Settiing up postgres"
 brew postgresql-upgrade-database
+createuser -s postgres
+createdb "$USER"
 
 printf "Cleaning up homebrew\n"
 brew cleanup -s
