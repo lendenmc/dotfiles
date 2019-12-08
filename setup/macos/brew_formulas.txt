@@ -30,6 +30,7 @@ hub
 icu4c
 ipython
 isl
+jbig2enc
 jpeg
 jq
 kubernetes-cli
@@ -61,6 +62,7 @@ pcre
 pcre2
 perl
 pgcli
+pngquant
 postgresql
 python
 qpdf
