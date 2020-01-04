@@ -31,8 +31,8 @@ quicklook-json
 sublime-text
 suspicious-package
 the-unarchiver
+tor-browser
 transmission
 typora
 visual-studio-code
 vlc
-xquartz
