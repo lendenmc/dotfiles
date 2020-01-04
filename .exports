@@ -14,9 +14,6 @@ export PYTHONIOENCODING="UTF-8"
 export PROJECT_HOME="${HOME}/projects"
 export VIRTUALENVWRAPPER_PYTHON
 VIRTUALENVWRAPPER_PYTHON="$(command -v python3 2>/dev/null || command -v python)"
-# default python for pyspark command line interface
-export PYSPARK_PYTHON
-PYSPARK_PYTHON="$(command -v python3 2>/dev/null || command -v python)"
 
 # enable persistent REPL history for 'node'
 export NODE_REPL_HISTORY="${HOME}/.node_history"
