@@ -9,6 +9,7 @@ unalias git 2>/dev/null
 
 # basic aliases
 alias d='cd ${HOME}/Desktop'
+alias p='cd ${PROJECT_HOME}'
 alias s='echo $?'
 alias dotcd='cd ${DOTFILES}'
 alias dsync='set -- -f; . ${DOTFILES}/bootstrap.sh'
