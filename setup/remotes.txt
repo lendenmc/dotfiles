@@ -1,2 +1,1 @@
 https://github.com/lendenmc/venvs.git
-https://github.com/pirate/ArchiveBox.git

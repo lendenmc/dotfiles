@@ -1,4 +1,0 @@
-https://github.com/graphite-project/ceres/tarball/master
-whisper
-carbon
-graphite-web
