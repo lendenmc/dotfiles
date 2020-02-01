@@ -49,6 +49,8 @@ libpng
 libpq
 libtiff
 libunistring
+libxml2
+libxslt
 libyaml
 little-cms2
 lsof
@@ -69,6 +71,7 @@ pandoc
 parallel
 pcre
 pcre2
+pdftk
 perl
 pgcli
 pixman
