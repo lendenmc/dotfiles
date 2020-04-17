@@ -237,6 +237,9 @@ defaults write com.apple.DiskUtility advanced-image-options -bool true
 # Auto-play videos when opened with QuickTime Player
 defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen -bool true
 
+# Enable browser-baed Common Unix Printing System (CUPS) interface, accessible at 'http://127.0.0.1:631'
+cupsctl WebInterface=yes
+
 
 ###############################################################################
 # Kill affected applications                                                  #
