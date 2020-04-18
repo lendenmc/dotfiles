@@ -78,7 +78,11 @@ if command -v ipconfig >/dev/null 2>&1; then
 fi
 
 if command -v lsof >/dev/null 2>&1; then
-	alias iplisten='lsof -i | command grep -i listen'
+	alias iplist='lsof -i | command grep -i listen'
+fi
+
+if command -v lsof >/dev/null 2>&1; then
+	alias iplistall='sudo lsof -i | command grep -i listen'
 fi
 
 if command -v curl >/dev/null 2>&1; then
