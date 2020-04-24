@@ -1,6 +1,7 @@
 apollo-cli
 archey
 arp-scan
+autoconf
 bash
 bash-completion@2
 binutils
@@ -38,6 +39,7 @@ hub
 icu4c
 ilmbase
 imagemagick
+imgcat
 ipython
 isl
 jasper
@@ -70,6 +72,7 @@ lzo
 make
 minikube
 mpfr
+n
 nano
 ncurses
 netcat
@@ -77,6 +80,7 @@ nmap
 node
 nspr
 nss
+nvm
 oniguruma
 openexr
 openjpeg
