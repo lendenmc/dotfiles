@@ -13,10 +13,12 @@ diff-so-fancy
 diffutils
 djvulibre
 emacs
+exa
 findutils
 fish
 fontconfig
 freetype
+fselect
 fzf
 gawk
 gcc
@@ -42,6 +44,7 @@ gzip
 highlight
 httpie
 hub
+hyperfine
 icdiff
 icu4c
 ilmbase
@@ -50,6 +53,7 @@ imgcat
 isl
 jasper
 jbig2enc
+jo
 jpeg
 jq
 krb5
@@ -107,6 +111,7 @@ pixman
 pngquant
 poppler
 postgresql
+progress
 python
 python@3.8
 qpdf
