@@ -1,0 +1,4 @@
+eamodio.gitlens
+esbenp.prettier-vscode
+timonwong.shellcheck
+vscode-icons-team.vscode-icons

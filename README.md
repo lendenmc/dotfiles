@@ -61,6 +61,7 @@ As an avid Mac user, most of the work have been made to set up a new macOS envir
 * [Node.js](./setup/node.js)
 	* install Node version manager `nvm`
 	* install a selection of global packages listed in `./setup/node.js/global_packages.txt` with npm
+* [Visual Studio Code](./setup/vscode) user settings, keybindings and extensions
 * [Shell config](./setup/shells.sh)
 	* Edit the `/etc/shells` file to add newly installed shells, in particular the latest `bash` and `zsh` versions
 
@@ -72,8 +73,6 @@ The main script `./setup/setup.sh` will first automatically detect whether you a
 * [Homebew](http://brew.sh/) package manager
 * [Homebrew formulas](./setup/macos/brew.sh) listed in `./setup/macos/brew_formulas.txt`
 * [Homebrew casks](./setup/macos/brew_cask.sh) listed in `./setup/macos/brew_cask_formulas.txt`
-* [Sublime Text 3](./setup/macos/sublime) package manager and user settings
-
 
 Custom [macOS preferences](./setup/macos/preferences.sh) will be set up at the end.
 

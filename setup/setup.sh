@@ -85,12 +85,9 @@ _setup() {
 	_run_script "remote projects" ./remotes.sh ./remotes.txt || return 1
 
 	# program-specific setups
-	for program in "python" "node.js"; do
+	for program in "python" "node.js" "vscode"; do
 		_run_script "$program" "./${program}/setup.sh" || return 1
 	done
-
-	# sublime text 3 setup
-	_run_script "sublime text 3" ./sublime/setup.sh || return 1
 
 	# setup shells
 	_run_script "shells" ./shells.sh || return 1

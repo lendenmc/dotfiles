@@ -13,7 +13,8 @@ alias p='cd ${PROJECT_HOME}'
 alias s='echo $?'
 alias dotcd='cd ${DOTFILES}'
 alias dsync='set -- -f; . ${DOTFILES}/bootstrap.sh'
-if ! command -v code >/dev/null 2>&1 && command -v code-insiders >/dev/null 2>&1 &&; then
+
+if ! command -v code >/dev/null 2>&1 && command -v code-insiders >/dev/null 2>&1; then
 	alias code="code-insiders "
 fi
 

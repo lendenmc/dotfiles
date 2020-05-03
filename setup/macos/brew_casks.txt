@@ -33,7 +33,6 @@ qlmarkdown
 qlstephen
 qlvideo
 quicklook-json
-sublime-text
 suspicious-package
 the-unarchiver
 tor-browser
