@@ -4,6 +4,7 @@ angry-ip-scanner
 appcleaner
 basictex
 betterzip
+brave-browser
 deepl
 djview
 docker
@@ -32,7 +33,6 @@ qlmarkdown
 qlstephen
 qlvideo
 quicklook-json
-skype
 sublime-text
 suspicious-package
 the-unarchiver
