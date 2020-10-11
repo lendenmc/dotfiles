@@ -22,16 +22,17 @@ case "$(uname)" in
 			printf "Visual Studio Code is not installed\n"
 			exit 1
 		fi;
-		mkdir -p "$vscode_folder" || exit 1
 		;;
 esac
 
-if [ ! -d "$vscode_folder" ]; then
+if [ -z "$vscode_folder" ]; then
 	printf "Visual Studio Code setup is not supported for this platform\n"
 	exit 1
-fi
+fi;
 
+mkdir -p "$vscode_folder" || exit 1
 old_settings_folder="${vscode_folder}/User"
+mkdir -p "$old_settings_folder" || exit 1;
 new_settings_folder="$(_get_fullname ./vscode)" || exit 1
 settings_filename="settings.json"
 keybindings_filename="keybindings.json"
