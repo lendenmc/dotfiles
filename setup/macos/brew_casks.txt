@@ -1,6 +1,7 @@
 1password
 alfred
 angry-ip-scanner
+anki
 appcleaner
 basictex
 betterzip
@@ -13,6 +14,7 @@ evernote
 firefox
 flash-npapi
 flux
+fork
 google-backup-and-sync
 google-chrome
 graphiql
@@ -38,6 +40,7 @@ the-unarchiver
 tor-browser
 transmission
 typora
-visual-studio-code-insiders
+visual-studio-code
 vlc
+vnc-viewer
 wireshark
