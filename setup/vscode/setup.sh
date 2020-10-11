@@ -79,5 +79,5 @@ _test_executable "$code_name" || exit 1
 _parse_text_file "$vscode_extensions"	\
 	| while read -r extension; do
 		printf "Installing extension %s\n" "$extension"
-        eval "$code_name --install-extension --force $extension" || exit 1
+        eval "$code_name --install-extension $extension" || exit 1
 	done
