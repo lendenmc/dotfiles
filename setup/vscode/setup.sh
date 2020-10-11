@@ -22,6 +22,7 @@ case "$(uname)" in
 			printf "Visual Studio Code is not installed\n"
 			exit 1
 		fi;
+		mkdir -p "$vscode_folder" || exit 1
 		;;
 esac
 
@@ -30,7 +31,6 @@ if [ ! -d "$vscode_folder" ]; then
 	exit 1
 fi
 
-mkdir -p "$vscode_folder" || exit 1
 old_settings_folder="${vscode_folder}/User"
 new_settings_folder="$(_get_fullname ./vscode)" || exit 1
 settings_filename="settings.json"
