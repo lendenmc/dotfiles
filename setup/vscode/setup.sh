@@ -2,22 +2,35 @@
 
 . ./utils.sh || exit 1
 
-# sublime text application folders
+# vscode text application folders
+if command -v code >/dev/null 2>&1; then
+	code_name="code"
+elif command -v code-insiders >/dev/null 2>&1; then
+	code_name="code-insiders"
+else
+	printf "Visual Studio Code is not installed\n"
+	exit 1
+fi;
+
 case "$(uname)" in
 	Darwin*)
-		vscode_folder="${HOME}/Library/Application Support/Code"
-        code_name="code"
-        if [ ! -d "$vscode_folder" ]; then
-            vscode_folder="${HOME}/Library/Application Support/Code - Insiders"
-            code_name="code-insiders"
-        fi
+		if [ $code_name = "code" ]; then
+			vscode_folder="${HOME}/Library/Application Support/Code"
+		elif [ $code_name = "code-insiders" ]; then
+			vscode_folder="${HOME}/Library/Application Support/Code - Insiders"
+        else
+			printf "Visual Studio Code is not installed\n"
+			exit 1
+		fi;
 		;;
 esac
+
 if [ ! -d "$vscode_folder" ]; then
 	printf "Visual Studio Code setup is not supported for this platform\n"
 	exit 1
 fi
 
+mkdir -p "$vscode_folder" || exit 1
 old_settings_folder="${vscode_folder}/User"
 new_settings_folder="$(_get_fullname ./vscode)" || exit 1
 settings_filename="settings.json"
