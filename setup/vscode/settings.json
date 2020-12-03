@@ -6,7 +6,7 @@
     "workbench.editor.enablePreview": false,
 	"workbench.startupEditor": "none",
 	"workbench.statusBar.visible": false,
-	"workbench.activityBar.visible": false,
+	"workbench.activityBar.visible": true,
 	"workbench.iconTheme": "material-icon-theme",
     "window.zoomLevel": 0,
     "prettier.singleQuote": true,
