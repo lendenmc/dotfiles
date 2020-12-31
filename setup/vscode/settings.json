@@ -1,15 +1,13 @@
 {
-    "editor.renderWhitespace": "all",
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"editor.mouseWheelZoom": true,
+	"editor.renderWhitespace": "all",
 	"editor.find.cursorMoveOnType": false,
-    "workbench.editor.enablePreview": false,
+	"workbench.editor.enablePreview": false,
 	"workbench.startupEditor": "none",
-	"workbench.statusBar.visible": false,
+	"workbench.statusBar.visible": true,
 	"workbench.activityBar.visible": true,
 	"workbench.iconTheme": "material-icon-theme",
-    "window.zoomLevel": 0,
-    "prettier.singleQuote": true,
+	"window.zoomLevel": 0,
+	"prettier.singleQuote": true,
 	"prettier.useTabs": true,
 	"prettier.tabWidth": 4,
 	"prettier.bracketSpacing": false,
@@ -19,16 +17,16 @@
 		"editor.detectIndentation": false,
 		"editor.insertSpaces": false,
 		"editor.tabSize": 4
-    },
-    "[plaintext]": {
+	},
+	"[plaintext]": {
 		"editor.insertSpaces": false,
 		"editor.tabSize": 4
-    },
-    "[json]": {
+	},
+	"[json]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-    "quick-select.includeBackticks": false,
-    "rainbow_csv.autodetect_separators": [
+	"quick-select.includeBackticks": false,
+	"rainbow_csv.autodetect_separators": [
 		"\t",
 		",",
 		";",
@@ -39,12 +37,29 @@
 		"files.encoding",
 		"-git.path",
 		"terminal.integrated.shell.windows",
-		"terminal.integrated.cwd",
-		"powershell.powerShellDefaultVersion",
-		"powershell.integratedConsole.showOnStartup",
-		"powershell.promptToUpdatePowerShell"
+		"terminal.integrated.cwd"
 	],
 	"settingsSync.ignoredExtensions": [
-		"xyz.plsql-language"
-	]
+		"xyz.plsql-language",
+		"ms-vscode.powershell",
+		"ms-vscode.powershell-preview",
+		"ms-vscode-remote.remote-wsl"
+	],
+	"python.formatting.provider": "black",
+	"python.sortImports.args":[
+		"--profile=black",
+	],
+	"[python]":{
+		"editor.formatOnSave": true,
+		"editor.codeActionsOnSave": [
+			"source.organizeImports"
+		]
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
 }
+
+
+
+
