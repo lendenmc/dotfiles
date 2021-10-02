@@ -6,3 +6,4 @@ mechatroner.rainbow-csv
 ms-python.python
 ms-toolsai.jupyter
 PKief.material-icon-theme
+shd101wyy.markdown-preview-enhanced

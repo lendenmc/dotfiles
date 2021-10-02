@@ -13,5 +13,29 @@
         "key": "ctrl+oem_7",
         "command": "extension.switchQuotes",
         "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+a ctrl+left",
+        "command": "workbench.action.splitEditorLeft"
+     },
+     {
+        "key": "ctrl+a ctrl+down",
+        "command": "workbench.action.splitEditorDown"
+     },
+     {
+        "key": "ctrl+a ctrl+right",
+        "command": "workbench.action.splitEditorRight"
+     },
+     {
+        "key": "ctrl+a ctrl+up",
+        "command": "workbench.action.splitEditorUp"
+     },
+     {
+        "key": "ctrl+tab",
+        "command": "workbench.action.nextEditor"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.previousEditor"
     }
 ]

@@ -32,22 +32,9 @@
 		";",
 		"|"
 	],
-	"settingsSync.ignoredSettings": [
-		"files.associations",
-		"files.encoding",
-		"-git.path",
-		"terminal.integrated.shell.windows",
-		"terminal.integrated.cwd"
-	],
-	"settingsSync.ignoredExtensions": [
-		"xyz.plsql-language",
-		"ms-vscode.powershell",
-		"ms-vscode.powershell-preview",
-		"ms-vscode-remote.remote-wsl"
-	],
 	"python.formatting.provider": "black",
 	"python.sortImports.args":[
-		"--profile=black",
+		"--profile=black"
 	],
 	"[python]":{
 		"editor.formatOnSave": true,
@@ -57,7 +44,16 @@
 	},
 	"[jsonc]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	}
+	},
+	"settingsSync.ignoredSettings": [
+		"files.associations",
+		"files.encoding",
+		"terminal.integrated.shell.windows",
+		"terminal.integrated.cwd",
+		"powershell.powerShellDefaultVersion",
+		"powershell.integratedConsole.showOnStartup",
+		"powershell.promptToUpdatePowerShell"
+	]
 }
 
 
