@@ -36,11 +36,12 @@
 	"python.sortImports.args":[
 		"--profile=black"
 	],
+	"python.terminal.activateEnvironment": true,
 	"[python]":{
 		"editor.formatOnSave": true,
 		"editor.codeActionsOnSave": [
 			"source.organizeImports"
-		]
+		],
 	},
 	"[jsonc]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -53,7 +54,10 @@
 		"powershell.powerShellDefaultVersion",
 		"powershell.integratedConsole.showOnStartup",
 		"powershell.promptToUpdatePowerShell"
-	]
+	],
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
 }
 
 
