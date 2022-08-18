@@ -11,27 +11,33 @@ if [ -n "$go_prefix" ]; then
 else
 	go_path=""
 fi
-# append to '$path' only if it is not already there
+
 paths="\
 ${HOME}/bin
 /usr/local/sbin
+${HOME}/.local/bin
 ${go_path}
-/usr/local/opt/fzf/bin
-/usr/local/opt/lsof/bin
-/usr/local/opt/grep/libexec/gnubin
-/usr/local/opt/gnu-indent/libexec/gnubin
-/usr/local/opt/gnu-sed/libexec/gnubin
-/usr/local/opt/gnu-tar/libexec/gnubin
-/usr/local/opt/gnu-time/libexec/gnubin
-/usr/local/opt/gnu-which/libexec/gnubin
-/usr/local/opt/grep/libexec/gnubin
-/usr/local/opt/make/libexec/gnubin
-/usr/local/opt/libpcap/bin
-/usr/local/opt/ruby/bin
-/usr/local/opt/ncurses/bin
-/usr/local/opt/libpq/bin
 "
 
+homebrew_path="/usr/local/opt"
+homebrew_subpaths="\
+fzf/bin
+lsof/bin
+grep/libexec/gnubin
+gnu-indent/libexec/gnubin
+gnu-sed/libexec/gnubin
+gnu-tar/libexec/gnubin
+gnu-time/libexec/gnubin
+gnu-which/libexec/gnubin
+grep/libexec/gnubin
+make/libexec/gnubin
+libpcap/bin
+ruby/bin
+ncurses/bin
+libpq/bin
+"
+
+# append to '$path' only if it is not already there
 while read -r pth; do # do not use 'path' as a variable name !
 	if [ -z "$PATH" ] || (printf "%s" "$PATH" | GREP_OPTIONS="" command grep -qv "$pth"); then
 		export PATH="${pth}:${PATH}"
@@ -39,7 +45,17 @@ while read -r pth; do # do not use 'path' as a variable name !
 done <<EOF 
     $paths
 EOF
-unset go_prefix go_path paths pth
+
+while read -r subpth; do
+	if [ -z "$PATH" ] || (printf "%s" "$PATH" | GREP_OPTIONS="" command grep -qv "${homebrew_path}/${subpth}"); then
+		export PATH="${homebrew_path}/${subpth}:${PATH}"
+	fi
+done <<EOF 
+    $homebrew_subpaths
+EOF
+
+
+unset go_prefix go_path paths homebrew_path homebrew_subpaths pth subpth
 
 # append to 'manpath' only if it is not already there
 manpaths="\

@@ -1,4 +1,1 @@
-https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/imgcat
-https://raw.githubusercontent.com/donnemartin/gitsome/master/scripts/gh_complete.sh
 https://raw.githubusercontent.com/paulirish/git-open/master/git-open
-https://raw.githubusercontent.com/paulirish/git-recent/master/git-recent

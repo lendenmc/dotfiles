@@ -198,6 +198,7 @@ pcre2
 perl
 pgcli
 php
+pipx
 pixman
 pkg-config
 pngquant

@@ -1,2 +1,11 @@
-virtualenv --upgrade
-virtualenvwrapper --upgrade
+black
+bpython
+instaloader
+ipython
+ocrmypdf
+pipx
+ptpython
+virtualenv
+virtualenvwrapper
+xonsh
+youtube-dl

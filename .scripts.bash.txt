@@ -1,4 +1,4 @@
-/usr/local/bin/virtualenvwrapper.sh
+$HOME/.local/bin/virtualenvwrapper.sh
 
 /usr/local/opt/nvm/nvm.sh
 /usr/local/opt/nvm/etc/bash_completion.d/nvm

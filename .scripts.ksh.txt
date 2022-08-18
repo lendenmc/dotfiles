@@ -1,1 +1,1 @@
-/usr/local/bin/virtualenvwrapper.sh
+$HOME/.local/bin/virtualenvwrapper.sh

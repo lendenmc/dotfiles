@@ -1,2 +1,0 @@
-ocrmypdf
-pdf2txt

@@ -26,29 +26,10 @@ printf "Installing or upgrading global python packages\n"
 # upgrade python 3's default packages that come with pip
 eval "$pip_name install --upgrade pip setuptools wheel" || exit
 
-# install python 3's global packages
-global_packages=./python/global_packages.txt
-_parse_text_file "$global_packages"	\
+# install end-user python applications
+_test_executable "pipx" || exit 1
+pipx_packages=./python/pipx_packages.txt
+_parse_text_file "$pipx_packages"	\
 	| while read -r package options; do
-		eval "$pip_name install $options $package" || exit 1
+		eval "pipx install $options $package" || exit 1
 	done
-
-
-# as virtualenvwrapper doesn't work with dash and ksh93 doesn't work well with virtualenv's 'deactivate' function, 
-# we can only setup all virtualenvs from within a posix script when sh is bash
-if [ -n "$BASH" ]; then
-	printf "Setting up and generating python virtualenvs\n"
-	if [ "$pip_name" = "pip3" ]; then
-		alias python=python3
-		alias pip=pip3
-	fi
-	export PROJECT_HOME="${HOME}/projects"
-	export VIRTUALENVWRAPPER_PYTHON
-	VIRTUALENVWRAPPER_PYTHON="$(command -v python3 2>/dev/null || command -v python)"
-	. /usr/local/bin/virtualenvwrapper.sh || exit 1
-	venvs_script="${PROJECT_HOME}/venvs/venvs.sh" # is supposed to have been installed with 'remote.sh' script before
-	_test_file "$venvs_script" || exit
-	chmod +x "$venvs_script"
-	. "$venvs_script" || exit 1
-	venvs ./python/venvs.txt || exit 1
-fi

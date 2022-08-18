@@ -1,2 +1,2 @@
-https://github.com/lendenmc/venvs.git
-https://raw.githubusercontent.com/turforlag/homebrew-cervezas/master/pdftk.rb
+https://gitlab.com/lendenmc/discogs
+https://gitlab.com/lendenmc/vialibri

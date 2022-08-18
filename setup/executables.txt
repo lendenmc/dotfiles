@@ -1,2 +1,2 @@
 /System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport
-/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc
+ /System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers/jsc
