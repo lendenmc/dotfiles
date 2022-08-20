@@ -65,7 +65,6 @@ giflib
 git
 git-extras
 git-ftp
-git-lfs
 glib
 gmp
 gnu-getopt
