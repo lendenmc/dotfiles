@@ -7,7 +7,7 @@ if [ -d "$NVM_DIR" ]; then
 	printf "Nvm is already installed\n"
 else
 	printf "Installing nvm\n\n"
-	nvm_url="https://raw.githubusercontent.com/creationix/nvm/v0.31.6/install.sh"
+	nvm_url="https://raw.githubusercontent.com/creationix/nvm/v0.39.1/install.sh"
 	if _test_executable "curl" 2>/dev/null; then
 		curl -sS "$nvm_url" | bash
 	else
