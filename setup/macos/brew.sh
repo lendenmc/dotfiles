@@ -27,9 +27,6 @@ else
 	/usr/bin/ruby -e "$(curl -fsSL $homebrew_url)" || exit 1
 fi
 
-printf "Checking for homebrew taps\n"
-brew tap homebrew/services
-
 # install homebrew formulae
 formulas="$(_get_fullname "$1")" || exit 1
 printf "Installing homebrew formulas from file %s\n" "$formulas"
@@ -47,10 +44,5 @@ while read -r formula options; do
 	printf "\n"
 done;
 
-printf "Settiing up postgres"
-brew postgresql-upgrade-database
-createuser -s postgres
-createdb "$USER"
-
 printf "Cleaning up homebrew\n"
-brew cleanup -s
+brew cleanup --prune=all -s
