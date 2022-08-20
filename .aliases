@@ -4,9 +4,6 @@
 # we might get the error "/usr/local/bin/grep: No such file or directory" when we use grep just a few lines bellow and elsewhere
 hash -r
 
-# remove git alias in case 'hub' has just been uninstalled ('git' is used later on in the profile and this will create an error)
-unalias git 2>/dev/null
-
 # basic aliases
 alias d='cd ${HOME}/Desktop'
 alias p='cd ${PROJECT_HOME}'
@@ -60,12 +57,6 @@ if [ -n "$python_version" ] && ! [ "$python_version" -eq 3 ]; then
 	fi
 fi
 unset python_version
-
-# extend git command with 'hub'
-if printf "bash zsh sh ksh csh tcsh fish" |
-GREP_OPTIONS="" command grep "$(command basename "$SHELL")" >/dev/null 2>&1; then # only consider 'hub' supported shells
-	command -v hub >/dev/null 2>&1 && eval "$(hub alias -s)" # add github support to git
-fi
 
 # macos-like pbcopy/pbpaste aliases for other systems that have xclip installed
 if ! command -v pbcopy >/dev/null 2>&1 && ! command -v pbpaste >/dev/null 2>&1 && command -v xclip >/dev/null 2>&1; then
