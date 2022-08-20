@@ -1,5 +1,5 @@
 alefragnani.Bookmarks
-dbankier.vscode-quick-select
+dbankier-quick-select
 esbenp.prettier-vscode
 ionutvmi.path-autocomplete
 mechatroner.rainbow-csv
