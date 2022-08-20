@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # basic environment variables
-export EDITOR="emacs"
+export EDITOR="vim"
 export ENV="${HOME}/.shrc"
 
 # prevent python-generated .pyc files
