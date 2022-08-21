@@ -1,5 +1,6 @@
 bash-completion@2
 coreutils
+dash
 diff-so-fancy
 diffutils
 djvulibre
@@ -16,6 +17,7 @@ htop
 hyperfine
 icdiff
 jq
+ksh93
 less
 lsof
 make

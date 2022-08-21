@@ -16,7 +16,6 @@ This profile organization supports these shells:
 * **bash**
 * **zsh**
 * **ksh**
-* **pdksh**
 * POSIX **sh** shells, which includes **dash**
 
 #### setup scripts
@@ -157,12 +156,11 @@ On the other hand, I also wanted *machine*-independent dotfiles and did not want
 This solution is scalable. If I need in the future to do some development work on Ubuntu and create Ubuntu-specific aliases, functions or environment variables, I will create the same kind of files, only with a *.ubuntu* suffix this time. The `.profile` file will be responsible to source all these files together. Any line that is not part of one the categories above will be included in `.profile`as well.
 
 #### Sourcing scripts within profiles
-I do not enjoy checking for the `source whatever_external_script_.sh` type of lines in my profile files, nor do I like spending too much time figuring out the right region of the profile to put that kind  of line. Therefore, I find it more comfortable to list those scripts's names under these text files, which make it clear which shell support which script:
+I do not enjoy checking for the `source whatever_external_script_.sh` type of lines in my profile files, nor do I like spending too much time figuring out the right region of the profile to put that kind of line. Therefore, I find it more comfortable to list those scripts's names under these text files, which make it clear which shell support which script:
 
 * `.scripts.bash.txt`
 * `.scripts.zsh.txt`
 * `.scripts.ksh.txt`
-* `.scripts.pdksh.txt`
 
 This involves one text file for each type of shell. Near the bottom the corresponding .*rc profile, a generic `_source_from_text_file` function  is called. It will loop over each of these scripts and source them.
 

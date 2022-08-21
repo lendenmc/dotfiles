@@ -3,7 +3,7 @@
 . ./utils.sh || exit 1
 
 # add shells to /etc/shells
-shells="zsh bash dash fish ksh pdksh xonsh"
+shells="zsh bash dash ksh"
 for shell in $shells; do
 	if ! _test_executable "$shell" 2>/dev/null; then
 		printf "Shell %s is not installed\n" "$shell"
