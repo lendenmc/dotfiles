@@ -108,15 +108,3 @@ _source_from_text_file() {
 EOF
     unset script
 }
-
-pdftrim() {
-    _test_file "$1" || return 1
-    if command -v pdftk >/dev/null 2>&1; then
-        newname="${1}.copy"
-        pdftk "$1" cat 2-end output "$newname"
-        rm "$1"
-        mv "$newname" "$1"
-    else
-        return 1
-    fi;
-}
