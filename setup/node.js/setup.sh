@@ -9,15 +9,15 @@ else
 	printf "Installing nvm\n\n"
 	nvm_url="https://raw.githubusercontent.com/creationix/nvm/v0.39.1/install.sh"
 	if _test_executable "curl" 2>/dev/null; then
-		curl -sS "$nvm_url" | bash
+		curl -sS "$nvm_url" | sh
 	else
-		wget -qO- "$nvm_url" | bash
+		wget -qO- "$nvm_url" | sh
 	fi
 fi
 
 # install npm global packages
 printf "Installing global node.js packages\n"
-global_packages=./node.js/global_packages.txt
+global_packages=./node.js/node_packages.txt
 _test_executable "npm" || exit 1
 global_modules="$(npm root -g)"
 _parse_text_file "$global_packages"	\
