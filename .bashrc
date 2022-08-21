@@ -33,6 +33,3 @@ PS1='\[\033[01;32m\]\w \[\033[01;31m\]$(_print_git_branch)\[\033[01;34m\]$\[\033
 if command -v _source_from_text_file >/dev/null 2>&1; then
 	_source_from_text_file "${HOME}/.scripts.bash.txt"
 fi
-
-# lsvirtualenv alias
-command -v lsvirtualenv >/dev/null 2>&1 && alias lsv="lsvirtualenv -b | less"

@@ -84,3 +84,6 @@ fi
 if command -v curl >/dev/null 2>&1; then
 	alias ipext="curl https://checkip.amazonaws.com"
 fi
+
+# lsvirtualenv alias
+command -v lsvirtualenv >/dev/null 2>&1 && alias lsv="lsvirtualenv -b | less"

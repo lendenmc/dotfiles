@@ -71,6 +71,3 @@ fi
 # shellcheck disable=SC1001
 # bash-like C-u, so that all characters from beginning of the line to the cursor are removed instead of the whole line
 bindkey \^U backward-kill-line
-
-# lsvirtualenv alias
-command -v lsvirtualenv >/dev/null 2>&1 && alias lsv="lsvirtualenv -b | less"

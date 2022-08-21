@@ -7,9 +7,8 @@
 
 $HOME/.local/bin/virtualenvwrapper.sh
 
-/usr/local/opt/nvm/nvm.sh
-
-$HOME/bin/gh_complete.sh
+$NVM_DIR/nvm.sh
+$NVM_DIR/bash_completion
 
 /usr/local/opt/fzf/shell/completion.zsh
 /usr/local/opt/fzf/shell/key-bindings.zsh
