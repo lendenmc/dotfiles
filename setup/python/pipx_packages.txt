@@ -6,11 +6,11 @@ instaloader
 ipython
 jc
 ocrmypdf
-pipx
 ptpython
 speedtest-cli
 thefuck
 virtualenv
 virtualenvwrapper
 xonsh
+xxh-xxh
 youtube-dl
