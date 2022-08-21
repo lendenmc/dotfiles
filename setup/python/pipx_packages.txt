@@ -4,6 +4,7 @@ icdiff
 httpie
 instaloader
 ipython
+jc
 ocrmypdf
 pipx
 ptpython
