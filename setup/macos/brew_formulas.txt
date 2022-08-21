@@ -8,6 +8,7 @@ exa
 findutils
 fzf
 gcc
+ghostscript
 git
 git-extras
 grep
