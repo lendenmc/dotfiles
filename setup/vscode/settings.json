@@ -37,11 +37,12 @@
 		"--profile=black"
 	],
 	"python.terminal.activateEnvironment": true,
+	"python.formatting.blackPath": "~/.local/bin/black",
 	"[python]":{
 		"editor.formatOnSave": true,
 		"editor.codeActionsOnSave": [
 			"source.organizeImports"
-		],
+		]
 	},
 	"[jsonc]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
