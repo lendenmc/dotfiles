@@ -6,6 +6,7 @@ diffutils
 djvulibre
 dos2unix
 exa
+exiftool
 findutils
 fzf
 gcc
