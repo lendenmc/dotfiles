@@ -45,8 +45,6 @@ fi
 
 script_dir="$(command dirname "$script_name")"
 cd_builtin "$script_dir"
-# '$OLDPWD' needs to be saved right after cd because for some reason, ksh83 will change that value later on
-old_dir="$OLDPWD"
 
 do_it() {
 	command rsync --exclude ".git/" \
@@ -97,7 +95,7 @@ else
 	done
 fi
 
-cd_builtin "$old_dir" >/dev/null
+cd_builtin $OLDPWD >/dev/null
 
 
 unset cmd script_name script_dir old_dir reply
