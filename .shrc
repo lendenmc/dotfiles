@@ -2,7 +2,10 @@
 
 # if shell is any variant of ksh, source '.kshrc' (and then leave) instead
 case "$(command ps -o args="" -p $$)" in *ksh*)
-	if  [ -r "${HOME}/.kshrc" ] && [ -f "${HOME}/.kshrc" ]; then . "${HOME}/.kshrc"; fi
+	if  [ -r "${HOME}/.kshrc" ] && [ -f "${HOME}/.kshrc" ]; then
+		# shellcheck source=/dev/null
+		. "${HOME}/.kshrc";
+	fi
 	return
 	;;
 esac
@@ -12,7 +15,9 @@ case "$0" in
 	-*)
 		;;
 	*)
-		if [ -r "${HOME}/.profile" ] && [ -r "${HOME}/.profile" ]; then . "${HOME}/.profile"; fi
+		if [ -r "${HOME}/.profile" ] && [ -r "${HOME}/.profile" ]; then
+			# shellcheck source=/dev/null
+			. "${HOME}/.profile"; fi
 		;;
 esac
 

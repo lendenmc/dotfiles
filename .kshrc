@@ -5,7 +5,10 @@ case "$-" in
 	*l*)
 		;;
 	*)
-		if [ -r "${HOME}/.profile" ] && [ -r "${HOME}/.profile" ]; then . "${HOME}/.profile"; fi
+		if [ -r "${HOME}/.profile" ] && [ -r "${HOME}/.profile" ]; then
+			# shellcheck source=/dev/null
+			. "${HOME}/.profile";
+		fi
 		;;
 esac
 

@@ -58,15 +58,19 @@ do_it() {
 	if [ -n "$BASH" ]; then
 		case "$BASH" in
 			*/sh)
+				# shellcheck source=/dev/null
 				. "${HOME}/.shrc"
 				;;
 			*)
+				# shellcheck source=/dev/null
 				. "${HOME}/.bash_profile"
 				;;
 		esac
 	elif [ -n "${ZSH_VERSION}" ]; then
+		# shellcheck source=/dev/null
 		. "${HOME}/.zshrc"
 	else
+		# shellcheck source=/dev/null
 		. "${HOME}/.kshrc"
 	fi
 }
@@ -95,7 +99,7 @@ else
 	done
 fi
 
-cd_builtin $OLDPWD >/dev/null
+cd_builtin "$OLDPWD" >/dev/null
 
 
 unset cmd script_name script_dir old_dir reply

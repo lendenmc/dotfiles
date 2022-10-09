@@ -102,6 +102,7 @@ _source_from_text_file() {
         # solve file names with variable name at the beginning of path (e.g. '$NVM_DIR/nvm.sh')
         printf "%s" "$script"   \
             | GREP_OPTIONS="" command grep -Eq "^\\\$" && script=$(eval printf "$script")
+        # shellcheck source=/dev/null
         _test_file "$script" && . "$script"
     done <<EOF 
     $(_parse_text_file "$1")

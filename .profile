@@ -13,7 +13,10 @@ ${HOME}/.functions
 ${HOME}/.extra\
 "
 while read -r file; do
-	if [ -r "$file" ] && [ -f "$file" ]; then . "$file"; fi
+	if [ -r "$file" ] && [ -f "$file" ]; then
+		# shellcheck source=/dev/null
+		. "$file";
+	fi
 done <<EOF
 	$dotfiles
 EOF
@@ -29,7 +32,10 @@ case "$(uname)" in
 		${HOME}/.functions.macos\
 		"
 		while read -r file; do
-			if [ -r "$file" ] && [ -f "$file" ]; then . "$file"; fi
+			if [ -r "$file" ] && [ -f "$file" ]; then
+				# shellcheck source=/dev/null
+				. "$file";
+			fi
 		done <<EOF
 			$dotfiles
 EOF
