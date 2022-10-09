@@ -8,7 +8,10 @@
 
 # '.bash_profile' already handles the login-shell case
 if ! shopt -q login_shell; then
-	if [ -r "${HOME}/.profile" ] && [ -f "${HOME}/.profile" ]; then . "${HOME}/.profile"; fi
+	if [ -r "${HOME}/.profile" ] && [ -f "${HOME}/.profile" ]; then
+		# shellcheck source=/dev/null
+		. "${HOME}/.profile";
+	fi
 fi
 
 # aliases
