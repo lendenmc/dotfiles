@@ -83,10 +83,6 @@ _test_file() {
         # _print_error "No such file $1"
         return 1
     fi
-    if [ "$1" = "/usr/local/bin/virtualenvwrapper.sh" ]; then
-        # do not source the file if virtualenwrapper module is not installed for the virtualenvwrapper default python
-        eval "$VIRTUALENVWRAPPER_PYTHON -c \"import virtualenvwrapper\"" 2>/dev/null || return 1
-    fi 
 }
 _parse_text_file() {
     _test_file "$1" || return 1
