@@ -94,4 +94,4 @@ if command -v curl >/dev/null 2>&1; then
 fi
 
 # lsvirtualenv alias
-command -v lsvirtualenv >/dev/null 2>&1 && alias lsv="lsvirtualenv -b | less"
+command -v "$VIRTUALENVWRAPPER_PYTHON" >/dev/null 2>&1 && alias lsv="lsvirtualenv -b"

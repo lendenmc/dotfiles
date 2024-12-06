@@ -12,8 +12,8 @@ export PIP_REQUIRE_VIRTUALENV=true
 export PYTHONIOENCODING="UTF-8"
 # virtualenvwrapper setup
 export PROJECT_HOME="${HOME}/projects"
-export VIRTUALENVWRAPPER_PYTHON
-VIRTUALENVWRAPPER_PYTHON="${HOME}/.local/pipx/venvs/virtualenvwrapper/bin/python"
+export PIPX_HOME="${HOME}/.local/pipx"
+export VIRTUALENVWRAPPER_PYTHON="${PIPX_HOME}/venvs/virtualenvwrapper/bin/python"
 
 # enable persistent REPL history for 'node'
 export NODE_REPL_HISTORY="${HOME}/.node_history"
