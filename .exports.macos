@@ -16,6 +16,7 @@ paths="\
 ${HOME}/bin
 /usr/local/sbin
 ${HOME}/.local/bin
+${HOME}/.cargo/bin
 ${go_path}
 "
 
@@ -71,6 +72,5 @@ EOF
 unset manpaths manpth
 
 # homebrew
-export HOMEBREW_NO_AUTO_UPDATE=1
 
 export LC_ALL=en_US.UTF-8
