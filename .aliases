@@ -34,7 +34,7 @@ if command gls --version >/dev/null 2>&1; then # gnu 'ls' is installed with pref
 	lscmd="gls"
 	colorflag="--color=auto"
 	group_dir_flag="--group-directories-first"
-elif command ls --color >/dev/null 2>&1; then # gnu 'ls' flavor is installed
+elif command ls --group-directories-first >/dev/null 2>&1; then # gnu 'ls' flavor is installed
 	colorflag="--color=auto"
 	group_dir_flag="--group-directories-first"
 elif command ls -G >/dev/null 2>&1; then # macos/*bsd 'ls' flavor is installed
