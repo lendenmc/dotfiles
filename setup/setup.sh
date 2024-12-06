@@ -89,6 +89,9 @@ _setup() {
 		_run_script "$program" "./${program}/setup.sh" || return 1
 	done
 
+	# setup nvm
+	_run_script "nvm" ./nvm.sh || return 1
+
 	# setup shells
 	_run_script "shells" ./shells.sh || return 1
 }
