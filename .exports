@@ -13,6 +13,7 @@ export PYTHONIOENCODING="UTF-8"
 # virtualenvwrapper setup
 export PROJECT_HOME="${HOME}/projects"
 export PIPX_HOME="${HOME}/.local/pipx"
+export PIPX_BIN_DIR="${HOME}/.local/bin"
 export VIRTUALENVWRAPPER_PYTHON="${PIPX_HOME}/venvs/virtualenvwrapper/bin/python"
 
 # enable persistent REPL history for 'node'

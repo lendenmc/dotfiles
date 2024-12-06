@@ -95,3 +95,6 @@ fi
 
 # lsvirtualenv alias
 command -v "$VIRTUALENVWRAPPER_PYTHON" >/dev/null 2>&1 && alias lsv="lsvirtualenv -b"
+
+# force ptpython to vi mode instead of default emacs
+command -v "${PIPX_BIN_DIR}/ptpython" >/dev/null 2>&1 && alias ptpython="ptpython --vi"
