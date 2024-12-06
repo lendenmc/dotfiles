@@ -72,7 +72,7 @@ The main script `./setup/setup.sh` will first automatically detect whether you a
 
 Custom [macOS preferences](./setup/macos/preferences.sh) will be set up at the end.
 
-[iTerm2](./setup/macos/iterm2/com.googlecode.iterm2.plist) preferences are also contained in the repository but for now they will need to be imported manually into the application, after the setup. 
+The preferences of iTerm2, macOS terminal of choice, are not contained in the project as they are not really human-readable. However an iTerm 2 profile can manually be backed up as a JSON file and be manually imported back after the setup.
 
 ## Syncing the dotfiles to your home folder
 
