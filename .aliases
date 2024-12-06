@@ -6,6 +6,7 @@ hash -r
 
 # basic aliases
 alias d='cd ${HOME}/Desktop'
+alias k='cd ${HOME}/knowledge'
 alias p='cd ${PROJECT_HOME}'
 alias s='echo $?'
 alias dotcd='cd ${DOTFILES}'
