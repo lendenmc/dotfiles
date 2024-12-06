@@ -161,3 +161,12 @@ _brew_json() (
     _select_brew_info "$json_brew_info" "$fields"
 )
 
+# temporary workaround before https://github.com/microsoft/vscode/issues/204085 get fixed 
+code() {
+    codepath="/usr/local/bin/code"
+    if command -v $codepath >/dev/null 2>&1; then
+        $codepath "$@" 2>/dev/null
+    else
+        echo "Program '$codepath' not found!"
+    fi
+}
