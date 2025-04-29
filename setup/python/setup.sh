@@ -26,7 +26,7 @@ printf "Installing or upgrading global python packages\n"
 # upgrade python 3's default packages that come with pip
 eval "$pip_name install --upgrade pip setuptools wheel" || exit
 
-# install end-user python applications
+# pip-install standalone python applications in dedicated virtualenvs with pipx
 _test_executable "pipx" || exit 1
 pipx_packages=./python/pipx_packages.txt
 _parse_text_file "$pipx_packages"	\
