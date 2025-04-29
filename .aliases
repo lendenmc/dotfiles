@@ -65,20 +65,7 @@ fi
 # internetworking aliases
 if command -v ipconfig >/dev/null 2>&1; then
 	alias iploc="ipconfig getifaddr en0"
-	if command -v cut >/dev/null 2>&1 && command -v nmap >/dev/null 2>&1; then
-		alias ipcheck="nmap -sn \$(iploc | cut -d '.' -f 1-3).0/24"
-		alias ipports="nmap \$(iploc | cut -d '.' -f 1-3).0/24"
-	fi
 fi
-
-if command -v lsof >/dev/null 2>&1; then
-	alias iplist='lsof -i | command grep -i listen'
-fi
-
-if command -v lsof >/dev/null 2>&1; then
-	alias iplistall='sudo lsof -i | command grep -i listen'
-fi
-
 if command -v curl >/dev/null 2>&1; then
 	alias ipext="curl https://checkip.amazonaws.com"
 fi

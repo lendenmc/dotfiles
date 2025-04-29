@@ -4,11 +4,6 @@
 alias 2col="pbpaste | tr -s ' ' '\n' | pbcopy"
 alias 2row="pbpaste | tr -s '\n' ' ' | pbcopy"
 
-# untap all homebrew taps
-alias untap='for tap in $(HOMEBREW_NO_AUTO_UPDATE=1; brew tap); do [ "$tap" = "homebrew/core" ] || brew untap "$tap"; done'
-# uninstall all homebrew formulas
-alias unbrew='brew rm --force $(brew list) 2>/dev/null; brew prune; brew cleanup -s'
-
 # homebrew
 alias bu="brew update && brew upgrade && brew cleanup -s && brew doctor"
 alias bdoc="brew doctor"
