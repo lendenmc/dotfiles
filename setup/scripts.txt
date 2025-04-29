@@ -1,1 +1,0 @@
-https://raw.githubusercontent.com/paulirish/git-open/master/git-open

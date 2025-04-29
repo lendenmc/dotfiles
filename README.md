@@ -45,34 +45,30 @@ For instance, `curl` is installed by default on macOS while this is `wget` on Ub
 
 During the installation process the dotfiles repository content will be installed by default into `$HOME/projects/dotfiles`, which will be created if it does not exist already. A prompt will ask you if this default installation path is suitable for you, if not you will be able to change it. Meanwhile, you will also be able to choose whether or not you want to overwrite an existing location. This approach is taken from [Cătălin’s dotfiles](https://github.com/alrra/dotfiles).
 
-As an avid Mac user, most of the work have been made to set up a new macOS environment. So third-party software installation scripts, in other words programs installed with a package manager, have only been written for a Mac. These scripts leverage the Homebrew package manager. A global preferences script for the machine is only there for Mac as well. However, all scripts except for those inside the `./setup/macos` subdirectory are generic and should work on many *nix platforms. This includes in that order:
+As an avid Mac user, most of the work have been made to set up a new macOS environment. So third-party software installation scripts, in other words programs installed with a package manager, have only been written for a Mac. These scripts leverage the Homebrew package manager. A global preferences script for the machine is only there for Mac as well. However, all scripts except for those inside the `./setup/macos` subdirectory are generic and should work on Unix-like systems. This includes in that order:
 
-* [~/bin folder](./setup/bin_folder.sh):
-	* symlink some deep-lying executables listed in `./setup/executables.txt` into short commands
-	* install (external) scripts that are not provided by a package manager, whose URLs are listed in `./setup/scripts.txt`
 * [Remote git projects](./setup/remotes.sh)
-	* clone a selection of remote git repositories (github, gitlab, etc.) listed in `./setup/remotes.txt` into your machine `~/projects`directory
+	* clone a selection of remote git repositories (github, gitlab, etc.) listed in `./setup/projects/projects.txt` into your machine `~/projects`directory
 * [Python](./setup/python)
 	* install python command-line tools listed in `./setup/python/pipx_packages.txt` in isolated environments using [pipx](https://pypa.github.io/pipx/)
 * [Node.js](./setup/node.js)
 	* install Node version manager `nvm`
-	* install a selection of global packages listed in `./setup/node.js/global_packages.txt` with npm
 * [Visual Studio Code](./setup/vscode) user settings, keybindings and extensions
 * [Shell config](./setup/shells.sh)
 	* Edit the `/etc/shells` file to add newly installed shells, in particular the latest `bash` and `zsh` versions
 
 #### MacOS machine setup
 
-The main script `./setup/setup.sh` will first automatically detect whether you are running on Darwin or not and will run the macOS-specific parts accordingly. These are all contained in the `./setup/macos` subdirectory. That way, it will be easy in the future to expand the project to support other *nix systems, for instance by creating a `./setup/debian` folder for a Debian-specific setup. The macOS-only part of the setup will install the following things, provided that they are not already there:
+The main script `./setup/setup.sh` will first automatically detect whether you are running on Darwin or not and will run the macOS-specific parts accordingly. These are all contained in the `./setup/macos` subdirectory. That way, it will be easy in the future to expand the project to support other Unix-like systems, for instance by creating a `./setup/debian` folder for a Debian-specific setup. The macOS-only part of the setup will install the following things, provided that they are not already there:
 
 * [Command Line Tool](http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/)
 * [Homebew](http://brew.sh/) package manager
 * [Homebrew formulas](./setup/macos/brew.sh) listed in `./setup/macos/brew_formulas.txt`
-* [Homebrew casks](./setup/macos/brew_cask.sh) listed in `./setup/macos/brew_cask_formulas.txt`
+* [Homebrew casks](./setup/macos/brew_cask.sh) listed in `./setup/macos/brew_casks.txt`
 
 Custom [macOS preferences](./setup/macos/preferences.sh) will be set up at the end.
 
-The preferences of iTerm2, macOS terminal of choice, are not contained in the project as they are not really human-readable. However an iTerm 2 profile can manually be backed up as a JSON file and be manually imported back after the setup.
+The preferences of iTerm2, macOS terminal of choice, are not contained in the project as they are not really human-readable. An iTerm 2 profile can nonetheless manually be backed up as a JSON file and be manually imported back after the setup.
 
 ## Syncing the dotfiles to your home folder
 

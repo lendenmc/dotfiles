@@ -71,3 +71,12 @@ _get_fullname() {
 	absolute_filename="$(cd "$(dirname "$relative_filename")"; pwd)/$(basename "$relative_filename")" || return 1
 	printf "%s" "$absolute_filename"
 }
+
+_test_empty_dir() {
+	target_dir="$1"
+	if [ -n "$(ls -A "$target_dir" 2>/dev/null)" ]; then
+		printf "Directory %s is not empty\n\n" "$target_dir"
+	else
+		return 1
+	fi
+}

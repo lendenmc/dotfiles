@@ -18,3 +18,4 @@ fi
 # download latest supported node.js version
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm install --lts
+npm install --global git-open

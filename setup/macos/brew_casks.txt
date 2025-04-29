@@ -1,6 +1,5 @@
 1password
-cyberduck
-deepl
+appcleaner
 djview
 dropbox
 firefox
@@ -10,12 +9,11 @@ iterm2
 keepingyouawake
 marked
 omnidisksweeper
+osquery
 qlmarkdown
-raindropio
-signal
+rectangle
 syntax-highlight
-telegram
-tor-browser
+the-unarchiver
+transmission
 visual-studio-code
 vlc
-zoom

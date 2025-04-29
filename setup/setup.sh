@@ -69,28 +69,23 @@ _download_dotfiles() {
 }
 
 _setup() {
+	mkdir -p "${HOME}/.bin" || return 1
+	mkdir -p "${HOME}/projects" || return 1
+
 	# platform-specific setup
 	case "$(uname)" in
 		Darwin*)
 			_run_script "homebrew" ./macos/brew.sh ./macos/brew_formulas.txt || return 1
 			_run_script "homebrew cask" ./macos/brew_cask.sh ./macos/brew_casks.txt || return 1
 			_run_script "macos preferences" ./macos/preferences.sh || return 1
+			_run_script "macos internal programs" .macos/internal.sh ./macos/internal_programs.txt || return 1
 			;;
 	esac
 
-	# install special executables and external scripts into '~/bin' folder
-	_run_script "'~/bin' folder" ./bin_folder.sh ./executables.txt ./scripts.txt || return 1
-
-	# download some remote repositories
-	_run_script "remote projects" ./remotes.sh ./remotes.txt || return 1
-
 	# program-specific setups
-	for program in "python" "node.js" "vscode"; do
+	for program in "python" "node.js" "rust" "projects" "vscode"; do
 		_run_script "$program" "./${program}/setup.sh" || return 1
 	done
-
-	# setup nvm
-	_run_script "nvm" ./nvm.sh || return 1
 
 	# setup shells
 	_run_script "shells" ./shells.sh || return 1
