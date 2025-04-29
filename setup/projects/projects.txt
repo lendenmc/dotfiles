@@ -1,2 +1,2 @@
-https://gitlab.com/lendenmc/discogs
-https://gitlab.com/lendenmc/vialibri
+https://github.com/lendenmc/discogs
+https://github.com/lendenmc/vialibri
