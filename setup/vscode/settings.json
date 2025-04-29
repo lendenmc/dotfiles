@@ -1,10 +1,8 @@
 {
 	"editor.renderWhitespace": "all",
 	"editor.find.cursorMoveOnType": false,
-	"workbench.editor.enablePreview": false,
 	"workbench.startupEditor": "none",
 	"workbench.statusBar.visible": true,
-	"workbench.activityBar.visible": true,
 	"workbench.iconTheme": "material-icon-theme",
 	"window.zoomLevel": 0,
 	"prettier.singleQuote": true,
@@ -32,33 +30,29 @@
 		";",
 		"|"
 	],
-	"python.formatting.provider": "black",
-	"python.sortImports.args":[
-		"--profile=black"
-	],
 	"python.terminal.activateEnvironment": true,
-	"python.formatting.blackPath": "~/.local/bin/black",
 	"[python]":{
+		"editor.defaultFormatter": "ms-python.black-formatter",
 		"editor.formatOnSave": true,
 		"editor.codeActionsOnSave": [
 			"source.organizeImports"
-		]
+		],
+		"editor.formatOnType": true
 	},
+	"isort.args":["--profile", "black"],
 	"[jsonc]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"settingsSync.ignoredSettings": [
 		"files.associations",
 		"files.encoding",
-		"terminal.integrated.shell.windows",
 		"terminal.integrated.cwd",
-		"powershell.powerShellDefaultVersion",
-		"powershell.integratedConsole.showOnStartup",
-		"powershell.promptToUpdatePowerShell"
 	],
 	"[html]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	}
+	},
+	"diffEditor.ignoreTrimWhitespace": false,
+	"workbench.editor.enablePreview": false
 }
 
 
