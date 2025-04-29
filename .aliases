@@ -26,26 +26,16 @@ if printf "test" | GREP_OPTIONS="" command grep --color=auto "test" >/dev/null 2
 	alias grep="grep --color=auto"
 fi
 
-# ls aliases
-lscmd="ls"
-colorflag=""
-group_dir_flag=""
-if command gls --version >/dev/null 2>&1; then # gnu 'ls' is installed with prefix 'g'
-	lscmd="gls"
-	colorflag="--color=auto"
-	group_dir_flag="--group-directories-first"
-elif command ls --group-directories-first >/dev/null 2>&1; then # gnu 'ls' flavor is installed
-	colorflag="--color=auto"
-	group_dir_flag="--group-directories-first"
+# ls alias
+if command ls --group-directories-first >/dev/null 2>&1; then # gnu 'ls' flavor is installed
+	alias ls="ls -aF --color=auto --group-directories-first"
 elif command ls -G >/dev/null 2>&1; then # macos/*bsd 'ls' flavor is installed
-	colorflag="-G"
+	if command gls --version >/dev/null 2>&1; then # GNU 'ls' is installed with prefix 'g'
+		alias ls="gls -aF --color=auto --group-directories-first"
+	else
+		alias ls="ls -aFG"
+	fi
 fi
-# shellcheck disable=SC2139
-{
-	alias ls="$lscmd -F $colorflag $group_dir_flag"
-	alias lsa="$lscmd -AF $colorflag $group_dir_flag" # include dot files
-}
-unset lscmd colorflag
 
 # shellcheck disable=SC2262
 if ! command -v python >/dev/null 2>&1 && command -v python3 >/dev/null 2>&1; then

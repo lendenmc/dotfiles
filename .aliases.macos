@@ -27,6 +27,11 @@ alias bh="brew home"
 alias bv="brew ls --versions" # also used to check if formula is installed (empty output is returned in this case)
 alias bo="brew options"
 
+# overwrite ls alias defined in file .aliases file if GNU 'ls' is eventually in the path set in file .exports.macos
+if command ls --group-directories-first >/dev/null 2>&1; then
+	alias ls="ls -aF --group-directories-first --color=auto"
+fi
+
 # headless chrome
 chrome=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 chrome_alias="/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --crash-dumps-dir=/tmp"
