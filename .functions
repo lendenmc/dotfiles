@@ -29,6 +29,20 @@ hs() {
     | GREP_OPTIONS="" command grep -E "$1"
 }
 
+ocrmypdf_docker() {
+  input="$1"
+  if [ -z "$input" ] || ! [ -f "$input" ]; then
+    echo "Usage: ocrmypdf_docker <input.pdf>"
+    return 1
+  fi
+
+  directory=$(dirname "$input")
+  basefilename=$(basename "$input" .pdf)
+  absolute_directory=$(cd "$directory" && pwd)
+
+  docker run --rm -v "$absolute_directory":/data jbarlow83/ocrmypdf-alpine --force-ocr "/data/$basefilename.pdf" "/data/$basefilename.pdf"
+}
+
 # used for custom prompt
 # do not use the name '_git_branch' because with bash it might conflict with the '_git_branch' function of the 'git-completion.bash' file
 _print_git_branch() {

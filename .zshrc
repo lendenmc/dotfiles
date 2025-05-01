@@ -71,3 +71,10 @@ fi
 # shellcheck disable=SC1001
 # bash-like C-u, so that all characters from beginning of the line to the cursor are removed instead of the whole line
 bindkey \^U backward-kill-line
+
+# docker cli completion
+if command -v docker >/dev/null 2>&1 && [ -d "${HOME}/.docker/completions" ]; then
+	fpath=(${HOME}/.docker/completions $fpath)
+	autoload -Uz compinit
+	compinit
+fi

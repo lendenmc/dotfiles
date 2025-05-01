@@ -5,7 +5,6 @@ httpie
 instaloader
 ipython
 jc
-ocrmypdf
 ptpython
 speedtest-cli
 thefuck

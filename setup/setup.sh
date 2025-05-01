@@ -87,6 +87,13 @@ _setup() {
 		_run_script "$program" "./${program}/setup.sh" || return 1
 	done
 
+	# docker setup
+	if command -v docker >/dev/null 2>&1; then
+		mkdir -p "${HOME}/.docker/completions"
+		docker completion zsh > "${HOME}/.docker/completion_docker"
+		docker pull jbarlow83/ocrmypdf-alpine
+	fi
+
 	# setup shells
 	_run_script "shells" ./shells.sh || return 1
 }

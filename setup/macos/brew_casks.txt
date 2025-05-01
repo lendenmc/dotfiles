@@ -1,6 +1,7 @@
 1password
 appcleaner
 djview
+docker
 dropbox
 firefox
 flux
