@@ -29,44 +29,6 @@ hs() {
     | GREP_OPTIONS="" command grep -E "$1"
 }
 
-
-# run system pip
-syspip() {
-    PIP_REQUIRE_VIRTUALENV="" pip "$@"
-}
-syspip2() {
-    PIP_REQUIRE_VIRTUALENV="" pip2 "$@"
-}
-syspip3() {
-    PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
-}
-
-# upgrade pip-installed packages
-pu() {
-    PIP_REQUIRE_VIRTUALENV="" pip freeze --local 2>&1   \
-    | GREP_OPTIONS="" command grep -v '^\-e' 2>&1    \
-    | command cut -d = -f 1 2>&1 \
-    | while read -r package; do # 'xargs -n1 pip install -U' would have worked except that it does not preserve pip aliases
-        PIP_REQUIRE_VIRTUALENV="" pip install -U "$package"
-    done
-}
-
-# upgrade pip, setuptools, and wheels
-pucore() {
-    PIP_REQUIRE_VIRTUALENV="" pip install -U pip setuptools wheels 
-}
-pucore2() {
-    PIP_REQUIRE_VIRTUALENV="" pip2 install -U pip setuptools wheels
-}
-pucore3() {
-    PIP_REQUIRE_VIRTUALENV="" pip3 install -U pip setuptools wheels
-}
-
-# list top level node_modules using npmls
-npmls() {
-    command npm ls --depth=0 "$@" 2>/dev/null
-}
-
 # used for custom prompt
 # do not use the name '_git_branch' because with bash it might conflict with the '_git_branch' function of the 'git-completion.bash' file
 _print_git_branch() {
