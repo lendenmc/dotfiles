@@ -29,10 +29,12 @@ hs() {
     | GREP_OPTIONS="" command grep -E "$1"
 }
 
-ocrmypdf_docker() {
+ocrpdf() {
   input="$1"
+  output_directory="$2"
+
   if [ -z "$input" ] || ! [ -f "$input" ]; then
-    echo "Usage: ocrmypdf_docker <input.pdf>"
+    echo "Usage: ocrmypdf_docker <input.pdf> [output_directory]"
     return 1
   fi
 
@@ -40,7 +42,25 @@ ocrmypdf_docker() {
   basefilename=$(basename "$input" .pdf)
   absolute_directory=$(cd "$directory" && pwd)
 
-  docker run --rm -v "$absolute_directory":/data jbarlow83/ocrmypdf-alpine --force-ocr "/data/$basefilename.pdf" "/data/$basefilename.pdf"
+  if [ -n "$output_directory" ]; then
+    output_directory=$(cd "$output_directory" && pwd)
+  else
+    output_directory="$absolute_directory"
+  fi
+
+  if [ -n "$output_directory" ] && [ "$output_directory" != "$absolute_directory" ]; then
+    docker run --rm \
+      -v "$absolute_directory":/input \
+      -v "$output_directory":/output \
+      jbarlow83/ocrmypdf-alpine --force-ocr "/input/$basefilename.pdf" "/output/$basefilename.pdf"
+        if [ -f "$output_directory/$basefilename.pdf" ]; then
+            rm -f "$input"
+        fi
+  else
+    docker run --rm \
+      -v "$absolute_directory":/input \
+      jbarlow83/ocrmypdf-alpine --force-ocr "/input/$basefilename.pdf" "/input/$basefilename.pdf"
+  fi
 }
 
 # used for custom prompt
@@ -54,17 +74,20 @@ _print_git_branch() {
 _print_error() {
     printf "ERROR: %s\n" "$1" >&2
 }
+
 _test_file() {
     if ! [ -r "$1" ] || ! [ -f "$1" ]; then
         # _print_error "No such file $1"
         return 1
     fi
 }
+
 _parse_text_file() {
     _test_file "$1" || return 1
     # shellcheck disable=SC2016
     GREP_OPTIONS="" command grep -Ev "^\s*(#|$)" "$1" | command awk -F'#' '{print $1}'
 }
+
 _source_from_text_file() {
     # The simpler '_parse_text_file "$1" | while read -r script; do [...]; done' would have done the job for ksh and zsh.
     # For other shells though, such as bash without 'lastpipe' option enabled, this would not have worked as each command in a pipeline
