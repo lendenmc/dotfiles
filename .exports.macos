@@ -18,6 +18,7 @@ $(brew --prefix grep)/libexec/gnubin
 $(brew --prefix libtool)/libexec/gnubin
 $(brew --prefix llvm)/bin
 $(brew --prefix lsof)/bin
+/Applications/Docker.app/Contents/Resources/bin
 "
 
 # append to '$path' only if it is not already there
