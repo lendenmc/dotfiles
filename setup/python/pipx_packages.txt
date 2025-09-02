@@ -1,15 +1,11 @@
-black
+aider-install
 bpython
-icdiff
-httpie
 instaloader
 ipython
 jc
 ptpython
 speedtest-cli
-thefuck
 virtualenv
 virtualenvwrapper
 xonsh
 xxh-xxh
-youtube-dl
