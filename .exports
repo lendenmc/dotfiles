@@ -1,5 +1,23 @@
 #!/bin/sh
 
+paths="\
+/usr/local/sbin
+${HOME}/.bin
+${HOME}/.local/share/pnpm
+${HOME}/.local/bin
+${HOME}/.cargo/bin
+"
+
+# append to '$path' only if it is not already there
+while read -r pth; do # do not use 'path' as a variable name !
+	if [ -z "$PATH" ] || (printf "%s" "$PATH" | GREP_OPTIONS="" command grep -qv "$pth"); then
+		export PATH="${pth}:${PATH}"
+	fi
+done <<EOF 
+    $paths
+EOF
+
+unset paths pth 
 # basic environment variables
 export EDITOR="vim"
 export ENV="${HOME}/.shrc"
@@ -20,6 +38,7 @@ export VIRTUALENVWRAPPER_PYTHON="${PIPX_HOME}/venvs/virtualenvwrapper/bin/python
 export NODE_REPL_HISTORY="${HOME}/.node_history"
 export NODE_REPL_HISTORY_SIZE=150000
 export NVM_DIR="${HOME}/.nvm"
+export PNPM_HOME="${HOME}/.local/share/pnpm"
 
 # dotfiles
 export DOTFILES="${PROJECT_HOME}/dotfiles"
