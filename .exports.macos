@@ -3,6 +3,7 @@
 paths="\
 /usr/local/sbin
 ${HOME}/.bin
+${HOME}/.local/share/pnpm
 ${HOME}/.local/bin
 ${HOME}/.cargo/bin
 $(brew --prefix coreutils)/libexec/gnubin
