@@ -75,3 +75,6 @@ command -v "$VIRTUALENVWRAPPER_PYTHON" >/dev/null 2>&1 && alias lsv="lsvirtualen
 
 # force ptpython to vi mode instead of default emacs
 command -v "${PIPX_BIN_DIR}/ptpython" >/dev/null 2>&1 && alias ptpython="ptpython --vi"
+
+# display rich-cli in pager mode by default
+command -v "${PIPX_BIN_DIR}/rich-cli" >/dev/null 2>&1 && alias rich="rich --pager"

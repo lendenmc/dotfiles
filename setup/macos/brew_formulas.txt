@@ -3,6 +3,7 @@ autoconf
 awk
 bash
 bash-completion@2
+btop
 circumflex
 coreutils
 cmake
@@ -14,10 +15,13 @@ dos2unix
 findutils
 ffmpeg
 fzf
+gh
 git
 git-extras
 gnu-sed
 grep
+htop
+jo
 jq
 ksh93
 less
@@ -29,6 +33,7 @@ make
 nmap
 ninja
 meson
+php
 pipx
 pkgconf
 poppler
@@ -39,6 +44,7 @@ shellcheck
 tree
 vim
 wget
+yq
 zsh
 zsh-autosuggestions
 zsh-completions

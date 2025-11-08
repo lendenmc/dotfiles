@@ -1,12 +1,14 @@
 archey4
 aider-install
-bpython
-instaloader
-ipython
+bpython --preinstall rich
+glances[web]
+ipython --preinstall rich
 jc
-ptpython
-speedtest-cli
+memray
+ptpython --preinstall rich
+rich-cli
 virtualenv
 virtualenvwrapper
-xonsh
+'xonsh[full]'
 xxh-xxh
+yamllint
