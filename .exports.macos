@@ -1,5 +1,7 @@
 #!/bin/sh
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 paths="\
 $(brew --prefix coreutils)/libexec/gnubin
 $(brew --prefix curl)/bin

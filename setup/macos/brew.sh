@@ -10,9 +10,9 @@ until xcode-select --print-path >/dev/null 2>&1; do # wait until xcode clts are 
 done
 
 # install homebrew
-homebrew_url="https://raw.githubusercontent.com/Homebrew/install/master/install"
+homebrew_url="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
 if _test_executable "brew" 2>/dev/null; then
-	printf "Homebrew is already installed\n"
+	pr f "Homebrew is already installed\n"
 	printf "Checking for updates\n"
 	brew update
 	printf "List installed packages\n"
@@ -24,8 +24,11 @@ if _test_executable "brew" 2>/dev/null; then
 else
 	printf "Homebrew is not installed\n"
 	printf "Installing homebrew\n"
-	/usr/bin/ruby -e "$(curl -fsSL $homebrew_url)" || exit 1
+	/bin/bash -c "$(curl -fsSL $homebrew_url)" || exit 1
 fi
+
+# enable homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # install homebrew formulae
 formulas="$(_get_fullname "$1")" || exit 1
@@ -33,15 +36,12 @@ printf "Installing homebrew formulas from file %s\n" "$formulas"
 _parse_text_file "$formulas" |
 while read -r formula options; do
 	_test_program_folder "$formula" "formula" "$(brew --prefix)/Cellar" || continue
-	brew_cmd="brew install $options --ignore-dependencies $formula"
-	if ! eval "$brew_cmd"; then
-		# some 'brew install' with python3 option will break if the '-ignore-dependencies' option is enabled
-		# moreover, tcpdump and lftp install for instance break with the '-ignore-dependencies' option, although without any other option
-		brew_cmd="brew install $options $formula"
-		printf "So trying to install formula %s again, this time without the '--ignore-dependencies' option\n" "$formula"
-		eval "$brew_cmd"
-	fi;
-	printf "\n"
+    if [ -n "$options" ]; then
+        brew install "$options" "$formula" </dev/null
+    else
+        brew install "$formula" </dev/null
+    fi
+    printf "\n"
 done;
 
 printf "Cleaning up homebrew\n"
