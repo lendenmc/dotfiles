@@ -8,7 +8,7 @@ circumflex
 coreutils
 cmake
 curl
-dash
+dash-shell
 diff-so-fancy
 diffutils
 dos2unix
