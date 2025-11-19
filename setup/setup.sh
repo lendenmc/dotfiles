@@ -78,7 +78,7 @@ _setup() {
 			_run_script "homebrew" ./macos/brew.sh ./macos/brew_formulas.txt || return 1
 			_run_script "homebrew cask" ./macos/brew_cask.sh ./macos/brew_casks.txt || return 1
 			_run_script "macos preferences" ./macos/preferences.sh || return 1
-			_run_script "macos internal programs" .macos/internal.sh ./macos/internal_programs.txt || return 1
+			_run_script "macos internal programs" ./macos/internal.sh ./macos/internal_programs.txt || return 1
 			;;
 	esac
 
