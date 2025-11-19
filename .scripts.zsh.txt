@@ -1,16 +1,16 @@
-$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+"$(brew --prefix)"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # type part of command and hit up arrow, cycle through only commands that begin with that string
-$(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+"$(brew --prefix)"/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-$(brew --pefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 $HOME/.local/bin/virtualenvwrapper.sh
 
 $NVM_DIR/nvm.sh
 $NVM_DIR/bash_completion
 
-$(brew --prefix)/opt/fzf/shell/completion.zsh
-$(brew --prefix)/opt/fzf/shell/key-bindings.zsh
+"$(brew --prefix)"/opt/fzf/shell/completion.zsh
+"$(brew --prefix)"/opt/fzf/shell/key-bindings.zsh
 
-$(brew --prefix)/l/opt/git-extras/share/git-extras/git-extras-completion.zsh
+"$(brew --prefix)"/l/opt/git-extras/share/git-extras/git-extras-completion.zsh

@@ -8,7 +8,7 @@ if [ -r "${HOME}/.profile" ] && [ -f "${HOME}/.profile" ]; then . "${HOME}/.prof
 
 # exports
 export WORDCHARS='*?[]~&;!$%^<>' # make ctrl-w delete back till last '/', '=', '_' or '.'
-[ -d $(brew --prefix)/share/zsh/help ] && export HELPDIR=$(brew --pefix)/share/zsh/help
+[ -d $(brew --prefix)/share/zsh/help ] && export HELPDIR=$(brew --prefix)/share/zsh/help
 export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1 # ensure uniquenes of history entries for zsh-search-substring
 
 # aliases
