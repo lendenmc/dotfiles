@@ -8,7 +8,7 @@ if [ -r "${HOME}/.profile" ] && [ -f "${HOME}/.profile" ]; then . "${HOME}/.prof
 
 # exports
 export WORDCHARS='*?[]~&;!$%^<>' # make ctrl-w delete back till last '/', '=', '_' or '.'
-[ -d /usr/local/share/zsh/help ] && export HELPDIR=/usr/local/share/zsh/help
+[ -d $(brew --prefix)/share/zsh/help ] && export HELPDIR=$(brew --pefix)/share/zsh/help
 export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1 # ensure uniquenes of history entries for zsh-search-substring
 
 # aliases
@@ -32,7 +32,7 @@ setopt rm_star_silent
 stty -ixon
 
 # autocompletion
-fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=($(brew --prefix)/share/zsh-completions $fpath)
 autoload -U compinit && compinit # enable autocomplete function
 autoload -U bashcompinit && bashcompinit # use bash completions scripts from zsh
 zstyle ':completion:*' group-name '' # group auto-completions
@@ -64,7 +64,7 @@ fi
 # key bindings
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
-if [ -d /usr/local/opt/zsh-history-substring-search ]; then
+if [ -d $(brew --prefix)/opt/zsh-history-substring-search ]; then
 	bindkey '^[[A' history-substring-search-up
 	bindkey '^[[B' history-substring-search-down
 fi

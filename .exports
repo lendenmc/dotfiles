@@ -1,7 +1,6 @@
 #!/bin/sh
 
 paths="\
-/usr/local/sbin
 ${HOME}/.bin
 ${HOME}/.local/share/pnpm
 ${HOME}/.local/bin

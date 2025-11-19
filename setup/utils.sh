@@ -80,3 +80,18 @@ _test_empty_dir() {
 		return 1
 	fi
 }
+
+_prepend_path() {
+    dir=$1
+    newpath=
+    IFS=':'
+
+    # rebuild PATH without any occurrence of $dir
+    for p in $PATH; do
+        [ "$p" = "$dir" ] && continue
+        newpath="${newpath:+$newpath:}$p"
+    done
+
+    # prepend cleanly
+    PATH="$dir${newpath:+":$newpath"}"
+}

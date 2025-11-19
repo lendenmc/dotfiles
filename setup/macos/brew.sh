@@ -29,7 +29,10 @@ else
 fi
 
 # enable homebrew
+homebrew_prefix="$(brew --prefix)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
+_prepend_path "${homebrew_prefix}/bin"
+_prepend_path "${homebrew_prefix}sbin"
 
 # install homebrew formulae
 formulas="$(_get_fullname "$1")" || exit 1

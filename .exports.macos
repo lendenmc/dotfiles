@@ -1,21 +1,26 @@
 #!/bin/sh
 
+homebrew_prefix="$(brew --prefix)"
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
+_prepend_path "${homebrew_prefix}/bin"
+_prepend_path "${homebrew_prefix}sbin"
 
 paths="\
-$(brew --prefix coreutils)/libexec/gnubin
-$(brew --prefix curl)/bin
-$(brew --prefix findutils)/libexec/gnubin
-$(brew --prefix gnu-getopt)/bin
-$(brew --prefix gnu-indent)/libexec/gnubin
-$(brew --prefix gnu-sed)/libexec/gnubin
-$(brew --prefix gnu-tar)/libexec/gnubin
-$(brew --prefix gnu-time)/libexec/gnubin
-$(brew --prefix gnu-which)/libexec/gnubin
-$(brew --prefix grep)/libexec/gnubin
-$(brew --prefix libtool)/libexec/gnubin
-$(brew --prefix llvm)/bin
-$(brew --prefix lsof)/bin
+
+${homebrew_prefix}/libexec/gnubin
+${homebrew_prefix}/curl)/bin
+${homebrew_prefix}/findutils)/libexec/gnubin
+${homebrew_prefix}/gnu-getopt)/bin
+${homebrew_prefix}/gnu-indent)/libexec/gnubin
+${homebrew_prefix}/gnu-sed)/libexec/gnubin
+${homebrew_prefix}/gnu-tar)/libexec/gnubin
+${homebrew_prefix}/gnu-time)/libexec/gnubin
+${homebrew_prefix}/gnu-which)/libexec/gnubin
+${homebrew_prefix}/grep)/libexec/gnubin
+${homebrew_prefix}/libtool)/libexec/gnubin
+${homebrew_prefix}/llvm)/bin
+${homebrew_prefix}/lsof)/bin
 /Applications/Docker.app/Contents/Resources/bin
 "
 
@@ -28,7 +33,7 @@ done <<EOF
     $paths
 EOF
 
-unset paths pth 
+unset paths pth homebrew_prefix
 
 
 # for homebrew
