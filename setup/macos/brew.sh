@@ -13,7 +13,7 @@ done
 # install homebrew
 homebrew_url="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
 if _test_executable "brew" 2>/dev/null; then
-	pr f "Homebrew is already installed\n"
+	printf "Homebrew is already installed\n"
 	printf "Checking for updates\n"
 	brew update
 	printf "List installed packages\n"
