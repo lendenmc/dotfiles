@@ -3,7 +3,7 @@ appcleaner
 chatgpt
 claude
 djview
-docker-app
+docker-desktop
 dropbox
 firefox
 google-chrome
