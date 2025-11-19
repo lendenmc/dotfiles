@@ -77,6 +77,7 @@ _setup() {
 		Darwin*)
 			_run_script "homebrew" ./macos/brew.sh ./macos/brew_formulas.txt || return 1
 			_run_script "homebrew cask" ./macos/brew_cask.sh ./macos/brew_casks.txt || return 1
+			softwareupdate --install-rosetta --agree-to-license # for docker-desktop to work
 			_run_script "macos preferences" ./macos/preferences.sh || return 1
 			_run_script "macos internal programs" ./macos/internal.sh ./macos/internal_programs.txt || return 1
 			homebrew_prefix="$(brew --prefix)"
@@ -86,16 +87,9 @@ _setup() {
 	esac
 
 	# program-specific setups
-	for program in "python" "node.js" "rust" "projects" "vscode"; do
+	for program in "python" "node.js" "rust" "docker" "projects" "vscode"; do
 		_run_script "$program" "./${program}/setup.sh" || return 1
 	done
-
-	# docker setup
-	if command -v docker >/dev/null 2>&1; then
-		mkdir -p "${HOME}/.docker/completions"
-		docker completion zsh > "${HOME}/.docker/completion_docker"
-		docker pull jbarlow83/ocrmypdf-alpine
-	fi
 
 	# setup shells
 	_run_script "shells" ./shells.sh || return 1
