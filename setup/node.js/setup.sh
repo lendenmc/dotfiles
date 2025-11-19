@@ -25,5 +25,6 @@ corepack enable pnpm
 corepack use pnpm@latest
 export PNPM_HOME="${HOME}/.local/share/pnpm"
 mkdir -p "$PNPM_HOME"
+export PATH="$PNPM_HOME:$PATH"
 pnpm install --global git-open
 pnpm install --global @anthropic-ai/claude-code
