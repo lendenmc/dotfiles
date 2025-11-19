@@ -9,6 +9,6 @@ ptpython --preinstall rich
 rich-cli
 virtualenv
 virtualenvwrapper
-'xonsh[full]'
+xonsh[full]
 xxh-xxh
 yamllint
