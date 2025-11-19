@@ -85,12 +85,10 @@ _prepend_path() {
     newpath=
     IFS=':'
 
-    # rebuild PATH without any occurrence of $dir
     for p in $PATH; do
         [ "$p" = "$dir" ] && continue
         newpath="${newpath:+$newpath:}$p"
     done
 
-    # prepend cleanly
     PATH="$dir${newpath:+":$newpath"}"
 }

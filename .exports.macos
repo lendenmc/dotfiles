@@ -3,11 +3,31 @@
 homebrew_prefix="$(brew --prefix)"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+_prepend_path() {
+    dir=$1
+    newpath=
+    IFS=':'
+
+    for p in $PATH; do
+        [ "$p" = "$dir" ] && continue
+        newpath="${newpath:+$newpath:}$p"
+    done
+
+    PATH="$dir${newpath:+":$newpath"}"
+}
+
 _prepend_path "${homebrew_prefix}/bin"
 _prepend_path "${homebrew_prefix}/sbin"
 
-paths="\
+unfunction _prepend_path
 
+for p in $PATH; do
+    [ "$p" = "$dir" ] && continue
+    newpath="${newpath:+$newpath:}$p"
+done
+
+paths="\
 ${homebrew_prefix}/libexec/gnubin
 ${homebrew_prefix}/curl)/bin
 ${homebrew_prefix}/findutils)/libexec/gnubin
