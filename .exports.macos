@@ -4,7 +4,7 @@ homebrew_prefix="$(brew --prefix)"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 _prepend_path "${homebrew_prefix}/bin"
-_prepend_path "${homebrew_prefix}sbin"
+_prepend_path "${homebrew_prefix}/sbin"
 
 paths="\
 
