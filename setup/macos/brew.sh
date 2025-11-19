@@ -39,7 +39,8 @@ formulas="$(_get_fullname "$1")" || exit 1
 printf "Installing homebrew formulas from file %s\n" "$formulas"
 _parse_text_file "$formulas" |
 while read -r formula options; do
-	_test_program_folder "$formula" "formula" "$(brew --prefix)/Cellar" || continue
+	 cellar_dir="$(brew --cellar "$formula")"
+	_test_program_folder "$formula" "formula" "$cellar_dir" || continue
     if [ -n "$options" ]; then
         brew install "$options" "$formula" </dev/null
     else

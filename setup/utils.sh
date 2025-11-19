@@ -47,8 +47,7 @@ _test_program_folder() {
 	program_name="$1"
 	program_type="$2"
 	dir_name="$3"
-	program_short_name="$(basename "$program_name")"
-	if [ -d "${dir_name}/${program_short_name}" ]; then
+	if [ -d "${dir_name}" ]; then
 		printf "%s %s is already installed\n" "$program_type" "$program_name"
 		return 1
 	else
