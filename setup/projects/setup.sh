@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # install remote public projects
+# shellcheck disable=SC1091
 . ./utils.sh || exit 1
 
 projects=./projects/projects.txt

@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# shellcheck disable=SC1091
 . ./utils.sh || exit 1
 
 # install xcode command line tools

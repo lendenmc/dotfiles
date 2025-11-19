@@ -102,6 +102,7 @@ _setup() {
 # if you have already download the dotfiles folder, please run this script from within its own location, which should be the 'dotfiles/setup' folder
 # otherwise it will be asssumed that the dotfiles folder has not been downloaded yet
 if [ -f ./utils.sh ] && [ -r ./utils.sh ]; then # check existence of 'utils' file to decide whether or not to download the dotfiles folder
+	# shellcheck disable=SC1091
 	. ./utils.sh || exit 1
 	_setup || exit 1
 else 
@@ -110,6 +111,7 @@ else
 	dotfiles_dir="${HOME}/projects/dotfiles"
 	_download_dotfiles || exit 1
 	cd "${dotfiles_dir}/setup" || exit 1
+	# shellcheck disable=SC1091
 	. ./utils.sh || exit 1
 	_setup || exit 1
 	cd - >/dev/null || exit 1
