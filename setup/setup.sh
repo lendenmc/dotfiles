@@ -94,11 +94,9 @@ _setup() {
 	# setup shells
 	_run_script "shells" ./shells.sh || return 1
 
-    printf "Finally, syncing dotfiles\n"
+    printf "Finally, syncing dotfiles\nPlease source your .zsh profile at the end of the setup script.\n"
 	# shellcheck disable=SC1091
 	. "$HOME"/projects/dotfiles/bootstrap.sh || return 1
-	# shellcheck disable=SC1091
-	. "$HOME"/.zshrc
 }
  
 # run the setup script
