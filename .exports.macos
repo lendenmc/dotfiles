@@ -20,7 +20,7 @@ _prepend_path() {
 _prepend_path "${homebrew_prefix}/bin"
 _prepend_path "${homebrew_prefix}/sbin"
 
-unfunction _prepend_path
+unset -f _prepend_path
 
 for p in $PATH; do
     [ "$p" = "$dir" ] && continue
