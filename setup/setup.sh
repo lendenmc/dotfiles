@@ -104,6 +104,16 @@ _setup() {
 # run the setup script
 # if you have already download the dotfiles folder, please run this script from within its own location, which should be the 'dotfiles/setup' folder
 # otherwise it will be asssumed that the dotfiles folder has not been downloaded yet
+
+# Keep the sudo timestamp fresh in the background.
+# `sudo -n` may fail if the timestamp expires, so we ignore its exit code.
+sudo -v
+while true; do
+  sudo -n true || true
+  sleep 60
+done 2>/dev/null &
+SUDO_KEEPALIVE_PID=$!
+
 if [ -f ./utils.sh ] && [ -r ./utils.sh ]; then # check existence of 'utils' file to decide whether or not to download the dotfiles folder
 	# shellcheck disable=SC1091
 	. ./utils.sh
@@ -119,3 +129,6 @@ else
 	_setup
 	cd - >/dev/null
 fi
+
+kill "$SUDO_KEEPALIVE_PID" 2>/dev/null || true
+
