@@ -33,12 +33,12 @@ The Python setup script uses the tool [pipx](https://pypa.github.io/pipx/) to in
 
 Depending on whether `curl` or `wget` is installed by default on your system, run one of these two commands in your terminal.
 
-```
-$ sh -c "$(curl -LsS https://raw.github.com/lendenmc/dotfiles/master/setup/setup.sh)"
+```sh
+sh -c "$(curl -LsS https://raw.github.com/lendenmc/dotfiles/master/setup/setup.sh)"
 ```
 
-```
-$ sh -c "$(wget -qO- https://raw.github.com/lendenmc/dotfiles/master/setup/setup.sh)"
+```sh
+sh -c "$(wget -qO- https://raw.github.com/lendenmc/dotfiles/master/setup/setup.sh)"
 ```
 
 For instance, `curl` is installed by default on macOS while this is `wget` on Ubuntu.
@@ -74,8 +74,8 @@ The preferences of iTerm2, macOS terminal of choice, are not contained in the pr
 
 Let's assume that `$HOME/projects/dotfiles` is now your local dotfiles repository. Run the following command:
 
-```
-$ . $HOME/projects/dotfiles/bootstrap.sh
+```sh
+. $HOME/projects/dotfiles/bootstrap.sh
 ```
 
 This will first launch `rsync` and install all the "real" `.files` into your home directory. Except for `.git`and `.gitignore`, these include all the repository's top-level files or folders that start with a dot. Secondly, this script will source the right shell profile file by detecting what is your current shell, so that you can immediately work within the right context.
@@ -90,22 +90,21 @@ The key thing is to forget about editing your dotfiles straight from within your
 
 As you will quickly get bored of being prompted all the time to confirm that you want to overwrite your current dotfiles in your home repository, you can run this command instead:
 
-```
-$ set -- -f; . "$HOME"/projects/dotfiles/bootstrap.sh
+```sh
+set -- -f; . "$HOME"/projects/dotfiles/bootstrap.sh
 ```
 
 Adding that kind of lines to your shell profile would make it even less painful
 
-```
+```sh
 export DOTFILES="${HOME}/projects/dotfiles"
 alias dsync='set -- -f; . ${DOTFILES}/bootstrap.sh'
-
 ```
 
 so that you would only need to run
 
-```
-$ dsync
+```sh
+dsync
 ```
 
 This alias is actually part of the dotfiles config.
@@ -131,7 +130,7 @@ which, here, is only referring to  `.bashrc` or `.profile` depending on the type
 
 Whenever one of these files is sourced, the `.profile` file will be sourced right from the start. So one of the few duplicate lines that you will find across profiles will be similar to this:
 
-```
+```sh
 if [ -r "${HOME}/.profile" ] && [ -f "${HOME}/.profile" ]; then . "${HOME}/.profile; fi"
 ```
 
