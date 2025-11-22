@@ -1,9 +1,11 @@
 #!/bin/sh
 
-# shellcheck disable=SC1091
-. ./utils.sh || exit 1
+set -eu
 
-_test_executable "docker" || exit 1
+# shellcheck disable=SC1091
+. ./utils.sh
+
+_test_executable "docker"
 
 mkdir -p "${HOME}/.docker/completions"
 docker completion zsh > "${HOME}/.docker/completion_docker"

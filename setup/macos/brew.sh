@@ -1,7 +1,9 @@
 #!/bin/sh
 
+set -eu
+
 # shellcheck disable=SC1091
-. ./utils.sh || exit 1
+. ./utils.sh
 
 # install xcode command line tools
 printf "Checking for xcode command line tools\n"
@@ -25,7 +27,7 @@ if _test_executable "brew" 2>/dev/null; then
 else
 	printf "Homebrew is not installed\n"
 	printf "Installing homebrew\n"
-	/bin/bash -c "$(curl -fsSL $homebrew_url)" || exit 1
+	/bin/bash -c "$(curl -fsSL $homebrew_url)"
 fi
 
 # enable homebrew
@@ -35,7 +37,7 @@ _prepend_path "${homebrew_prefix}/bin"
 _prepend_path "${homebrew_prefix}/sbin"
 
 # install homebrew formulae
-formulas="$(_get_fullname "$1")" || exit 1
+formulas="$(_get_fullname "$1")"
 printf "Installing homebrew formulas from file %s\n" "$formulas"
 _parse_text_file "$formulas" |
 while read -r formula options; do

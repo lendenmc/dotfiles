@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eu
+
 # originally taken from https://github.com/alrra/dotfiles/blob/master/src/os/setup.sh#L18-L44
 _download() {
 	url="$1"
@@ -104,16 +106,16 @@ _setup() {
 # otherwise it will be asssumed that the dotfiles folder has not been downloaded yet
 if [ -f ./utils.sh ] && [ -r ./utils.sh ]; then # check existence of 'utils' file to decide whether or not to download the dotfiles folder
 	# shellcheck disable=SC1091
-	. ./utils.sh || exit 1
-	_setup || exit 1
+	. ./utils.sh
+	_setup
 else 
 	github_repository="lendenmc/dotfiles"
 	dotfiles_tarball_url="https://github.com/${github_repository}/tarball/master"
 	dotfiles_dir="${HOME}/projects/dotfiles"
-	_download_dotfiles || exit 1
-	cd "${dotfiles_dir}/setup" || exit 1
+	_download_dotfiles
+	cd "${dotfiles_dir}/setup"
 	# shellcheck disable=SC1091
-	. ./utils.sh || exit 1
-	_setup || exit 1
-	cd - >/dev/null || exit 1
+	. ./utils.sh
+	_setup
+	cd - >/dev/null
 fi

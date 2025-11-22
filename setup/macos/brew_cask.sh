@@ -1,13 +1,15 @@
 #!/bin/sh
 
+set -eu
+
 # shellcheck disable=SC1091
-. ./utils.sh || exit 1
+. ./utils.sh
 
 # enable homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # install homebrew casks
-casks="$(_get_fullname "$1")" || exit 1
+casks="$(_get_fullname "$1")"
 printf "Installing homebrew casks from file %s\n" "$casks"
 _parse_text_file "$casks" |
 while read -r cask; do

@@ -1,8 +1,11 @@
 #!/bin/sh
 
 # install remote public projects
+
+set -eu
+
 # shellcheck disable=SC1091
-. ./utils.sh || exit 1
+. ./utils.sh
 
 projects=./projects/projects.txt
 _parse_text_file "$projects"	\
@@ -22,6 +25,6 @@ _parse_text_file "$projects"	\
 			cmd="git clone $project \"$project_dir\" $options"
 			printf "Cloning remote git repository %s\n" "$project_name"
 		fi
-		eval "$cmd" || exit 1
+		eval "$cmd"
 		printf "\n"
 	done

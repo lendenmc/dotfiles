@@ -1,7 +1,9 @@
 #!/bin/sh
 
+set -eu
+
 # shellcheck disable=SC1091
-. ./utils.sh || exit 1
+. ./utils.sh
 
 printf "Installing rustup\n\n"
 rustup_url="https://sh.rustup.rs"
