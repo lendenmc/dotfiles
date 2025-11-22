@@ -5,8 +5,8 @@ set -eu
 # shellcheck disable=SC1091
 . ./utils.sh
 
-# enable homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# for docker-desktop to work
+softwareupdate --install-rosetta --agree-to-license
 
 # install homebrew casks
 casks="$(_get_fullname "$1")"

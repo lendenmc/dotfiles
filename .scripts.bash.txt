@@ -3,7 +3,7 @@ $HOME/.local/bin/virtualenvwrapper.sh
 $NVM_DIR/nvm.sh
 $NVM_DIR/bash_completion
 
-"$(brew --prefix)"/opt/fzf/shell/completion.bash
-"$(brew --prefix)"/opt/fzf/shell/key-bindings.bash
+$HOMEBREW_PREFIX/opt/fzf/shell/completion.bash
+$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.bash
 
-"$(brew --prefix)"/etc/profile.d/bash_completion.sh
+$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh
