@@ -39,14 +39,13 @@
 		],
 		"editor.formatOnType": true
 	},
-	"isort.args":["--profile", "black"],
 	"[jsonc]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"settingsSync.ignoredSettings": [
 		"files.associations",
 		"files.encoding",
-		"terminal.integrated.cwd",
+		"terminal.integrated.cwd"
 	],
 	"[html]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -54,6 +53,7 @@
 	"diffEditor.ignoreTrimWhitespace": false,
 	"workbench.editor.enablePreview": false
 }
+
 
 
 
