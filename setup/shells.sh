@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # shellcheck disable=SC1091
-. ./utils.sh || exit 1
+. ./utils.sh
 
 # add shells to /etc/shells
 shells="zsh bash dash ksh"

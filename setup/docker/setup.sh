@@ -5,7 +5,10 @@ set -eu
 # shellcheck disable=SC1091
 . ./utils.sh
 
-_test_executable "docker"
+if ! _test_executable "docker"; then
+    printf "Docker is not installed\n"
+    exit 0
+fi
 
 mkdir -p "${HOME}/.docker/completions"
 docker completion zsh > "${HOME}/.docker/completion_docker"

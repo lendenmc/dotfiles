@@ -12,7 +12,7 @@ elif command -v code-insiders >/dev/null 2>&1; then
 	code_name="code-insiders"
 else
 	printf "Visual Studio Code is not installed\n"
-	exit 1
+	exit 0
 fi;
 
 case "$(uname)" in
@@ -23,14 +23,14 @@ case "$(uname)" in
 			vscode_folder="${HOME}/Library/Application Support/Code - Insiders"
         else
 			printf "Visual Studio Code is not installed\n"
-			exit 1
+			exit 0
 		fi;
 		;;
 esac
 
 if [ -z "$vscode_folder" ]; then
 	printf "Visual Studio Code setup is not supported for this platform\n"
-	exit 1
+	exit 0
 fi;
 
 mkdir -p "$vscode_folder"
@@ -92,7 +92,11 @@ process_user_settings "$new_keybindings_file" "$old_keybindings_file"
 
 # install vscode extensions
 vscode_extensions=./vscode/vscode_extensions.txt
-_test_executable "$code_name"
+
+if ! _test_executable "pipx"; then
+	printf "Visual Studo Code CLI '%s' is not installed\n" "$code_name"
+	exit 0
+fi
 _parse_text_file "$vscode_extensions"	\
 	| while read -r extension; do
 		printf "Installing extension %s\n" "$extension"

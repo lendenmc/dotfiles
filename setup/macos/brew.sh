@@ -6,11 +6,16 @@ set -eu
 . ./utils.sh
 
 # install xcode command line tools
-printf "Checking for xcode command line tools\n"
-xcode-select --install >/dev/null 2>&1 
-until xcode-select --print-path >/dev/null 2>&1; do # wait until xcode clts are installed
-    sleep 5
-done
+if ! xcode-select -p >/dev/null 2>&1; then
+    printf "Xcode command line tools not found, installing…\n"
+    xcode-select --install >/dev/null 2>&1 || true
+    # Wait until xcode CLTs are installed
+    until xcode-select -p >/dev/null 2>&1; do
+        sleep 5
+    done
+else
+    printf "Xcode command line tools already installed\n"
+fi
 
 # install homebrew
 homebrew_url="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
@@ -35,12 +40,18 @@ formulas="$(_get_fullname "$1")"
 printf "Installing homebrew formulas from file %s\n" "$formulas"
 _parse_text_file "$formulas" |
 while read -r formula options; do
-	 cellar_dir="$(brew --cellar "$formula")"
+	cellar_dir="$(brew --cellar "$formula")"
 	_test_program_folder "$formula" "formula" "$cellar_dir" || continue
     if [ -n "$options" ]; then
-        brew install "$options" "$formula" </dev/null
+		if ! brew install "$options" "$formula" </dev/null; then
+    		printf 'Skipping formula "%s" (brew install failed)\n\n' "$formula"
+    		continue
+		fi
     else
-        brew install "$formula" </dev/null
+		if ! brew install "$formula" </dev/null; then
+    		printf 'Skipping formula "%s" (brew install failed)\n\n' "$formula"
+    		continue
+		fi
     fi
     printf "\n"
 done;

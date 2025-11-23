@@ -6,7 +6,10 @@ set -eu
 . ./utils.sh
 
 # pip-install standalone python applications in dedicated virtualenvs with pipx
-_test_executable "pipx"
+if ! _test_executable "pipx"; then
+    printf "Pipx is not installed\n"
+	exit 0
+fi
 export PIPX_HOME="${HOME}/.local/pipx"
 export PIPX_BIN_DIR="${HOME}/.local/bin"
 export PATH="$PIPX_BIN_DIR:$PATH"

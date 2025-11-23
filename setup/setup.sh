@@ -18,7 +18,7 @@ _download_dotfiles() {
 	printf "Downloading and extracting dotfiles archive\n"
 
 	temp_file="$(mktemp /tmp/XXXXX)"
-	_download "$dotfiles_tarball_url" "$temp_file" || return 1
+	_download "$dotfiles_tarball_url" "$temp_file"
 
 	printf "Do you want to store the dotfiles into %s ? (y/n) " "$dotfiles_dir"
 	while true; do
@@ -71,8 +71,8 @@ _download_dotfiles() {
 }
 
 _setup() {
-	mkdir -p "${HOME}/.bin" || return 1
-	mkdir -p "${HOME}/projects" || return 1
+	mkdir -p "${HOME}/.bin"
+	mkdir -p "${HOME}/projects"
 
 	# platform-specific setup
 	case "$(uname)" in
@@ -84,25 +84,26 @@ _setup() {
    			fi
     		eval "$($BREW_CMD shellenv)"
 
-			_run_script "homebrew" ./macos/brew.sh ./macos/brew_formulas.txt || return 1
-			_run_script "homebrew cask" ./macos/brew_cask.sh ./macos/brew_casks.txt || return 1
-			_run_script "macos preferences" ./macos/preferences.sh || return 1
-			_run_script "macos internal programs" ./macos/internal.sh ./macos/internal_programs.txt || return 1
-			sudo chmod -R go-w /opt/homebrew/share
+			_run_script "homebrew" ./macos/brew.sh ./macos/brew_formulas.txt
+			_run_script "homebrew cask" ./macos/brew_cask.sh ./macos/brew_casks.txt
+			_run_script "macos preferences" ./macos/preferences.sh
+			_run_script "macos internal programs" ./macos/internal.sh ./macos/internal_programs.txt
+			sudo chmod -R go-w "$HOMEBREW_PREFIX/share"
 			;;
 	esac
 
 	# program-specific setups
 	for program in "python" "node.js" "rust" "docker" "projects" "vscode"; do
-		_run_script "$program" "./${program}/setup.sh" || return 1
+		_run_script "$program" "./${program}/setup.sh"
 	done
 
 	# setup shells
-	_run_script "shells" ./shells.sh || return 1
+	_run_script "shells" ./shells.sh
 
-    printf "Finally, syncing dotfiles\nPlease source your .zsh profile at the end of the setup script.\n"
+	# sycning dotfiles
+    printf "Syncing dotfiles\nPlease source your desired shell profile at the end of the setup script.\n"
 	# shellcheck disable=SC1091
-	. "$HOME"/projects/dotfiles/bootstrap.sh || return 1
+	. "$HOME"/projects/dotfiles/bootstrap.sh
 }
  
 # run the setup script

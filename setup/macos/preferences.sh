@@ -132,6 +132,6 @@ cupsctl WebInterface=yes
 ###############################################################################
 
 for app in "Activity Monitor" "cfprefsd" "Dock" "Finder"; do
-	killall "${app}" >/dev/null 2>&1
+	killall "${app}" >/dev/null 2>&1 || true
 done
 printf "Note that some of these changes require a logout/restart to take effect.\n"
