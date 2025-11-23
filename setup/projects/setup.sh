@@ -10,7 +10,7 @@ set -eu
 projects=./projects/projects.txt
 _parse_text_file "$projects"	\
 	| while read -r project options; do
-		project_name="$(basename "${project%.*}")"
+		project_name=${project##*/}
 		project_dir="${HOME}/projects/${project_name}"
 		optional_dir=$(printf "%s" "$options" | GREP_OPTIONS="" command grep -Eo "^\\\$\S*")
 		if [ -n "$optional_dir" ]; then
