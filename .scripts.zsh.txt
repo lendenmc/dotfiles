@@ -13,4 +13,4 @@ $NVM_DIR/bash_completion
 $HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh
 $HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh
 
-$HOMEBREW_PREFIX/l/opt/git-extras/share/git-extras/git-extras-completion.zsh
+$HOMEBREW_PREFIX/opt/git-extras/share/git-extras/git-extras-completion.zsh

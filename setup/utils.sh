@@ -79,16 +79,3 @@ _test_empty_dir() {
 		return 1
 	fi
 }
-
-_prepend_path() {
-    dir=$1
-    newpath=
-    IFS=':'
-
-    for p in $PATH; do
-        [ "$p" = "$dir" ] && continue
-        newpath="${newpath:+$newpath:}$p"
-    done
-
-    PATH="$dir${newpath:+":$newpath"}"
-}

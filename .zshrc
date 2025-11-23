@@ -25,15 +25,13 @@ help() {
 # zsh general options
 setopt no_beep
 setopt rm_star_silent
-# setopt extended_glob
-# unsetopt nomatch
 
 # step forward through history with C-s the same way you would step backwards with C-r 
 stty -ixon
 
 # autocompletion
-fpath=($HOMEBREW_PREFIX/share/zsh-completions $fpath)
-autoload -U compinit && compinit # enable autocomplete function
+fpath=($ZSH_COMPLETION_DIR $fpath)
+autoload -U compinit && compinit # use zsh completions
 autoload -U bashcompinit && bashcompinit # use bash completions scripts from zsh
 zstyle ':completion:*' group-name '' # group auto-completions
 zstyle ':completion:*' menu select # activate menu selection for auto-completion
@@ -78,3 +76,7 @@ if command -v docker >/dev/null 2>&1 && [ -d "${HOME}/.docker/completions" ]; th
 	autoload -Uz compinit
 	compinit
 fi
+
+# remove duplicate path and fpath entries 
+typeset -U PATH 
+typeset -U fpath

@@ -1,64 +1,46 @@
 #!/bin/sh
 
-if command -v brew >/dev/null 2>&1; then
-  BREW_CMD="$(command -v brew)"
-elif [ -x /opt/homebrew/bin/brew ]; then # Apple Silicon default
-  BREW_CMD=/opt/homebrew/bin/brew
-elif [ -x /usr/local/bin/brew ]; then # Intel default
-  BREW_CMD=/usr/local/bin/brew
+if [ -z "$HOMEBREW_PREFIX" ]; then
+    if [ -x /opt/homebrew/bin/brew ]; then # Apple Silicon default
+        BREW_CMD=/opt/homebrew/bin/brew
+    elif [ -x /usr/local/bin/brew ]; then # Intel default
+        BREW_CMD=/usr/local/bin/brew
+    fi
+    eval "$($BREW_CMD shellenv)"
 fi
-eval "$("$BREW_CMD" shellenv)"
 
-_prepend_path() {
-    dir=$1
-    newpath=
-    IFS=':'
-
-    for p in $PATH; do
-        [ "$p" = "$dir" ] && continue
-        newpath="${newpath:+$newpath:}$p"
-    done
-
-    PATH="$dir${newpath:+":$newpath"}"
-}
-
-_prepend_path "${HOMEBREW_PREFIX}/bin"
-_prepend_path "${HOMEBREW_PREFIX}/sbin"
-
-unset -f _prepend_path
-
-for p in $PATH; do
-    [ "$p" = "$dir" ] && continue
-    newpath="${newpath:+$newpath:}$p"
-done
+export ZSH_COMPLETION_DIR="$HOMEBREW_PREFIX/share/zsh-completions"
 
 paths="\
-${HOMEBREW_PREFIX}/libexec/gnubin
-${HOMEBREW_PREFIX}/curl/bin
-${HOMEBREW_PREFIX}/findutils/libexec/gnubin
-${HOMEBREW_PREFIX}/gnu-getopt/bin
-${HOMEBREW_PREFIX}/gnu-indent/libexec/gnubin
-${HOMEBREW_PREFIX}/gnu-sed/libexec/gnubin
-${HOMEBREW_PREFIX}/gnu-tar/libexec/gnubin
-${HOMEBREW_PREFIX}/gnu-time/libexec/gnubin
-${HOMEBREW_PREFIX}/gnu-which/libexec/gnubin
-${HOMEBREW_PREFIX}/grep/libexec/gnubin
-${HOMEBREW_PREFIX}/libtool/libexec/gnubin
-${HOMEBREW_PREFIX}/llvm/bin
-${HOMEBREW_PREFIX}/lsof/bin
+${HOMEBREW_PREFIX}/opt/libexec/gnubin
+${HOMEBREW_PREFIX}/opt/curl/bin
+${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin
+${HOMEBREW_PREFIX}/opt/gnu-getopt/bin
+${HOMEBREW_PREFIX}/opt/gnu-indent/libexec/gnubin
+${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin
+${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin
+${HOMEBREW_PREFIX}/opt/gnu-time/libexec/gnubin
+${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin
+${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin
+${HOMEBREW_PREFIX}/opt/libtool/libexec/gnubin
+${HOMEBREW_PREFIX}/opt/llvm/bin
+${HOMEBREW_PREFIX}/opt/lsof/bin
 /Applications/Docker.app/Contents/Resources/bin
 "
 
-# append to '$path' only if it is not already there
-while read -r pth; do # do not use 'path' as a variable name !
-	if [ -z "$PATH" ] || (printf "%s" "$PATH" | GREP_OPTIONS="" command grep -qv "$pth"); then
-		export PATH="${pth}:${PATH}"
-	fi
-done <<EOF 
+# prepend to '$path' only if it is not already there
+while read -r pth; do
+    [ ! -d "$pth" ] && continue
+    case ":$PATH:" in
+        *":$pth:"*) ;;
+        *) PATH="$pth${PATH:+:$PATH}" ;;
+    esac
+done <<EOF
     $paths
 EOF
 
 unset paths pth
 
 # for homebrew
+export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8

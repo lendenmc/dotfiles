@@ -77,17 +77,12 @@ _setup() {
 	# platform-specific setup
 	case "$(uname)" in
 		Darwin*)
-			# enable homebrew
-			if command -v brew >/dev/null 2>&1; then
-			BREW_CMD="$(command -v brew)"
-			elif [ -x /opt/homebrew/bin/brew ]; then # Apple Silicon default
-			BREW_CMD=/opt/homebrew/bin/brew
-			elif [ -x /usr/local/bin/brew ]; then # Intel default
-			BREW_CMD=/usr/local/bin/brew
-			fi
-			eval "$("$BREW_CMD" shellenv)"
-			_prepend_path "$HOMEBREW_PREFIX/bin"
-			_prepend_path "$HOMEBREW_PREFIX/sbin"
+			if [ -x /opt/homebrew/bin/brew ]; then # Apple Silicon default
+        		BREW_CMD=/opt/homebrew/bin/brew
+    		elif [ -x /usr/local/bin/brew ]; then # Intel default
+        		BREW_CMD=/usr/local/bin/brew
+   			fi
+    		eval "$($BREW_CMD shellenv)"
 
 			_run_script "homebrew" ./macos/brew.sh ./macos/brew_formulas.txt || return 1
 			_run_script "homebrew cask" ./macos/brew_cask.sh ./macos/brew_casks.txt || return 1
