@@ -99,11 +99,6 @@ _setup() {
 
 	# setup shells
 	_run_script "shells" ./shells.sh
-
-	# sycning dotfiles
-    printf "Syncing dotfiles\nPlease source your desired shell profile at the end of the setup script.\n"
-	# shellcheck disable=SC1091
-	. "$HOME"/projects/dotfiles/bootstrap.sh
 }
  
 # run the setup script
