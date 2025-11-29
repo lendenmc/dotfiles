@@ -1,5 +1,6 @@
 1password
 appcleaner
+alfred
 chatgpt
 claude
 djview
