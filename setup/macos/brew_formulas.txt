@@ -41,6 +41,7 @@ python
 rename
 rsync
 shellcheck
+thefuck
 tree
 vim
 wget
