@@ -41,6 +41,8 @@ EOF
 
 unset paths pth
 
+export VSCODE_PYTHON="${HOMEBREW_PREFIX}"/bin/python3
+
 # for homebrew
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8

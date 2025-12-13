@@ -51,7 +51,9 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"diffEditor.ignoreTrimWhitespace": false,
-	"workbench.editor.enablePreview": false
+	"workbench.editor.enablePreview": false,
+	"python.defaultInterpreterPath": "${env:VSCODE_PYTHON}",
+	"github.copilot.nextEditSuggestions.enabled": true
 }
 
 
