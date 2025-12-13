@@ -14,7 +14,6 @@ export ZSH_COMPLETION_DIR="$HOMEBREW_PREFIX/share/zsh-completions"
 paths="\
 ${HOMEBREW_PREFIX}/opt/libexec/gnubin
 ${HOMEBREW_PREFIX}/opt/curl/bin
-${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin
 ${HOMEBREW_PREFIX}/opt/gnu-getopt/bin
 ${HOMEBREW_PREFIX}/opt/gnu-indent/libexec/gnubin
 ${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin
