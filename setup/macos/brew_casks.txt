@@ -3,6 +3,7 @@ appcleaner
 alfred
 chatgpt
 claude
+deepl
 djview
 docker-desktop
 dropbox
