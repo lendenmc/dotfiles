@@ -12,3 +12,4 @@ virtualenvwrapper
 xonsh[full]
 xxh-xxh
 yamllint
+yt-dlp
