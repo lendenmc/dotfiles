@@ -9,6 +9,7 @@ coreutils
 cmake
 curl
 dash-shell
+deno
 diff-so-fancy
 diffutils
 dos2unix
