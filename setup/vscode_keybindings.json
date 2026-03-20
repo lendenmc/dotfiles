@@ -21,5 +21,10 @@
     {
         "key": "ctrl+shift+tab",
         "command": "workbench.action.previousEditor"
+    },
+    {
+        "key": "alt+cmd+5",
+        "command": "workbench.action.terminal.split",
+        "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
     }
 ]

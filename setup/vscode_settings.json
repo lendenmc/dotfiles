@@ -55,8 +55,3 @@
 	"python.defaultInterpreterPath": "${env:VSCODE_PYTHON}",
 	"github.copilot.nextEditSuggestions.enabled": true
 }
-
-
-
-
-
