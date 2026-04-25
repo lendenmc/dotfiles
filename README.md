@@ -39,6 +39,12 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/$DOTFILES_REPO/master/setup
 
 `DOTFILES_REPO` is required (the script fails fast if unset).
 
+During the run you'll be prompted for your **git user name** (the name that will appear as the author of your commits) and **git user email** (the email that will appear as the author of your commits and is also embedded as the comment in the SSH key, so the same value gets reused for both). Those two values are written to `~/.gitconfig.local` rather than to the synced `~/.gitconfig`. This separation — inspired by [Paul Irish's dotfiles](https://github.com/paulirish/dotfiles/blob/master/.gitconfig) — keeps personal info (`user.name`, `user.email`, signing keys, anything else specific to a single machine or identity) out of the version-controlled `.gitconfig` while still being picked up by git, since `.gitconfig` `[include]`s `~/.gitconfig.local`. If `~/.gitconfig.local` already exists, the script reads from it and won't overwrite.
+
+The synced `.gitconfig` also wires `core.excludesfile = ~/.gitignore.global`, so the repo's `.gitignore.global` (rsync'd to `$HOME` by `bootstrap.sh`) acts as a **user-wide** ignore list applied to *every* git repo on the machine — that's where universal noise like `.DS_Store`, `*.pyc`, and `.claude/` lives, so each individual repo's `.gitignore` only has to deal with what's specific to it.
+
+The same email also seeds a personal SSH key generated at `~/.ssh/id_ed25519` (usable for any host, not just GitHub). The key is created with an empty passphrase, so add one yourself afterwards with `ssh-keygen -p -f ~/.ssh/id_ed25519` if you want one.
+
 During the installation process the dotfiles repository content will be installed by default into `$HOME/projects/dotfiles`, which will be created if it does not exist already. A prompt will ask you if this default installation path is suitable for you, if not you will be able to change it. Meanwhile, you will also be able to choose whether or not you want to overwrite an existing location. This approach is taken from [Cătălin’s dotfiles](https://github.com/alrra/dotfiles).
 
 The script automatically detects whether it is running on Darwin and runs macOS-specific parts accordingly. These live in the `./setup/macos` subdirectory, making it easy to add support for other systems (e.g. a `./setup/debian` folder). Everything else is generic and should work on Unix-like systems. This includes:

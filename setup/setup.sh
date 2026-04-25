@@ -288,6 +288,83 @@ _setup_shells() {
 	printf "Done with shells setup\n"
 }
 
+_init_git_repo() {
+	if [ -d "${dotfiles_dir}/.git" ]; then
+		return 0
+	fi
+	if ! command -v git >/dev/null 2>&1; then
+		printf "Git is not installed; skipping dotfiles git init\n"
+		return 0
+	fi
+	if [ -z "${github_repository:-}" ]; then
+		printf "github_repository unset; skipping dotfiles git init\n"
+		return 0
+	fi
+	printf "Initializing git repository at %s\n" "$dotfiles_dir"
+	(
+		cd "$dotfiles_dir" || exit 1
+		git init -q -b master
+		git remote add origin "https://github.com/${github_repository}.git"
+		git fetch -q origin master
+		git reset -q --hard origin/master
+		git branch --set-upstream-to=origin/master master >/dev/null
+	)
+	printf "Done with dotfiles git init\n"
+}
+
+_collect_user_info() {
+	# Skip if nothing downstream still needs name/email.
+	if [ -e "${HOME}/.gitconfig.local" ] && [ -e "${HOME}/.ssh/id_ed25519" ]; then
+		return 0
+	fi
+	# Reuse what's already in ~/.gitconfig.local if available.
+	if [ -e "${HOME}/.gitconfig.local" ] && command -v git >/dev/null 2>&1; then
+		git_user_name="$(git config --file "${HOME}/.gitconfig.local" user.name 2>/dev/null || true)"
+		git_user_email="$(git config --file "${HOME}/.gitconfig.local" user.email 2>/dev/null || true)"
+	fi
+	if [ -z "${git_user_name:-}" ]; then
+		printf "Git user name: "
+		read -r git_user_name
+	fi
+	if [ -z "${git_user_email:-}" ]; then
+		printf "Git user email: "
+		read -r git_user_email
+	fi
+}
+
+_setup_git_local_config() {
+	gitconfig_local="${HOME}/.gitconfig.local"
+	if [ -e "$gitconfig_local" ]; then
+		return 0
+	fi
+	if [ -z "${git_user_name:-}" ] || [ -z "${git_user_email:-}" ]; then
+		printf "Git user name/email empty; skipping ~/.gitconfig.local creation\n"
+		return 0
+	fi
+	{
+		printf "[user]\n"
+		printf "\tname = %s\n" "$git_user_name"
+		printf "\temail = %s\n" "$git_user_email"
+	} > "$gitconfig_local"
+	printf "Wrote %s\n" "$gitconfig_local"
+}
+
+_setup_ssh_key() {
+	ssh_key="${HOME}/.ssh/id_ed25519"
+	if [ -e "$ssh_key" ] || [ -e "${ssh_key}.pub" ]; then
+		return 0
+	fi
+	if ! command -v ssh-keygen >/dev/null 2>&1; then
+		printf "ssh-keygen is not installed; skipping SSH key setup\n"
+		return 0
+	fi
+	if [ -z "${git_user_email:-}" ]; then
+		printf "Git user email empty; skipping SSH key setup\n"
+		return 0
+	fi
+	ssh-keygen -t ed25519 -C "$git_user_email" -f "$ssh_key" -N ""
+}
+
 _setup() {
 	mkdir -p "${HOME}/.bin"
 	mkdir -p "${HOME}/projects"
@@ -311,6 +388,11 @@ _setup() {
 	esac
 
 	_setup_tools
+
+	_init_git_repo
+	_collect_user_info
+	_setup_git_local_config
+	_setup_ssh_key
 
 	_setup_node
 	_setup_pipx
