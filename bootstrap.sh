@@ -44,7 +44,12 @@ else
 fi
 
 script_dir="$(command dirname "$script_name")"
+original_dir="$PWD"
 cd_builtin "$script_dir"
+
+restore_dir() {
+	cd_builtin "$original_dir" >/dev/null
+}
 
 do_it() {
 	command rsync --exclude ".git/" \
@@ -54,6 +59,9 @@ do_it() {
 		--exclude "README.md" \
 		--exclude "LICENSE.txt" \
 		--exclude "setup/" \
+		--exclude "AGENTS.md" \
+		--exclude "CLAUDE.md" \
+		--exclude ".claude/" \
 		-avh --no-perms . "$HOME"
 	if [ -n "$BASH" ]; then
 		case "$BASH" in
@@ -78,6 +86,7 @@ if [ "$1" = "--force" ] || [ "$1" = "-f" ]; then
 	do_it
 elif [ -n "$1" ]; then
 	printf_builtin "Unsupported option or argument \"%s\"\n" "$1" >&2
+	restore_dir
 	return 1
 else
 	printf_builtin "This may overwrite existing files in your home directory. Are you sure? (y/n) "
@@ -85,11 +94,13 @@ else
 		read_builtin -r reply
 		# shellcheck disable=SC2154
 		case "$reply" in
-			[yY][eE][sS]|[yY]) 
+			[yY][eE][sS]|[yY])
 				do_it
+				restore_dir
 				return
 				;;
 			[nN][oO]|[nN])
+				restore_dir
 				return
 				;;
 			*)
@@ -99,8 +110,8 @@ else
 	done
 fi
 
-cd_builtin "$OLDPWD" >/dev/null
+restore_dir
 
 
-unset cmd script_name script_dir old_dir reply
-unset -f force_builtin cd_builtin printf_builtin read_builtin do_it
+unset cmd script_name script_dir original_dir reply
+unset -f force_builtin cd_builtin printf_builtin read_builtin do_it restore_dir
