@@ -63,9 +63,11 @@ Custom [macOS preferences](./setup/macos/preferences.sh) will be set up at the e
 
 The preferences of iTerm2, macOS terminal of choice, are not contained in the project as they are not really human-readable. An iTerm 2 profile can nonetheless manually be backed up as a JSON file and be manually imported back after the setup.
 
+> **Next step:** the setup script installs tooling and clones this repo into `$HOME/projects/dotfiles`, but it does **not** sync the dotfiles into your home directory. You still need to run `bootstrap.sh` (see the next section) to copy the `.files` into `$HOME`.
+
 ## Syncing the dotfiles to your home folder
 
-Let's assume that `$HOME/projects/dotfiles` is now your local dotfiles repository. Run the following command:
+Once the setup script has finished and your local dotfiles repository lives at `$HOME/projects/dotfiles`, run the following command:
 
 ```sh
 . $HOME/projects/dotfiles/bootstrap.sh
