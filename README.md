@@ -54,8 +54,8 @@ The macOS-only part of the setup will install the following, provided that they 
 
 * [Command Line Tool](http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/)
 * [Homebew](http://brew.sh/) package manager
-* [Homebrew formulas](./setup/macos/brew.sh) listed in `./setup/macos/brew_formulas.txt`
-* [Homebrew casks](./setup/macos/brew_cask.sh) listed in `./setup/macos/brew_casks.txt`
+* [Homebrew formulas](./setup/macos/brew.sh) listed in `./setup/macos/formulas.txt`
+* [Homebrew casks](./setup/macos/brew_cask.sh) listed in `./setup/macos/casks.txt`
 
 Custom [macOS preferences](./setup/macos/preferences.sh) will be set up at the end.
 

@@ -298,8 +298,8 @@ _setup() {
    			fi
     		eval "$($BREW_CMD shellenv)"
 
-			_run_script "homebrew" ./macos/brew.sh ./macos/brew_formulas.txt
-			_run_script "homebrew cask" ./macos/brew_cask.sh ./macos/brew_casks.txt
+			_run_script "homebrew" ./macos/brew.sh ./macos/formulas.txt
+			_run_script "homebrew cask" ./macos/brew_cask.sh ./macos/casks.txt
 			_run_script "macos preferences" ./macos/preferences.sh
 			_run_script "macos internal programs" ./macos/internal.sh ./macos/internal_programs.txt
 			sudo chmod -R go-w "$HOMEBREW_PREFIX/share"
