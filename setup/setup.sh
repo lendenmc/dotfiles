@@ -325,10 +325,15 @@ SETUP_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SETUP_DIR"
 
 if [ -f ./utils.sh ] && [ -r ./utils.sh ]; then
+	dotfiles_dir="$(dirname "$SETUP_DIR")"
 	# shellcheck disable=SC1091
 	. ./utils.sh
 else
-	github_repository="lendenmc/dotfiles"
+	if [ -z "${DOTFILES_REPO:-}" ]; then
+		printf "DOTFILES_REPO must be set to your fork (e.g. \"youruser/dotfiles\")\n" >&2
+		exit 1
+	fi
+	github_repository="$DOTFILES_REPO"
 	dotfiles_tarball_url="https://github.com/${github_repository}/tarball/master"
 	dotfiles_dir="${HOME}/projects/dotfiles"
 	_download_dotfiles

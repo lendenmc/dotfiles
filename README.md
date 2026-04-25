@@ -25,17 +25,19 @@ I most recently tested it on **macOS Tahoma**, after switching from my old MacBo
 
 ## Setting up a new machine
 
-Depending on whether `curl` or `wget` is installed by default on your system, run one of these two commands in your terminal.
+First, fork this repository on GitHub so the setup pulls *your* config (homebrew formulas, vscode extensions, projects to clone, shell profiles), not someone else's. Then export `DOTFILES_REPO` to point at your fork (`youruser/your-fork-name`) and, depending on whether `curl` or `wget` is installed by default on your system (e.g. `curl` on macOS, `wget` on Ubuntu), run one of the install commands below.
 
 ```sh
-sh -c "$(curl -LsS https://raw.github.com/lendenmc/dotfiles/master/setup/setup.sh)"
+export DOTFILES_REPO=youruser/dotfiles
+sh -c "$(curl -LsS https://raw.githubusercontent.com/$DOTFILES_REPO/master/setup/setup.sh)"
 ```
 
 ```sh
-sh -c "$(wget -qO- https://raw.github.com/lendenmc/dotfiles/master/setup/setup.sh)"
+export DOTFILES_REPO=youruser/dotfiles
+sh -c "$(wget -qO- https://raw.githubusercontent.com/$DOTFILES_REPO/master/setup/setup.sh)"
 ```
 
-For instance, `curl` is installed by default on macOS while this is `wget` on Ubuntu.
+`DOTFILES_REPO` is required (the script fails fast if unset).
 
 During the installation process the dotfiles repository content will be installed by default into `$HOME/projects/dotfiles`, which will be created if it does not exist already. A prompt will ask you if this default installation path is suitable for you, if not you will be able to change it. Meanwhile, you will also be able to choose whether or not you want to overwrite an existing location. This approach is taken from [Cătălin’s dotfiles](https://github.com/alrra/dotfiles).
 
