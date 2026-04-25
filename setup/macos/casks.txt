@@ -12,6 +12,7 @@ google-chrome
 flux-app
 iterm2
 keepingyouawake
+ollama-app
 omnidisksweeper
 qlmarkdown
 rectangle

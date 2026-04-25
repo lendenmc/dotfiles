@@ -12,6 +12,7 @@ dash-shell
 deno
 diff-so-fancy
 diffutils
+djvulibre
 dos2unix
 findutils
 ffmpeg
@@ -44,6 +45,7 @@ rsync
 shellcheck
 thefuck
 tree
+uv
 vim
 wget
 yq
