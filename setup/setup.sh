@@ -88,7 +88,7 @@ _setup_tools() {
 	printf "Done with tools setup\n"
 }
 
-_setup_node() {
+_setup_node() (
 	printf "\nSetting up node.js\n"
 	export NVM_DIR="$HOME/.nvm"
 	if [ -s "$NVM_DIR/nvm.sh" ]; then
@@ -98,14 +98,18 @@ _setup_node() {
 		printf "NVM is not installed\n"
 		return 0
 	fi
+	# Isolate CWD: pnpm/corepack can leak node_modules + package.json into it.
+	tmp_dir="$(mktemp -d)"
+	cd "$tmp_dir" || return 1
 	nvm install --lts
 	corepack enable pnpm
 	export PNPM_HOME="${HOME}/.local/share/pnpm"
 	mkdir -p "$PNPM_HOME"
 	export PATH="$PNPM_HOME:$PATH"
 	pnpm install --global git-open
+	rm -rf "$tmp_dir"
 	printf "Done with node.js setup\n"
-}
+)
 
 _setup_pipx() {
 	printf "\nSetting up pipx packages\n"
