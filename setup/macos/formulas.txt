@@ -32,6 +32,7 @@ llvm
 lsof
 m4
 make
+mole
 nmap
 ninja
 meson
