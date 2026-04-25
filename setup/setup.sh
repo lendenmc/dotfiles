@@ -71,50 +71,58 @@ _download_dotfiles() {
 }
 
 _setup_tools() {
-	printf "\nSetting up tools\n"
+	_log_section "Setting up tools"
 	_parse_text_file ./tools.txt \
 		| while read -r name url; do
-			if _test_executable "$name" 2>/dev/null; then
-				printf "%s is already installed\n" "$name"
+			# nvm is a shell function (sourced from ~/.nvm/nvm.sh), not a PATH binary,
+			# so the standard executable check always misses it.
+			if _test_executable "$name" 2>/dev/null \
+				|| { [ "$name" = "nvm" ] && [ -s "${HOME}/.nvm/nvm.sh" ]; }; then
+				_log_warn "$name is already installed"
 				continue
 			fi
-			printf "Installing %s\n\n" "$name"
+			_log_section "Installing $name"
 			if _test_executable "curl" 2>/dev/null; then
 				curl -fsSL "$url" | sh
 			else
 				wget -qO- "$url" | sh
 			fi
 		done
-	printf "Done with tools setup\n"
+	_log_success "Done with tools setup"
 }
 
 _setup_node() (
-	printf "\nSetting up node.js\n"
+	_log_section "Setting up node.js"
 	export NVM_DIR="$HOME/.nvm"
 	if [ -s "$NVM_DIR/nvm.sh" ]; then
 		# shellcheck disable=SC1091
 		\. "$NVM_DIR/nvm.sh"
 	else
-		printf "NVM is not installed\n"
+		_log_warn "NVM is not installed"
 		return 0
 	fi
 	# Isolate CWD: pnpm/corepack can leak node_modules + package.json into it.
 	tmp_dir="$(mktemp -d)"
 	cd "$tmp_dir" || return 1
-	nvm install --lts
+	target_node_version="$(nvm version-remote --lts 2>/dev/null)"
+	if [ "$(nvm version "$target_node_version" 2>/dev/null)" = "$target_node_version" ]; then
+		_log_warn "Node $target_node_version is already installed"
+	else
+		nvm install --lts
+	fi
 	corepack enable pnpm
 	export PNPM_HOME="${HOME}/.local/share/pnpm"
 	mkdir -p "$PNPM_HOME"
 	export PATH="$PNPM_HOME:$PATH"
 	pnpm install --global git-open
 	rm -rf "$tmp_dir"
-	printf "Done with node.js setup\n"
+	_log_success "Done with node.js setup"
 )
 
 _setup_pipx() {
-	printf "\nSetting up pipx packages\n"
+	_log_section "Setting up pipx packages"
 	if ! _test_executable "pipx" 2>/dev/null; then
-		printf "Pipx is not installed\n"
+		_log_warn "Pipx is not installed"
 		return 0
 	fi
 	export PIPX_HOME="${HOME}/.local/pipx"
@@ -126,13 +134,13 @@ _setup_pipx() {
 			_test_program_folder "$package" "package" "$package_dir" || continue
 			pipx install "$options" "$package"
 		done
-	printf "Done with pipx packages setup\n"
+	_log_success "Done with pipx packages setup"
 }
 
 _setup_docker() {
-	printf "\nSetting up docker\n"
+	_log_section "Setting up docker"
 	if ! _test_executable "docker" 2>/dev/null; then
-		printf "Docker is not installed\n"
+		_log_warn "Docker is not installed"
 		return 0
 	fi
 	mkdir -p "${HOME}/.docker/completions"
@@ -147,32 +155,32 @@ _setup_docker() {
 		done
 	fi
 	docker pull jbarlow83/ocrmypdf-alpine
-	printf "Done with docker setup\n"
+	_log_success "Done with docker setup"
 }
 
 _setup_projects() {
-	printf "\nSetting up projects\n"
+	_log_section "Setting up projects"
 	_parse_text_file ./projects.txt \
 		| while read -r project; do
 			project_name=${project##*/}
 			project_dir="$HOME/projects/$project_name"
 			mkdir -p "$project_dir"
 			! _test_empty_dir "$project_dir" || continue
-			printf "Cloning remote git repository %s\n" "$project_name"
+			_log_section "Cloning remote git repository $project_name"
 			git clone "$project" "$project_dir"
 			printf "\n"
 		done
-	printf "Done with projects setup\n"
+	_log_success "Done with projects setup"
 }
 
 _setup_vscode() {
-	printf "\nSetting up vscode\n"
+	_log_section "Setting up vscode"
 	if command -v code >/dev/null 2>&1; then
 		code_name="code"
 	elif command -v code-insiders >/dev/null 2>&1; then
 		code_name="code-insiders"
 	else
-		printf "Visual Studio Code is not installed\n"
+		_log_warn "Visual Studio Code is not installed"
 		return 0
 	fi
 
@@ -188,7 +196,7 @@ _setup_vscode() {
 	esac
 
 	if [ -z "$vscode_folder" ]; then
-		printf "Visual Studio Code setup is not supported for this platform\n"
+		_log_warn "Visual Studio Code setup is not supported for this platform"
 		return 0
 	fi
 
@@ -218,8 +226,8 @@ _setup_vscode() {
 		filename="$(basename "$newfile" .json)"
 
 		if [ -L "$oldfile" ]; then
-			printf "User %s are already symlinked\n" "$filename"
-			printf "You might want to check manually if this is the right %s for you and remove that symlink if that's not the case\n" "$filename"
+			_log_warn "User $filename are already symlinked"
+			_log_warn "You might want to check manually if this is the right $filename for you and remove that symlink if that's not the case"
 		elif [ -r "$oldfile" ] && [ -f "$oldfile" ]; then
 			printf "User %s are already installed." "$filename"
 			printf " Would you like to override the existing user %s or not ? (y/n) " "$filename"
@@ -227,7 +235,7 @@ _setup_vscode() {
 				read -r reply
 				case "$reply" in
 					[yY][eE][sS]|[yY])
-						printf "Removing existing user %s\n" "$filename"
+						_log_section "Removing existing user $filename"
 						rm -f "$oldfile"
 						symlink_user_settings "$newfile" "$oldfile"
 						break
@@ -249,30 +257,35 @@ _setup_vscode() {
 	process_user_settings "$new_keybindings_file" "$old_keybindings_file"
 
 	if ! _test_executable "$code_name" 2>/dev/null; then
-		printf "Visual Studio Code CLI '%s' is not installed\n" "$code_name"
+		_log_warn "Visual Studio Code CLI '$code_name' is not installed"
 		return 0
 	fi
+	installed_extensions="$("$code_name" --list-extensions 2>/dev/null)"
 	_parse_text_file ./vscode_extensions.txt \
 		| while read -r extension; do
+			if printf "%s\n" "$installed_extensions" | grep -Fix -q -- "$extension"; then
+				_log_warn "Extension $extension is already installed"
+				continue
+			fi
 			printf "Installing extension %s\n" "$extension"
 			"$code_name" --install-extension "$extension"
 		done
-	printf "Done with vscode setup\n"
+	_log_success "Done with vscode setup"
 }
 
 _setup_shells() {
-	printf "\nSetting up shells\n"
+	_log_section "Setting up shells"
 	shells="zsh bash dash ksh"
 	for shell in $shells; do
 		if ! _test_executable "$shell" 2>/dev/null; then
-			printf "Shell %s is not installed\n" "$shell"
+			_log_warn "Shell $shell is not installed"
 			continue
 		fi
 		shell_path="$(command -v "$shell")"
 		if grep -Fqx "$shell_path" /etc/shells; then
-			printf "Shell %s is already in /etc/shells\n" "$shell_path"
+			_log_warn "Shell $shell_path is already in /etc/shells"
 		else
-			printf "Adding shell %s to /etc/shells\n" "$shell_path"
+			_log_section "Adding shell $shell_path to /etc/shells"
 			printf "%s\n" "$shell_path" | sudo tee -a /etc/shells >/dev/null
 		fi
 	done
@@ -280,12 +293,12 @@ _setup_shells() {
 	if command -v chsh >/dev/null 2>&1 && _test_executable "zsh" 2>/dev/null; then
 		zsh_path="$(command -v zsh)"
 		if [ "$SHELL" = "$zsh_path" ]; then
-			printf "Default shell is already %s\n" "$zsh_path"
+			_log_warn "Default shell is already $zsh_path"
 		else
 			chsh -s "$zsh_path"
 		fi
 	fi
-	printf "Done with shells setup\n"
+	_log_success "Done with shells setup"
 }
 
 _init_git_repo() {
@@ -293,14 +306,14 @@ _init_git_repo() {
 		return 0
 	fi
 	if ! command -v git >/dev/null 2>&1; then
-		printf "Git is not installed; skipping dotfiles git init\n"
+		_log_warn "Git is not installed; skipping dotfiles git init"
 		return 0
 	fi
 	if [ -z "${github_repository:-}" ]; then
-		printf "github_repository unset; skipping dotfiles git init\n"
+		_log_warn "github_repository unset; skipping dotfiles git init"
 		return 0
 	fi
-	printf "Initializing git repository at %s\n" "$dotfiles_dir"
+	_log_section "Initializing git repository at $dotfiles_dir"
 	(
 		cd "$dotfiles_dir" || exit 1
 		git init -q -b master
@@ -309,7 +322,7 @@ _init_git_repo() {
 		git reset -q --hard origin/master
 		git branch --set-upstream-to=origin/master master >/dev/null
 	)
-	printf "Done with dotfiles git init\n"
+	_log_success "Done with dotfiles git init"
 }
 
 _collect_user_info() {
@@ -338,7 +351,7 @@ _setup_git_local_config() {
 		return 0
 	fi
 	if [ -z "${git_user_name:-}" ] || [ -z "${git_user_email:-}" ]; then
-		printf "Git user name/email empty; skipping ~/.gitconfig.local creation\n"
+		_log_warn "Git user name/email empty; skipping ~/.gitconfig.local creation"
 		return 0
 	fi
 	{
@@ -346,7 +359,7 @@ _setup_git_local_config() {
 		printf "\tname = %s\n" "$git_user_name"
 		printf "\temail = %s\n" "$git_user_email"
 	} > "$gitconfig_local"
-	printf "Wrote %s\n" "$gitconfig_local"
+	_log_success "Wrote $gitconfig_local"
 }
 
 _setup_ssh_key() {
@@ -355,11 +368,11 @@ _setup_ssh_key() {
 		return 0
 	fi
 	if ! command -v ssh-keygen >/dev/null 2>&1; then
-		printf "ssh-keygen is not installed; skipping SSH key setup\n"
+		_log_warn "ssh-keygen is not installed; skipping SSH key setup"
 		return 0
 	fi
 	if [ -z "${git_user_email:-}" ]; then
-		printf "Git user email empty; skipping SSH key setup\n"
+		_log_warn "Git user email empty; skipping SSH key setup"
 		return 0
 	fi
 	ssh-keygen -t ed25519 -C "$git_user_email" -f "$ssh_key" -N ""

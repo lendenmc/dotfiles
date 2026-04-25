@@ -1,8 +1,35 @@
 #!/bin/sh
 
+_log_section() {
+	if [ -t 1 ]; then
+		printf '\n\033[36m==> %s\033[0m\n' "$*"
+	else
+		printf '\n==> %s\n' "$*"
+	fi
+}
+
+_log_success() {
+	if [ -t 1 ]; then
+		printf '\033[32m✓ %s\033[0m\n' "$*"
+	else
+		printf '✓ %s\n' "$*"
+	fi
+}
+
+_log_warn() {
+	if [ -t 2 ]; then
+		printf '\033[93m⚠ %s\033[0m\n' "$*" >&2
+	else
+		printf '⚠ %s\n' "$*" >&2
+	fi
+}
+
 _print_error() {
-	error="$1"
-	printf "ERROR: %s\n" "$error" >&2
+	if [ -t 2 ]; then
+		printf '\033[31m✖ ERROR: %s\033[0m\n' "$1" >&2
+	else
+		printf '✖ ERROR: %s\n' "$1" >&2
+	fi
 }
 
 _test_executable() {
@@ -48,10 +75,10 @@ _test_program_folder() {
 	program_type="$2"
 	dir_name="$3"
 	if [ -d "${dir_name}" ]; then
-		printf "%s %s is already installed\n" "$program_type" "$program_name"
+		_log_warn "$program_type $program_name is already installed"
 		return 1
 	else
-		printf "\nInstalling %s %s\n" "$program_type" "$program_name"
+		_log_section "Installing $program_type $program_name"
 	fi
 }
 
@@ -60,9 +87,9 @@ _run_script() {
 	shift
 	script="$1"
 	shift
-	printf "\nSetting up %s\n" "$name"
+	_log_section "Setting up $name"
 	chmod +x "$script" && ./"$script" "$@"
-	printf "Done with %s setup\n" "$name"
+	_log_success "Done with $name setup"
 }
 
 _get_fullname() {
@@ -74,7 +101,7 @@ _get_fullname() {
 _test_empty_dir() {
 	target_dir="$1"
 	if [ -n "$(ls -A "$target_dir" 2>/dev/null)" ]; then
-		printf "Directory %s is not empty\n\n" "$target_dir"
+		_log_warn "Directory $target_dir is not empty"
 	else
 		return 1
 	fi

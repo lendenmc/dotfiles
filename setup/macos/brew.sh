@@ -14,13 +14,13 @@ if ! xcode-select -p >/dev/null 2>&1; then
         sleep 5
     done
 else
-    printf "Xcode command line tools already installed\n"
+    _log_warn "Xcode command line tools already installed"
 fi
 
 # install homebrew
 homebrew_url="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
 if _test_executable "brew" 2>/dev/null; then
-	printf "Homebrew is already installed\n"
+	_log_warn "Homebrew is already installed"
 	printf "Checking for updates\n"
 	brew update
 	printf "List installed packages\n"
