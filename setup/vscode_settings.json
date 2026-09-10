@@ -53,5 +53,7 @@
 	"diffEditor.ignoreTrimWhitespace": false,
 	"workbench.editor.enablePreview": false,
 	"python.defaultInterpreterPath": "${env:VSCODE_PYTHON}",
-	"github.copilot.nextEditSuggestions.enabled": true
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "terminal.integrated.mouseWheelScrollSensitivity": 3,
+	"terminal.integrated.scrollback": 100000
 }
