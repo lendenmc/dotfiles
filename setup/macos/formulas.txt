@@ -25,6 +25,7 @@ grep
 htop
 jo
 jq
+ghostscript
 ksh93
 less
 libtool

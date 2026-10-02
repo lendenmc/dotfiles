@@ -378,6 +378,33 @@ _setup_ssh_key() {
 	ssh-keygen -t ed25519 -C "$git_user_email" -f "$ssh_key" -N ""
 }
 
+
+
+_setup_texlive() {
+
+	_log_section "Setting up TeX Live"
+	if ! command -v tlmgr >/dev/null 2>&1; then
+		_log_warn "TeX Live is not installed"
+		return 0
+	fi
+	sudo tlmgr update --self
+	for package in \
+		collection-fontsrecommended \
+		pkfix-helper \
+		fontware
+	do
+		if tlmgr info --only-installed "$package" >/dev/null 2>&1; then
+			_log_warn "$package is already installed"
+		else
+			_log_section "Installing TeX Live package $package"
+			sudo tlmgr install "$package"
+		fi
+	done
+	sudo mktexlsr
+	_log_success "Done with TeX Live setup"
+
+}
+
 _setup() {
 	mkdir -p "${HOME}/.bin"
 	mkdir -p "${HOME}/projects"
@@ -413,6 +440,7 @@ _setup() {
 	_setup_projects
 	_setup_vscode
 	_setup_shells
+	_setup_texlive
 }
 
 # Resolve the setup directory so the script works from any working directory

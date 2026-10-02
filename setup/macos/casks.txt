@@ -1,6 +1,7 @@
 1password
 appcleaner
 alfred
+basictex
 chatgpt
 claude
 deepl
