@@ -31,11 +31,18 @@ hs() {
 
 ocrpdf() {
   input="$1"
-  output_directory="$2"
+  shift
 
   if [ -z "$input" ] || ! [ -f "$input" ]; then
-    echo "Usage: ocrmypdf_docker <input.pdf> [output_directory]"
+    echo "Usage: ocrpdf <input.pdf> [output_directory] [ocrmypdf options...]"
     return 1
+  fi
+
+  # Second arg is output dir only if it doesn't start with '-'
+  output_directory=""
+  if [ $# -gt 0 ] && [ "${1#-}" = "$1" ]; then
+    output_directory="$1"
+    shift
   fi
 
   directory=$(dirname "$input")
@@ -48,18 +55,18 @@ ocrpdf() {
     output_directory="$absolute_directory"
   fi
 
-  if [ -n "$output_directory" ] && [ "$output_directory" != "$absolute_directory" ]; then
+  if [ "$output_directory" != "$absolute_directory" ]; then
     docker run --rm \
       -v "$absolute_directory":/input \
       -v "$output_directory":/output \
-      jbarlow83/ocrmypdf-alpine --force-ocr "/input/$basefilename.pdf" "/output/$basefilename.pdf"
-        if [ -f "$output_directory/$basefilename.pdf" ]; then
-            rm -f "$input"
-        fi
+      jbarlow83/ocrmypdf-alpine "$@" "/input/$basefilename.pdf" "/output/$basefilename.pdf"
+    if [ -f "$output_directory/$basefilename.pdf" ]; then
+      rm -f "$input"
+    fi
   else
     docker run --rm \
       -v "$absolute_directory":/input \
-      jbarlow83/ocrmypdf-alpine --force-ocr "/input/$basefilename.pdf" "/input/$basefilename.pdf"
+      jbarlow83/ocrmypdf-alpine "$@" "/input/$basefilename.pdf" "/input/$basefilename.pdf"
   fi
 }
 
