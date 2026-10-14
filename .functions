@@ -73,7 +73,7 @@ ocrpdf() (
     docker run --rm \
         -v "$absolute_directory":/input:ro \
         -v "$output_directory":/output \
-        jbarlow83/ocrmypdf-alpine "$@" "/input/$basefilename" "$docker_output" || exit $?
+        jbarlow83/ocrmypdf:latest "$@" "/input/$basefilename" "$docker_output" || exit $?
 
     if [ -z "$output" ]; then
         mv -f "$temp_directory/result.pdf" "$input" || exit 1
