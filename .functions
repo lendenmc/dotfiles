@@ -29,46 +29,56 @@ hs() {
     | GREP_OPTIONS="" command grep -E "$1"
 }
 
-ocrpdf() {
-  input="$1"
-  shift
-
-  if [ -z "$input" ] || ! [ -f "$input" ]; then
-    echo "Usage: ocrpdf <input.pdf> [output_directory] [ocrmypdf options...]"
-    return 1
-  fi
-
-  # Second arg is output dir only if it doesn't start with '-'
-  output_directory=""
-  if [ $# -gt 0 ] && [ "${1#-}" = "$1" ]; then
-    output_directory="$1"
+ocrpdf() (
+    input="$1"
     shift
-  fi
 
-  directory=$(dirname "$input")
-  basefilename=$(basename "$input" .pdf)
-  absolute_directory=$(cd "$directory" && pwd)
-
-  if [ -n "$output_directory" ]; then
-    output_directory=$(cd "$output_directory" && pwd)
-  else
-    output_directory="$absolute_directory"
-  fi
-
-  if [ "$output_directory" != "$absolute_directory" ]; then
-    docker run --rm \
-      -v "$absolute_directory":/input \
-      -v "$output_directory":/output \
-      jbarlow83/ocrmypdf-alpine "$@" "/input/$basefilename.pdf" "/output/$basefilename.pdf"
-    if [ -f "$output_directory/$basefilename.pdf" ]; then
-      rm -f "$input"
+    if [ -z "$input" ] || ! [ -f "$input" ]; then
+        echo "Usage: ocrpdf <input.pdf> [output.pdf] [ocrmypdf options...]" >&2
+        exit 1
     fi
-  else
+
+    output=""
+    if [ "$#" -gt 0 ] && [ "${1#-}" = "$1" ]; then
+        output="$1"
+        shift
+    fi
+
+    directory=$(dirname "$input")
+    basefilename=$(basename "$input")
+    absolute_directory=$(cd "$directory" && pwd -P) || exit 1
+
+    if [ -n "$output" ]; then
+        output_directory=$(cd "$(dirname "$output")" && pwd -P) || exit 1
+        output_filename=$(basename "$output")
+
+        if [ "$absolute_directory/$basefilename" = "$output_directory/$output_filename" ]; then
+            echo "Error: Input and output must differ." >&2
+            exit 1
+        fi
+
+        if [ -e "$output" ] || [ -L "$output" ]; then
+            echo "Error: Output already exists: $output" >&2
+            exit 1
+        fi
+
+        docker_output="/output/$output_filename"
+    else
+        output_directory="$absolute_directory"
+        temp_directory=$(mktemp -d "$absolute_directory/.ocrpdf.XXXXXXXX") || exit 1
+        trap 'rm -rf "$temp_directory"' 0
+        docker_output="/output/$(basename "$temp_directory")/result.pdf"
+    fi
+
     docker run --rm \
-      -v "$absolute_directory":/input \
-      jbarlow83/ocrmypdf-alpine "$@" "/input/$basefilename.pdf" "/input/$basefilename.pdf"
-  fi
-}
+        -v "$absolute_directory":/input:ro \
+        -v "$output_directory":/output \
+        jbarlow83/ocrmypdf-alpine "$@" "/input/$basefilename" "$docker_output" || exit $?
+
+    if [ -z "$output" ]; then
+        mv -f "$temp_directory/result.pdf" "$input" || exit 1
+    fi
+)
 
 # used for custom prompt
 # do not use the name '_git_branch' because with bash it might conflict with the '_git_branch' function of the 'git-completion.bash' file
